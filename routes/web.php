@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::view('/login', 'auth.login')
+    ->name('login')
+->middleware('guest');
+
+Route::post('/login-post',
+    'Auth\LoginController@autenticate')
+    ->name('login_post');
+
+
+Route::get('/logout',
+    'Auth\LoginController@logout')
+    ->name('logout')
+    ->middleware('auth');
+
+
