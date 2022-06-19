@@ -8,7 +8,7 @@
                         @csrf
                         <div class="row m-0">
                             <div class="col-md-12 text-center">
-                                <img src="{{asset('img/logo.png')}}" height="70"/>
+                                <img src="{{asset('img/logo.jpeg')}}" height="70"/>
                             </div>
                             <div class="col-md-12 text-center mt-3">
                                 <h3>Iniciar sesión</h3>
