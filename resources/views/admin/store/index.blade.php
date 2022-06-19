@@ -16,7 +16,7 @@
             <h3 class="page-title">Restaurantes</h3>
         </div>
         <div class="col-2 text-center">
-            <a href="#" data-url="{{route("admin_restaurant_upsert",['restaurantId'=> 0])}}"
+            <a href="#" data-url="{{route("admin_store_upsert",['storeId'=> 0])}}"
                class="btn btn-secondary btn-upsert">Agregar</a>
         </div>
         <div class="col-md-12 mt-3">
@@ -32,16 +32,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                @forelse($restaurants as $restaurant)
+                @forelse($stores as $store)
                     <tr>
-                        <td>{{$restaurant->id}}</td>
+                        <td>{{$store->id}}</td>
                         <td>
                             <div class="card">
-                                <img src="{{$restaurant->img_url}}" style="height: 100px; width: 100px;
+                                <img src="{{$store->img_url}}" style="height: 100px; width: 100px;
                                 object-fit: scale-down"/>
                             </div>
-                        <td>{{$restaurant->name}}</td>
-                        <td>{{$restaurant->owner}}</td>
+                        <td>{{$store->name}}</td>
+                        <td>{{$store->owner}}</td>
                         <td>Direccion</td>
                         <td>
                             <a href="#"
@@ -61,7 +61,7 @@
                             </a>
                             <a 
                                class="btn-update-status">
-                                <i class="fas {{$restaurant->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
+                                <i class="fas {{$store->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
                             </a>
                         </td>
                     </tr>

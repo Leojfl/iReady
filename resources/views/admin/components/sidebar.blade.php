@@ -12,7 +12,7 @@
     $routes = [
 
         [
-            'name' => 'admin_restaurant_index',
+            'name' => 'admin_store_index',
             'label' => 'Restaurantes',
             'icon_class' => 'fas fa-store-alt',
             'roles' => [Role::ADMIN]

@@ -19,17 +19,17 @@ Route::get(
 
 
 /**
- * ============Routes restaurants ===================================
+ * ============Routes stores ===================================
  */
 
 Route::get(
-    '/restaurant',
-    'RestaurantController@index'
-)->name('admin_restaurant_index');
+    '/store',
+    'StoreController@index'
+)->name('admin_store_index');
 
 Route::get(
-    '/restaurant/upsert/{restaurantId?}',
-    'RestaurantController@upsert'
-)->name('admin_restaurant_upsert');
+    '/store/upsert/{storeId?}',
+    'StoreController@upsert'
+)->name('admin_store_upsert');
 
 

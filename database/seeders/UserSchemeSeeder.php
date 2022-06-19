@@ -18,6 +18,7 @@ class UserSchemeSeeder extends Seeder
             'Prueba123';
 
         $this->catalogs();
+        $this->users();
         DB::table('user')->insert([
             'username' => 'Admin',
             'name' => 'Admin',
@@ -26,6 +27,7 @@ class UserSchemeSeeder extends Seeder
             'password' => bcrypt($password),
             'fk_id_role' => \App\Models\Role::ADMIN
         ]);
+
 
     }
 
@@ -52,7 +54,44 @@ class UserSchemeSeeder extends Seeder
             [
                 'id' => \App\Models\Role::DELIVERY,
                 'name' => 'Repartidor'
+            ],
+            [
+                'id' => \App\Models\Role::CLIENT,
+                'name' => 'Repartidor'
             ]
         ]);
+    }
+
+    public function users() {
+
+        $password = "prueba";
+        if (env('APP_DEBUG', true)) {
+            DB::table('user')->insert([
+                'username' => 'client',
+                'name' => 'Client',
+                'last_name' => 'client l',
+                'second_last_name' => 'client s',
+                'password' => bcrypt($password),
+                'fk_id_role' => \App\Models\Role::CLIENT
+            ]);
+            DB::table('user')->insert([
+                'username' => 'Tienda',
+                'name' => 'tienda',
+                'last_name' => 'tienda',
+                'second_last_name' => 'tienda',
+                'password' => bcrypt($password),
+                'fk_id_role' => \App\Models\Role::STORE
+            ]);
+
+
+            DB::table('user')->insert([
+                'username' => 'Gerente',
+                'name' => 'Gerente',
+                'last_name' => 'Gerente',
+                'second_last_name' => 'Gerente',
+                'password' => bcrypt($password),
+                'fk_id_role' => \App\Models\Role::MANAGER
+            ]);
+        }
     }
 }

@@ -12,19 +12,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Response;
-use App\Models\Restaurant;
+use App\Models\Store;
 
-class RestaurantController extends Controller
+class StoreController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::orderBy('id', 'DESC')->get();
-        return view('admin.restaurant.index', ['restaurants' => $restaurants]);
+        $stores = Store::orderBy('id', 'DESC')->get();
+        return view('admin.store.index', ['stores' => $stores]);
     }
 
     public function upsert($clientId = 0)
     {
-        $client = Restaurant::find($clientId);
-        return view('admin.restaurant.upsert', ['client' => $client]);
+        $client = Store::find($clientId);
+        return view('admin.store.upsert', ['client' => $client]);
     }
 }

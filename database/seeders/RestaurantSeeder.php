@@ -16,7 +16,7 @@ class RestaurantSeeder extends Seeder
 
 
         if(env('APP_DEBUG', true)){
-            DB::table('restaurant')->insert([
+            DB::table('store')->insert([
             'name' =>  'Sushison',
             'owner' =>  'Gonzalo',
             'phone' =>  '5556963026',
@@ -28,7 +28,7 @@ class RestaurantSeeder extends Seeder
             'img_url' => 'https://sushigon.com/wp-content/uploads/2020/07/logo_in.png',
             ]);
 
-            DB::table('restaurant')->insert([
+            DB::table('store')->insert([
                 'name' =>  'Test test',
                 'owner' =>  'Propietario',
                 'phone' =>  '7222119546',

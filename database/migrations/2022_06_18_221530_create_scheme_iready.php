@@ -13,7 +13,7 @@ class CreateSchemeIready extends Migration
      */
     public function up()
     {
-        Schema::create('restaurant', function (Blueprint $table) {
+        Schema::create('store', function (Blueprint $table) {
 
             $table->id();
             $table->string('name');
@@ -42,25 +42,25 @@ class CreateSchemeIready extends Migration
             
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('fk_id_restaurant');
-            $table->foreign('fk_id_restaurant')
+            $table->unsignedBigInteger('fk_id_store');
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
         });
 
-        Schema::create('payment_restaurant', function (Blueprint $table) {
+        Schema::create('payment_store', function (Blueprint $table) {
 
             $table->id();
             $table->double('price');
             $table->date('date');
             $table->timestamps();
-            $table->unsignedBigInteger('fk_id_restaurant');
-            $table->foreign('fk_id_restaurant')
+            $table->unsignedBigInteger('fk_id_store');
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
         });
 
-        Schema::create('restaurant_address', function (Blueprint $table) {
+        Schema::create('store_address', function (Blueprint $table) {
             $table->id();
             $table->string('country')->default('México');
             $table->string('state')->default('México');
@@ -73,12 +73,12 @@ class CreateSchemeIready extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->boolean('active')->default(true);
-            $table->unsignedBigInteger('fk_id_restaurant');
+            $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
 
-            $table->foreign('fk_id_restaurant')
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
         });
 
         Schema::create('unit', function (Blueprint $table) {
@@ -91,12 +91,12 @@ class CreateSchemeIready extends Migration
             $table->string('name');
             $table->integer('min_stok');
             $table->integer('max_stok');
-            $table->unsignedBigInteger('fk_id_restaurant');
+            $table->unsignedBigInteger('fk_id_store');
             $table->unsignedBigInteger('fk_id_unit');
 
-            $table->foreign('fk_id_restaurant')
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
 
             $table->foreign('fk_id_unit')
             ->references('id')
@@ -109,11 +109,11 @@ class CreateSchemeIready extends Migration
             $table->id();
             $table->string('name');
             $table->integer('url_image');
-            $table->unsignedBigInteger('fk_id_restaurant');
+            $table->unsignedBigInteger('fk_id_store');
 
-            $table->foreign('fk_id_restaurant')
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
         });
 
         Schema::create('product', function (Blueprint $table) {
@@ -219,16 +219,16 @@ class CreateSchemeIready extends Migration
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('fk_id_user');
-            $table->unsignedBigInteger('fk_id_restaurant');
+            $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
 
             $table->foreign('fk_id_user')
                 ->references('id')
                 ->on('user');
 
-            $table->foreign('fk_id_restaurant')
+            $table->foreign('fk_id_store')
             ->references('id')
-            ->on('restaurant');
+            ->on('store');
         });
 
 
@@ -238,16 +238,16 @@ class CreateSchemeIready extends Migration
             $table->double('discount');
             $table->string('description');
             $table->string('client');
-            $table->unsignedBigInteger('fk_id_restaurant');
+            $table->unsignedBigInteger('fk_id_store');
             $table->unsignedBigInteger('fk_id_board')->nullable();
             $table->unsignedBigInteger('fk_id_employee')->nullable();
             $table->unsignedBigInteger('fk_id_client')->nullable();
             $table->unsignedBigInteger('fk_id_address')->nullable();
             $table->timestamps();
 
-            $table->foreign('fk_id_restaurant')
+            $table->foreign('fk_id_store')
                 ->references('id')
-                ->on('restaurant');
+                ->on('store');
  
             $table->foreign('fk_id_board')
                 ->references('id')
@@ -316,9 +316,9 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('category');
         Schema::dropIfExists('material');
         Schema::dropIfExists('unit');
-        Schema::dropIfExists('restaurant_address');
-        Schema::dropIfExists('payment_restaurant');
+        Schema::dropIfExists('store_address');
+        Schema::dropIfExists('payment_store');
         Schema::dropIfExists('board');
-        Schema::dropIfExists('restaurant');
+        Schema::dropIfExists('store');
     }
 }

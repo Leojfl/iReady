@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Role;
 class LoginController extends Controller
 {
     /*
@@ -61,8 +61,28 @@ class LoginController extends Controller
             'password' => $request->input('password')
         ];
         if (Auth::attempt($credentials)) {
-            $user = User::find(Auth::id());
-            return redirect(route('admin_index'));
+            $role = User::find(Auth::id())->role;
+
+            if ($role->id == Role::ADMIN) {
+                return redirect(route('admin_index'));
+            }
+
+            if ($role->id == Role::STORE) {
+                return redirect(route('store_index'));
+            }
+
+            if ($role->id == Role::MANAGER) {
+                return redirect(route('admin_index'));
+            }
+
+            if ($role->id == Role::WAITER) {
+                return redirect(route('admin_index'));
+            }
+
+            if ($role->id == Role::DELIVERY) {
+                return redirect(route('admin_index'));
+            }
+            
         }
         return back()
         ->withErrors([ 'username' => ['Correo o contraseña incorrectos']])

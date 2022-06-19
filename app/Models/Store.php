@@ -7,9 +7,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Restaurant extends Model
+class Store extends Model
 {
-    protected $table = 'restaurant';
+    protected $table = 'store';
 
 
 }

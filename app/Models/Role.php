@@ -25,6 +25,7 @@ class Role extends Model
     CONST MANAGER = 3;
     CONST WAITER = 4;
     CONST DELIVERY = 5;
+    CONST CLIENT = 6;
 
     protected $table = 'role';
 
