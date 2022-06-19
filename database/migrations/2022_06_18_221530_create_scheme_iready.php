@@ -24,6 +24,8 @@ class CreateSchemeIready extends Migration
             $table->string('second_color');
             $table->string('rfc');
             $table->string('description');
+            $table->string('img_url');
+            
 
             $table->timestamps();
             $table->softDeletes();
