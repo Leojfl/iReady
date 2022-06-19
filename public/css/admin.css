@@ -12,13 +12,13 @@ body {
   color: #6F6F6F;
 }
 .color-primary {
-  color: #af1515;
+  color: #981616;
 }
 .color-primary-light {
-  color: #df665b;
+  color: #ffa8a8;
 }
 .color-secondary {
-  color: #b20f0f;
+  color: #8c1010;
 }
 .color-green {
   color: #0d5216;
@@ -36,13 +36,13 @@ body {
   background-color: #6F6F6F;
 }
 .bg-primary {
-  background-color: #af1515 !important;
+  background-color: #981616 !important;
 }
 .bg-primary-light {
-  background-color: #df665b;
+  background-color: #ffa8a8;
 }
 .bg-secondary {
-  background-color: #b20f0f !important;
+  background-color: #8c1010 !important;
 }
 .bg-green {
   background-color: #0d5216;
@@ -56,34 +56,34 @@ body {
   padding-right: 15px;
 }
 .btn-primary {
-  background-color: #af1515;
-  border-color: #af1515;
+  background-color: #981616;
+  border-color: #981616;
 }
 .btn-primary.btn-primary:hover,
 .btn-primary.btn-primary:active {
-  border-color: #af1515;
-  box-shadow: 0 0 0 0.1rem #af2f15 !important;
-  background-color: #811010 !important;
+  border-color: #981616;
+  box-shadow: 0 0 0 0.1rem #982c16 !important;
+  background-color: #6b1010 !important;
 }
 .btn-primary-light {
-  background-color: #df665b;
-  border-color: #df665b;
+  background-color: #ffa8a8;
+  border-color: #ffa8a8;
 }
 .btn-primary-light.btn-primary-light:hover,
 .btn-primary-light.btn-primary-light:active {
-  border-color: #df665b;
-  box-shadow: 0 0 0 0.1rem #df7c5b !important;
-  background-color: #d73e30 !important;
+  border-color: #ffa8a8;
+  box-shadow: 0 0 0 0.1rem #ffb6a8 !important;
+  background-color: #ff7575 !important;
 }
 .btn-secondary {
-  background-color: #b20f0f;
-  border-color: #b20f0f;
+  background-color: #8c1010;
+  border-color: #8c1010;
 }
 .btn-secondary.btn-secondary:hover,
 .btn-secondary.btn-secondary:active {
-  border-color: #b20f0f;
-  box-shadow: 0 0 0 0.1rem #b22a0f !important;
-  background-color: #830b0b !important;
+  border-color: #8c1010;
+  box-shadow: 0 0 0 0.1rem #8c2510 !important;
+  background-color: #5e0b0b !important;
 }
 .btn-black {
   background-color: #000000;
@@ -127,11 +127,28 @@ body {
   height: 100vh;
   max-height: 100vh;
 }
+.custom-shape-divider-top-1655580681 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+.custom-shape-divider-top-1655580681 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 148px;
+}
+.custom-shape-divider-top-1655580681 .shape-fill {
+  fill: #FFFFFF;
+}
 .fas.react {
   font-size: 1.5rem;
 }
 .fas.react.rct-loading {
-  color: #af1515;
+  color: #981616;
 }
 .fas.react.rct-add {
   cursor: pointer;
@@ -144,7 +161,7 @@ body {
 .sidebar-item {
   margin: -8px 0 -10px 0;
   padding: 10px 16px 14px 16px;
-  background-color: #af1515;
+  background-color: #981616;
   border-radius: 0 16px 10px 0;
 }
 .sidebar-item a {
@@ -155,12 +172,12 @@ body {
 }
 .sidebar-item.active {
   margin: 10px 0 0 0;
-  background-color: #df665b;
+  background-color: #ffa8a8;
   border-radius: 0;
   font-weight: 700 !important;
 }
 .sidebar-item.active a {
-  color: #b20f0f;
+  color: #8c1010;
 }
 .card-main {
   width: auto;
@@ -173,7 +190,7 @@ body {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 16px;
-  box-shadow: 0 0 20px -2px #b20f0f;
+  box-shadow: 0 0 20px -2px #8c1010;
 }
 .page-title {
   margin-bottom: 0.75rem;
@@ -192,7 +209,7 @@ body {
   margin-top: -30px;
   border-radius: 2em;
   border: 2px solid #FFFFFF;
-  background: #af1515;
+  background: #981616;
   color: #FFFFFF;
   opacity: 1;
   width: auto;
@@ -206,23 +223,23 @@ body {
   position: absolute;
   top: 10px;
   left: 5px;
-  color: #af1515;
+  color: #981616;
   cursor: none;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
 .form-group .form-control {
   border: 0;
-  border-bottom: 1px solid #af1515;
+  border-bottom: 1px solid #981616;
   background: transparent;
   padding: 8px 0 5px 0;
-  color: #af1515;
+  color: #981616;
 }
 .form-group .form-control:focus {
   border: none;
   background: transparent;
   outline: none;
-  border-bottom: 1px solid #af1515;
+  border-bottom: 1px solid #981616;
   box-shadow: none;
 }
 .form-group .form-control:focus ~ .label-control,
@@ -255,7 +272,7 @@ body {
   padding: 5px;
 }
 .autocomplete-suggestions .autocomplete-suggestion:hover {
-  background: #af1515;
+  background: #981616;
 }
 .loader {
   color: #000000;
