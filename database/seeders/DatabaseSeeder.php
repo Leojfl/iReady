@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([UserSchemeSeeder::class]);
+        $this->call([RestaurantSeeder::class]);
     }
 }
+https://media-cdn.tripadvisor.com/media/photo-o/14/0a/9c/02/bar.jpg

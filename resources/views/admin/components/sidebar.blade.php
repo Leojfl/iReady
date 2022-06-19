@@ -10,7 +10,20 @@
     // The 'name' attribute is as it's named in admin.php
     // The 'label' attribute is as it's shown in view
     $routes = [
-        0 => [
+
+        [
+            'name' => 'admin_restaurant_index',
+            'label' => 'Restaurantes',
+            'icon_class' => 'fas fa-store-alt',
+            'roles' => [Role::ADMIN]
+        ],
+        [
+            'name' => 'admin_users_index',
+            'label' => 'Graficas',
+            'icon_class' => 'fas fa-chart-bar ',
+            'roles' => [Role::ADMIN]
+        ],
+        [
             'name' => 'admin_users_index',
             'label' => 'Usuarios',
             'icon_class' => 'fas fa-users',
@@ -31,22 +44,10 @@
                 @endif
             @endforeach
         @endfor
-
-        <div class="d-flex-inline sidebar-item  pl-4">
-            <a href="{{asset("apk/".(env('APP_DEBUG')?"appdebug.apk":"saac.apk"))}}" download>
-        <span class="mr-1">
-            <i class="text-center fab fa-android "
-               style=" font-size: 20px; width: 30px"> </i>
-        </span>
-                <span>
-                    Aplicación
-                </span>
-            </a>
-        </div>
     </div>
     <div class="d-inline-flex sidebar-item d-flex-row color-white px-4 pt-5">
         <a href="{{route('logout')}}">
-            <i class="fas fa-door-open" style="font-size: 28px"></i><br>
+            <i class="fas fa-door-open" style="font-size: 18px"></i>
             <span class="cursor-pointer">Cerrar sesión</span>
         </a>
     </div>
