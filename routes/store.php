@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::view(
     '/',
-    'admin.index'
+    'store.index'
 )->name('store_index');
 

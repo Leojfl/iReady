@@ -72,17 +72,17 @@ class LoginController extends Controller
             }
 
             if ($role->id == Role::MANAGER) {
-                return redirect(route('admin_index'));
+                return redirect(route('store_index'));
             }
 
             if ($role->id == Role::WAITER) {
-                return redirect(route('admin_index'));
+                return redirect(route('store_index'));
             }
 
             if ($role->id == Role::DELIVERY) {
-                return redirect(route('admin_index'));
+                return redirect(route('store_index'));
             }
-            
+
         }
         return back()
         ->withErrors([ 'username' => ['Correo o contraseña incorrectos']])
