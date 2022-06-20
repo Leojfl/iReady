@@ -25,7 +25,7 @@ class CreateSchemeIready extends Migration
             $table->string('rfc');
             $table->string('description');
             $table->string('img_url');
-            
+
 
             $table->timestamps();
             $table->softDeletes();
@@ -39,7 +39,7 @@ class CreateSchemeIready extends Migration
             $table->string('description');
             $table->boolean('active')->default(true);
             $table->boolean('available')->default(true);
-            
+
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('fk_id_store');
@@ -109,11 +109,6 @@ class CreateSchemeIready extends Migration
             $table->id();
             $table->string('name');
             $table->integer('url_image');
-            $table->unsignedBigInteger('fk_id_store');
-
-            $table->foreign('fk_id_store')
-                ->references('id')
-                ->on('store');
         });
 
         Schema::create('product', function (Blueprint $table) {
@@ -133,8 +128,8 @@ class CreateSchemeIready extends Migration
         Schema::create('product_material', function (Blueprint $table) {
             $table->id();
             $table->double('quantity');
-            
-            
+
+
             $table->unsignedBigInteger('fk_id_product');
             $table->unsignedBigInteger('fk_id_material');
 
@@ -231,6 +226,17 @@ class CreateSchemeIready extends Migration
             ->on('store');
         });
 
+        Schema::create('status', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Schema::create('order_status', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('fk_id_status');
+            $table->unsignedBigInteger('fk_id_order');
+            $table->timestamps();
+        });
 
         Schema::create('order', function (Blueprint $table) {
             $table->id();
@@ -238,6 +244,7 @@ class CreateSchemeIready extends Migration
             $table->double('discount');
             $table->string('description');
             $table->string('client');
+            $table->unsignedBigInteger('fk_id_status');
             $table->unsignedBigInteger('fk_id_store');
             $table->unsignedBigInteger('fk_id_board')->nullable();
             $table->unsignedBigInteger('fk_id_employee')->nullable();
@@ -248,7 +255,7 @@ class CreateSchemeIready extends Migration
             $table->foreign('fk_id_store')
                 ->references('id')
                 ->on('store');
- 
+
             $table->foreign('fk_id_board')
                 ->references('id')
                 ->on('board');
@@ -256,10 +263,14 @@ class CreateSchemeIready extends Migration
             $table->foreign('fk_id_employee')
                 ->references('id')
                 ->on('employee');
- 
+
             $table->foreign('fk_id_client')
                 ->references('id')
                 ->on('client');
+
+            $table->foreign('fk_id_status')
+            ->references('id')
+            ->on('status');
 
             $table->foreign('fk_id_address')
             ->references('id')
@@ -281,7 +292,7 @@ class CreateSchemeIready extends Migration
             $table->foreign('fk_id_order')
                 ->references('id')
                 ->on('order');
- 
+
             $table->foreign('fk_id_product')
                 ->references('id')
                 ->on('product');
@@ -290,6 +301,7 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('combo');
         });
+
 
 
 
@@ -305,7 +317,9 @@ class CreateSchemeIready extends Migration
     public function down()
     {
         Schema::dropIfExists('order_product');
+        Schema::dropIfExists('order_status');
         Schema::dropIfExists('order');
+        Schema::dropIfExists('status');
         Schema::dropIfExists('employee');
         Schema::dropIfExists('address');
         Schema::dropIfExists('client');
