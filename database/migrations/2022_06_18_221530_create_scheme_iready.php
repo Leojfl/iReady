@@ -12,7 +12,7 @@ class CreateSchemeIready extends Migration
      * @return void
      */
     public function up()
-    {
+       {
         Schema::create('store', function (Blueprint $table) {
 
             $table->id();
