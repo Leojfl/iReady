@@ -100,12 +100,4 @@ class User extends Authenticatable
     {
         return $this->name.' '.$this->last_name.' '.$this->second_last_name;
     }
-
-
-
-    public static function asMapOfAgents()
-    {
-        return self::whereFkIdRole(Role::AGENT)
-            ->pluck('name', 'id');
-    }
 }
