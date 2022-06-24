@@ -23,7 +23,7 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
+            'name' => 'raw_material_index',
             'label' => 'Materia prima',
             'icon_class' => 'fas fa-boxes',
             'roles' => [Role::STORE]
