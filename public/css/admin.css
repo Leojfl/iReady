@@ -230,10 +230,7 @@ body {
   padding: 2px 10px 10px 10px;
   margin-right: 10px;
 }
-.form-group {
-  position: relative;
-}
-.form-group .label-control {
+.form-floating .floatingInput {
   position: absolute;
   top: 10px;
   left: 5px;
@@ -242,30 +239,30 @@ body {
   font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
-.form-group .form-control {
+.form-floating .form-control {
   border: 0;
   border-bottom: 1px solid #981616;
   background: transparent;
   padding: 8px 0 5px 0;
   color: #981616;
 }
-.form-group .form-control:focus {
+.form-floating .form-control:focus {
   border: none;
   background: transparent;
   outline: none;
   border-bottom: 1px solid #981616;
   box-shadow: none;
 }
-.form-group .form-control:focus ~ .label-control,
-.form-group .form-control:valid ~ .label-control {
+.form-floating .form-control:focus ~ .label-control,
+.form-floating .form-control:valid ~ .label-control {
   top: -10px;
   font-size: 12px;
 }
-.form-group .name-focused .form-control .label-control {
+.form-floating .name-focused .form-control .label-control {
   top: -10px;
   font-size: 12px;
 }
-.form-group .form-control.is-invalid {
+.form-floating .form-control.is-invalid {
   border-color: #dc3545;
   padding-right: calc(1.5em + 0.75rem);
   background-repeat: no-repeat;
