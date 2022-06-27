@@ -89,8 +89,9 @@ class CreateSchemeIready extends Migration
         Schema::create('material', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('min_stok');
-            $table->integer('max_stok');
+            $table->double('quantity');
+            $table->double('min_stok');
+            $table->double('max_stok');
             $table->unsignedBigInteger('fk_id_store');
             $table->unsignedBigInteger('fk_id_unit');
 

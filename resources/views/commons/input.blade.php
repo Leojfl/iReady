@@ -6,19 +6,20 @@
     $value=$value??null;
     $propertiesInput=$properties??[];
 @endphp
-<div class="form-group">
+<div class="form-floating">
     <input type="{{$type}}"
            autocomplete="off"
            class="{{ strpos($inputClass, 's/n') !== false?'':'form-control' }} {{$inputClass}} {{$errors->has($name)?'is-invalid':''}}"
            name="{{$name}}"
            id="{{$id}}"
            value="{{old($name,$value)}}"
+           placeholder=" "
     @foreach($propertiesInput as $key => $property )
         {{$property.' '}}
         @endforeach
 
     >
-    <label class="{{ strpos($labelClass, 's/n') !== false?'':'label-control' }} {{$labelClass}}" for="{{$id}}">{{$label}}</label>
+    <label class="{{ strpos($labelClass, 's/n') !== false?'':' ' }} {{$labelClass}}" for="{{$id}}">{{$label}}</label>
 
     @if ($errors->has($name))
         <div class="invalid-feedback">

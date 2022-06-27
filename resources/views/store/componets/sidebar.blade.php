@@ -29,7 +29,7 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
+            'name' => 'store_products_index',
             'label' => 'Productos',
             'icon_class' => 'fas fa-hamburger',
             'roles' => [Role::STORE]
