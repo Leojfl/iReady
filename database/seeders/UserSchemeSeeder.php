@@ -74,14 +74,6 @@ class UserSchemeSeeder extends Seeder
                 'password' => bcrypt($password),
                 'fk_id_role' => \App\Models\Role::CLIENT
             ]);
-            DB::table('user')->insert([
-                'username' => 'Tienda',
-                'name' => 'tienda',
-                'last_name' => 'tienda',
-                'second_last_name' => 'tienda',
-                'password' => bcrypt($password),
-                'fk_id_role' => \App\Models\Role::STORE
-            ]);
 
 
             DB::table('user')->insert([

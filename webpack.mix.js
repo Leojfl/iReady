@@ -13,3 +13,10 @@ const mix = require('laravel-mix');
 
 
  mix.less('resources/less/admin.less', 'css/admin.css');
+
+
+
+
+mix.js('resources/js/vue-config.js', 'js/vue-config.js');
+
+mix.js('resources/js/store/product/startForm.js', 'js/store/product/startForm.js').vue();
