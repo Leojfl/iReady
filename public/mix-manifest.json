@@ -1,3 +1,5 @@
 {
+    "/js/vue-config.js": "/js/vue-config.js",
+    "/js/store/product/startForm.js": "/js/store/product/startForm.js",
     "/css/admin.css": "/css/admin.css"
 }

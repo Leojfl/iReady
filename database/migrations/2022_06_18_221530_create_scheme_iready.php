@@ -109,21 +109,46 @@ class CreateSchemeIready extends Migration
         Schema::create('category', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('url_image');
+        });
+
+
+        Schema::create('store_category', function (Blueprint $table) {
+            $table->id();
+            $table->integer('priority');
+            $table->string('drescription');
+            $table->string('url_image');
+            $table->unsignedBigInteger('fk_id_store');
+            $table->unsignedBigInteger('fk_id_category');
+
+            $table->foreign('fk_id_store')
+                ->references('id')
+                ->on('store');
+
+            $table->foreign('fk_id_category')
+            ->references('id')
+            ->on('category');
+
+            $table->timestamps();
+
         });
 
         Schema::create('product', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('description');
+            $table->string('description');
             $table->double('price');
             $table->double('show');
             $table->timestamps();
             $table->unsignedBigInteger('fk_id_category');
+            $table->unsignedBigInteger('fk_id_store');
 
             $table->foreign('fk_id_category')
                 ->references('id')
                 ->on('category');
+
+            $table->foreign('fk_id_store')
+                ->references('id')
+                ->on('store');
         });
 
         Schema::create('product_material', function (Blueprint $table) {
@@ -212,7 +237,6 @@ class CreateSchemeIready extends Migration
 
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
@@ -345,6 +369,7 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('combo');
         Schema::dropIfExists('product_material');
         Schema::dropIfExists('product');
+        Schema::dropIfExists('store_category');
         Schema::dropIfExists('category');
         Schema::dropIfExists('material');
         Schema::dropIfExists('unit');

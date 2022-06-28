@@ -16,7 +16,7 @@
             <h3 class="page-title">Productos</h3>
         </div>
         <div class="col-2 text-center">
-            <a href="#" data-url="{{route("store_product_upsert",['productId'=> 0])}}"
+            <a href="{{route("store_product_upsert",['productId'=> 0])}}"
                class="btn btn-secondary btn-upsert">Agregar</a>
         </div>
         <div class="col-md-12 mt-3">
@@ -51,7 +51,6 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Ingredientes</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -65,8 +64,8 @@
                                     object-fit: scale-down"/>
                                 </div>
                             <td>{{$product->name}}</td>
-                            <td>{{$product->owner}}</td>
-                            <td>Direccion</td>
+                            <td>{{$product->description}}</td>
+                            <td>{{$product->price}}</td>
                             <td>
                                 <a href="#"
 
@@ -110,20 +109,26 @@
                             <th scope="col">Precio</th>
                             <th scope="col">Ingredientes</th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($products as $product)
+                        @forelse($combos as $combo)
                             <tr>
-                                <td>{{$product->id}}</td>
+                                <td>{{$combo->id}}</td>
                                 <td>
                                     <div class="card">
-                                        <img src="{{$product->img_url}}" style="height: 100px; width: 100px;
+                                        <img src="{{$combo->img_url}}" style="height: 100px; width: 100px;
                                         object-fit: scale-down"/>
                                     </div>
-                                <td>{{$product->name}}</td>
-                                <td>{{$product->owner}}</td>
-                                <td>Direccion</td>
+                                <td>{{$combo->name}}</td>
+                                <td>{{$combo->description}}</td>
+                                <td>{{$combo->price}}</td>
+                                <td>
+                                    @foreach ( $combo->products as $product )
+                                    {{$product->name.' '.$product->quantity}} <br>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <a href="#"
 
@@ -142,7 +147,7 @@
                                     </a>
                                     <a
                                        class="btn-update-status">
-                                        <i class="fas {{$product->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
+                                        <i class="fas {{$combo->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
                                     </a>
                                 </td>
                             </tr>
