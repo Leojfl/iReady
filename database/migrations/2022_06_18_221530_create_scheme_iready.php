@@ -327,22 +327,6 @@ class CreateSchemeIready extends Migration
                 ->on('combo');
         });
 
-        Schema::create('data', function (Blueprint $table) {
-
-            $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('phone');
-            $table->date('datecreate');
-            $table->string('owner');
-            $table->string('schedule');
-            $table->string('description');
-            $table->string('img_url');
-
-
-            $table->timestamps();
-            $table->softDeletes();
-        });
 
 
 
@@ -377,6 +361,5 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('payment_store');
         Schema::dropIfExists('board');
         Schema::dropIfExists('store');
-        Schema::dropIfExists('data');
     }
 }
