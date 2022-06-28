@@ -86,13 +86,12 @@ class CreateSchemeIready extends Migration
             $table->string('value');
         });
 
-        Schema::create('material', function (Blueprint $table) {
-            $table->id();
+        Schema::create('raw_materials', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('min_stok');
-            $table->integer('max_stok');
-            $table->unsignedBigInteger('fk_id_store');
-            $table->unsignedBigInteger('fk_id_unit');
+            $table->double('quantity');
+            $table->double('min_stok');
+            $table->double('max_stok');
 
             $table->foreign('fk_id_store')
                 ->references('id')
@@ -328,7 +327,7 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('product_material');
         Schema::dropIfExists('product');
         Schema::dropIfExists('category');
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('raw_materials');
         Schema::dropIfExists('unit');
         Schema::dropIfExists('store_address');
         Schema::dropIfExists('payment_store');
