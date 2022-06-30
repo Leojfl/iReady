@@ -86,7 +86,7 @@ class CreateSchemeIready extends Migration
             $table->string('value');
         });
 
-        Schema::create('RawMaterial', function (Blueprint $table) {
+        Schema::create('Raw_Material', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->double('quantity');
