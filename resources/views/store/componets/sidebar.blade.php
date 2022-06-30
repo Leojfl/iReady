@@ -23,13 +23,13 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
+            'name' => 'raw_material_index',
             'label' => 'Materia prima',
             'icon_class' => 'fas fa-boxes',
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'store_products_index',
+            'name' => 'admin_users_index',
             'label' => 'Productos',
             'icon_class' => 'fas fa-hamburger',
             'roles' => [Role::STORE]

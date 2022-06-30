@@ -86,7 +86,7 @@ class CreateSchemeIready extends Migration
             $table->string('value');
         });
 
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('RawMaterial', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->double('quantity');
@@ -159,13 +159,13 @@ class CreateSchemeIready extends Migration
             $table->unsignedBigInteger('fk_id_product');
             $table->unsignedBigInteger('fk_id_material');
 
-            $table->foreign('fk_id_product')
-                ->references('id')
-                ->on('product');
+           // $table->foreign('fk_id_product')
+             //   ->references('id')
+             //   ->on('product');
 
-            $table->foreign('fk_id_material')
-            ->references('id')
-            ->on('material');
+         //   $table->foreign('fk_id_material')
+          //  ->references('id')
+          //  ->on('material');
 
             $table->timestamps();
         });
@@ -354,7 +354,7 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('product');
         Schema::dropIfExists('store_category');
         Schema::dropIfExists('category');
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('RawMaterial');
         Schema::dropIfExists('unit');
         Schema::dropIfExists('store_address');
         Schema::dropIfExists('payment_store');
