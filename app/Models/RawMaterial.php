@@ -9,12 +9,13 @@ class RawMaterial extends Model
 {
     use HasFactory;
 
-    protected $table = 'raw_materials';
+    protected $table = 'raw_material';
 
     protected $fillable = [
         'name',
         'quantity',
         'min_stok',
         'max_stok',
+        'fk_id_store',
     ];
 }

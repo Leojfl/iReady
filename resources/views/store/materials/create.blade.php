@@ -43,6 +43,16 @@
             ])
         </div>
         <br>
+        <div class="col">
+            <select name="fk_id_store" class="form-select" aria-label="Default select example">
+              <option>Selecciona Una Tienda</option>
+              @foreach ($store as $tienda)
+              <option  value="{{$tienda->id}}">{{$tienda->name}}</option>
+              @endforeach
+            </select>
+            <br>
+          </div>
+        <br>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Guardar</button>
             &nbsp;

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RawMaterialRequest as RequestsRawMaterialRequest;
 use Illuminate\Http\Request;
 use App\Models\RawMaterial;
+use App\Request\RawMaterialRequest;
+use App\Models\Store;
 
 
 class RawMaterialController extends Controller
@@ -27,7 +30,8 @@ class RawMaterialController extends Controller
      */
     public function create()
     {
-        return view('store.materials.create');
+        $store = Store::all();
+        return view('store.materials.create', compact('store'));
     }
 
     /**
@@ -36,13 +40,14 @@ class RawMaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestsRawMaterialRequest $request)
     {
-        $raw=RawMaterial::create([
-            'name'=>$request->name,
-            'quantity'=>$request->quantity,
-            'min_stok'=>$request->min_stok,
-            'max_stok'=>$request->max_stok,
+        $raw = RawMaterial::create([
+            'name' => $request->name,
+            'quantity' => $request->quantity,
+            'min_stok' => $request->min_stok,
+            'max_stok' => $request->max_stok,
+            'fk_id_store' => $request->fk_id_store,
         ]);
 
         return redirect()->route('raw_material_index');
@@ -69,8 +74,8 @@ class RawMaterialController extends Controller
     public function edit($material)
     {
         $material = RawMaterial::find($material);
-        return view('store.materials.edit', compact('material'));
-
+        $store = Store::all();
+        return view('store.materials.edit', compact('material', 'store'));
     }
 
     /**
@@ -80,13 +85,12 @@ class RawMaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $material)
+    public function update(RequestsRawMaterialRequest $request, $material)
     {
         $material = RawMaterial::find($material);
         $material->update($request->all());
 
         return redirect()->route('raw_material_index');
-
     }
 
     /**
@@ -102,4 +106,3 @@ class RawMaterialController extends Controller
         return redirect()->route('raw_material_index');
     }
 }
-

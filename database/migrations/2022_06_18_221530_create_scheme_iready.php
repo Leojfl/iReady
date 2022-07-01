@@ -86,22 +86,22 @@ class CreateSchemeIready extends Migration
             $table->string('value');
         });
 
-        Schema::create('Raw_Material', function (Blueprint $table) {
+        Schema::create('raw_material', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->double('quantity');
             $table->double('min_stok');
             $table->double('max_stok');
             $table->unsignedBigInteger('fk_id_store');
-            $table->unsignedBigInteger('fk_id_unit');
+          //  $table->unsignedBigInteger('fk_id_unit');
 
             $table->foreign('fk_id_store')
                 ->references('id')
                 ->on('store');
 
-            $table->foreign('fk_id_unit')
-            ->references('id')
-            ->on('unit');
+           // $table->foreign('fk_id_unit')
+           // ->references('id')
+            //->on('unit');
 
             $table->timestamps();
         });
