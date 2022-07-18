@@ -4,7 +4,7 @@
     <form method="POST" action="{{ route('raw_material_store') }}">
         {{ csrf_field() }}
         <div class="form-group">
-        
+          
             @include('commons.input',[
                 'name' => 'name',
                 'label' => 'Nombre del material',
@@ -14,7 +14,7 @@
         </div>
         <br>
         <div class="form-group">
-        
+           
             @include('commons.input',[
                 'name' => 'quantity',
                 'label' => 'Cantidad del material',
@@ -24,7 +24,7 @@
         </div>
         <br>
         <div class="form-group">
-          
+           
             @include('commons.input',[
                 'name' => 'min_stok',
                 'label' => 'Stok minimo del material',
@@ -34,7 +34,7 @@
         </div>
         <br>
         <div class="form-group">
-            
+
             @include('commons.input',[
                 'name' => 'max_stok',
                 'label' => 'Stok maximo del material',
@@ -42,16 +42,6 @@
                 'type' => 'number',
             ])
         </div>
-        <br>
-        <div class="col">
-            <select name="fk_id_store" class="form-select" aria-label="Default select example">
-              <option>Selecciona Una Tienda</option>
-              @foreach ($store as $tienda)
-              <option  value="{{$tienda->id}}">{{$tienda->name}}</option>
-              @endforeach
-            </select>
-            <br>
-          </div>
         <br>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Guardar</button>

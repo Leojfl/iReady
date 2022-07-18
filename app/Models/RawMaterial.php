@@ -16,6 +16,5 @@ class RawMaterial extends Model
         'quantity',
         'min_stok',
         'max_stok',
-        'fk_id_store',
     ];
 }

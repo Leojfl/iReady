@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Http\Requests\EmployeeRequest as RequestsEmployeeRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RawMaterialRequest as RequestsRawMaterialRequest;
 use Illuminate\Http\Request;
-use App\Models\RawMaterial;
-use App\Request\RawMaterialRequest;
+use App\Request\EmployeeRequest;
+use App\Models\Employee;
 use App\Models\Store;
 
 
-class RawMaterialController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +19,8 @@ class RawMaterialController extends Controller
      */
     public function index()
     {
-        $raw = RawMaterial::all();
-        return view('store.materials.index', compact('raw'));
+        $raw = Employee::all();
+        return view('store.employee.index', compact('raw'));
     }
 
     /**
@@ -31,7 +31,7 @@ class RawMaterialController extends Controller
     public function create()
     {
         $store = Store::all();
-        return view('store.materials.create', compact('store'));
+        return view('store.employee.create', compact('store'));
     }
 
     /**
@@ -40,18 +40,15 @@ class RawMaterialController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestsRawMaterialRequest $request)
+    public function store(RequestsEmployeeRequest $request)
     {
-        $raw = RawMaterial::create([
-            'name' => $request->name,
-            'quantity' => $request->quantity,
-            'min_stok' => $request->min_stok,
-            'max_stok' => $request->max_stok,
-
-
+        $raw = Employee::create([
+            'active' => $request->active,
+            'fk_id_user' => $request->fk_id_user,
+            'fk_id_store' => $request->fk_id_store,
         ]);
 
-        return redirect()->route('raw_material_index');
+        return redirect()->route('raw_employee_index');
     }
 
     /**
@@ -62,8 +59,8 @@ class RawMaterialController extends Controller
      */
     public function show($id)
     {
-        $id = RawMaterial::find($id);
-        return view('store.materials.show', compact('id'));
+        $id = Employee::find($id);
+        return view('store.employee.show', compact('id'));
     }
 
     /**
@@ -72,11 +69,11 @@ class RawMaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($material)
+    public function edit($employee)
     {
-        $material = RawMaterial::find($material);
+        $employee = Employee::find($employee);
         $store = Store::all();
-        return view('store.materials.edit', compact('material', 'store'));
+        return view('store.employee.edit', compact('employee', 'store'));
     }
 
     /**
@@ -86,12 +83,12 @@ class RawMaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestsRawMaterialRequest $request, $material)
+    public function update(RequestsEmployeeRequest $request, $employee)
     {
-        $material = RawMaterial::find($material);
-        $material->update($request->all());
+        $employee = Employee::find();
+        $employee->update($request->all());
 
-        return redirect()->route('raw_material_index');
+        return redirect()->route('employee_index');
     }
 
     /**
@@ -102,8 +99,8 @@ class RawMaterialController extends Controller
      */
     public function destroy($id)
     {
-        $id = RawMaterial::find($id);
+        $id = Employee::find($id);
         $id->delete();
-        return redirect()->route('raw_material_index');
+        return redirect()->route('employee_index');
     }
 }

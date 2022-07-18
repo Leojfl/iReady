@@ -6,10 +6,10 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Lista de Materiales</h3>
+                        <h3 class="panel-title">Lista de Empleados</h3>
                     </div>
-                    <a href="{{ route('raw_material_create') }}" class="btn btn-primary pull-right create">Nuevo
-                        Material</a>
+                    <a href="{{ route('employee_create') }}" class="btn btn-primary pull-right create">Nuevo
+                        Empleado</a>
                     <br>
                     <div class="panel-body">
                         <div class="row">
@@ -18,30 +18,28 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nombre</th>
-                                            <th>Cantidad</th>
-                                            <th>Stok Minimo</th>
-                                            <th>Stok Maximo</th>
+                                            <th>Activo</th>
+                                            <th>Fk_id_user</th>
+                                            <th>Fk_id_stor</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($raw as $material)
+                                        @foreach ($raw as $employee)
                                             <tr>
-                                                <td>{{ $material->id }}</td>
-                                                <td>{{ $material->name }}</td>
-                                                <td>{{ $material->quantity }}</td>
-                                                <td>{{ $material->min_stok }}</td>
-                                                <td>{{ $material->max_stok }}</td>
+                                                <td>{{ $employee->Activo }}</td>
+                                                <td>{{ $employee->Fk_id_user }}</td>
+                                                <td>{{ $employee->Fk_id_stor }}</td>
                                                 <td>
-                                                    <a href="{{ route('raw_material_edit', $material->id) }}"
+                                                <td>
+                                                    <a href="{{ route('employee_edit', $employee->id) }}"
                                                         class="btn btn-warning btn-sm">Editar</a>
-                                                    <form action="{{ route('raw_material_delete', $material->id) }}"
+                                                    <form action="{{ route('employee_delete', $employee->id) }}"
                                                         method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                         <button type='submit' class="btn btn-sm btn-danger"
-                                                            onClick="return confirm('estas seguro  de eliminar el registro?')">
+                                                            onClick="return confirm('estas seguro de eliminar el empleado?')">
                                                             <i class="far fa-trash-alt"></i>
                                                         </button>
                                                     </form>

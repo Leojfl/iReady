@@ -28,24 +28,21 @@ class RawMaterialRequest extends FormRequest
             'quantity' => 'required',
             'min_stok' => 'required',
             'max_stok' => 'required',
-            'fk_id_store' => 'required'
         ];
     }
 
     /**
- * Get the error messages for the defined validation rules.
- *
- * @return array
- */
-public function messages()
-{
-    return [
-        'name.required'     => 'Falto por llenar este campo',
-        'quantity.required' => 'Falto por llenar este campo',
-        'min_stok.required' => 'Falto por llenar este campo',
-        'max_stok.required' => 'Falto por llenar este campo',
-        'fk_id_store.required' => 'Falto por llenar este campo'
-    ];
-}
-
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required'     => 'Falto por llenar este campo',
+            'quantity.required' => 'Falto por llenar este campo',
+            'min_stok.required' => 'Falto por llenar este campo',
+            'max_stok.required' => 'Falto por llenar este campo',
+        ];
+    }
 }
