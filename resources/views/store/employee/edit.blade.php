@@ -5,19 +5,22 @@
             {{ csrf_field() }}
             <div class="form-group">
 
-                @include('commons.input', [
-                    'active' => 'active',
-                    'label' => 'Activo',
-                    'placeholder' => ' Estatus Activo',
-                    'type' => 'text',
-                    'value' => $employee->active,
+                @include('commons.select', [
+                    'name' => 'active',
+                    'placeholder' => 'Activo',
+                    'options' => [
+                        '1' => 'Activo',
+                        '0' => 'Inactivo',
+                    ],
+                    'selected' => $employee->active,
+                    'label' => 'Status',
                 ])
             </div>
             <div class="form-group">
 
                 @include('commons.input', [
                     'name' => 'fk_id_user',
-                    'label' => 'Fk_id_usuario',
+                    'label' => 'Usuario',
                     'placeholder' => 'Fk id de usuario',
                     'type' => 'number',
                     'value' => $employee->fk_id_user,
@@ -25,11 +28,11 @@
             </div>
 
             @include('commons.input', [
-                'name' => 'fk_id_stor',
-                'label' => 'Fk_id_tienda',
+                'name' => 'fk_id_store',
+                'label' => 'Tienda',
                 'placeholder' => 'Fk id de tienda',
                 'type' => 'number',
-                'value' => $employee->min_stok,
+                'value' => $employee->fk_id_store,
             ])
     </div>
     </div>

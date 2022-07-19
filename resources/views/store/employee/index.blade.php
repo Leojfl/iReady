@@ -25,12 +25,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($raw as $employee)
+                                        @foreach ($employees as $employee)
                                             <tr>
-                                                <td>{{ $employee->Activo }}</td>
-                                                <td>{{ $employee->Fk_id_user }}</td>
-                                                <td>{{ $employee->Fk_id_stor }}</td>
-                                                <td>
+                                                <td>{{ $employee->id }}</td>
+                                                @if ($employee->active == 1)
+                                                    <td>Activo</td>
+                                                @else
+                                                    <td>Inactivo</td>
+                                                @endif
+                                                <td>{{ $employee->fk_id_user }}</td>
+                                                <td>{{ $employee->fk_id_store }}</td>
                                                 <td>
                                                     <a href="{{ route('employee_edit', $employee->id) }}"
                                                         class="btn btn-warning btn-sm">Editar</a>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Http\Requests\EmployeeRequest as RequestsEmployeeRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Request\EmployeeRequest;
+use Illuminate\Support\Facades\Route;
+use App\Http\Requests\RequestEmployee;
 use App\Models\Employee;
+use App\Models\User;
 use App\Models\Store;
-
 
 class EmployeeController extends Controller
 {
@@ -19,8 +19,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $raw = Employee::all();
-        return view('store.employee.index', compact('raw'));
+        $employees = Employee::all();
+        return view('store.employee.index', compact('employees'));
     }
 
     /**
@@ -30,8 +30,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $store = Store::all();
-        return view('store.employee.create', compact('store'));
+        $users = User::all();
+        $stores = Store::all();
+        return view('store.employee.create', compact('users', 'stores'));
     }
 
     /**
@@ -40,15 +41,14 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestsEmployeeRequest $request)
+    public function store(RequestEmployee $request)
     {
-        $raw = Employee::create([
+        $employee = Employee::create([
             'active' => $request->active,
             'fk_id_user' => $request->fk_id_user,
             'fk_id_store' => $request->fk_id_store,
         ]);
-
-        return redirect()->route('raw_employee_index');
+        return redirect()->route('employee_index');
     }
 
     /**
@@ -59,8 +59,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $id = Employee::find($id);
-        return view('store.employee.show', compact('id'));
+        //
     }
 
     /**
@@ -69,11 +68,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($employee)
+    public function edit($id)
     {
-        $employee = Employee::find($employee);
-        $store = Store::all();
-        return view('store.employee.edit', compact('employee', 'store'));
+        $employee = Employee::find($id);
+        $users = User::all();
+        $stores = Store::all();
+        return view('store.employee.edit', compact('employee', 'users', 'stores'));
     }
 
     /**
@@ -83,11 +83,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestsEmployeeRequest $request, $employee)
+    public function update(RequestEmployee $request, $id)
     {
-        $employee = Employee::find();
+        $employee = Employee::find($id);
         $employee->update($request->all());
-
         return redirect()->route('employee_index');
     }
 
