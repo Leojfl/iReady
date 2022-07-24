@@ -18,6 +18,14 @@ class Store extends Model
             'fk_id_store'
         );
     }
+    public function materials()
+    {
+        return $this->hasMany(
+            Material::class,
+            'fk_id_store'
+        );
+    }
+
 
 
 }

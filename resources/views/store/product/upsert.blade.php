@@ -17,11 +17,15 @@
         <form id="form-upsert"
             action="{{route('store_product_upsert_post',['productId'=>$productId])}}"
             method="POST">
-
             <div id="app" class="col-12 col-md-9 mx-auto ">
-                <vue-form is-new="{{($product)?0:1}}">
+                <vue-form is-new="{{($product)?0:1}}" ingredients='@json($ingredients)'>
                 </vue-form>
             </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+
+
         </form>
     </div>
 </div>
