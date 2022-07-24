@@ -52,16 +52,6 @@
                                         <td>{{ $storedata->ext_num }}</td>
                                         <td>
                                             <a href="{{ route('store_data_edit', $storedata->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                                            <form
-                                            action="{{ route('store_data_delete', $storedata->id) }}"
-                                            method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type='submit'
-                                                class="btn btn-sm btn-danger"
-                                                onClick="return confirm('estas seguro  a eliminar el registro?')">
-                                                <i class="far fa-trash-alt"></i>
-                                            </button>
                                         </form>
                                         </td>
                                     </tr>

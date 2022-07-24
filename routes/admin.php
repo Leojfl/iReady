@@ -32,4 +32,13 @@ Route::get(
     'StoreController@upsert'
 )->name('admin_store_upsert');
 
+Route::post(
+    '/store/upsert/{storeId?}',
+    'StoreController@upsertPost'
+)->name('admin_store_upsert_post');
+
+Route::get(
+    '/store/profile/{storeId?}',
+    'StoreController@show'
+)->name('admin_store_profile');
 

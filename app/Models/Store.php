@@ -11,6 +11,22 @@ class Store extends Model
 {
     protected $table = 'store';
 
+    protected $fillable = [
+        'name',
+        'owner',
+        'phone',
+        'rfc',
+        'description',
+        'img_url',
+    ];
+
+    public function address(){
+        return $this->hasOne(
+            StoreAddress::class,
+            'fk_id_store'
+        );
+    }
+
     public function employees()
     {
         return $this->hasMany(
@@ -18,6 +34,6 @@ class Store extends Model
             'fk_id_store'
         );
     }
-
+    
 
 }

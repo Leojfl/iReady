@@ -20,8 +20,8 @@ class CreateSchemeIready extends Migration
             $table->string('owner');
             $table->string('phone');
             $table->boolean('active')->default(true);
-            $table->string('primary_color');
-            $table->string('second_color');
+            $table->string('primary_color')->default('azul');
+            $table->string('second_color')->default('red');
             $table->string('rfc');
             $table->string('description');
             $table->string('img_url');
@@ -73,7 +73,7 @@ class CreateSchemeIready extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->boolean('active')->default(true);
-            $table->unsignedBigInteger('fk_id_store');
+            $table->unsignedBigInteger('fk_id_store')->nullable();
             $table->timestamps();
 
             $table->foreign('fk_id_store')

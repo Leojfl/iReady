@@ -11,7 +11,7 @@
     // The 'label' attribute is as it's shown in view
     $routes = [
         [
-            'name' => 'admin_users_index',
+            'name' => 'store_storedata_profiles',
             'label' => 'Mis datos',
             'icon_class' => 'fas fa-address-card',
             'roles' => [Role::STORE]

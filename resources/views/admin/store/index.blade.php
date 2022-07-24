@@ -13,10 +13,10 @@
 @section('content')
     <div class="row">
         <div class="offset-md-2 col-8 text-center">
-            <h3 class="page-title">Restaurantes</h3>
+            <h3 class="page-title">Restaurante</h3>
         </div>
         <div class="col-2 text-center">
-            <a href="#" data-url="{{route("admin_store_upsert",['storeId'=> 0])}}"
+            <a href="{{ route('admin_store_upsert') }}" 
                class="btn btn-secondary btn-upsert">Agregar</a>
         </div>
         <div class="col-md-12 mt-3">
@@ -44,7 +44,8 @@
                         <td>{{$store->owner}}</td>
                         <td>Direccion</td>
                         <td>
-                            <a href="#"
+                            
+                            <a href="{{ route('admin_store_upsert', $store->id) }}"
                                
                                data-toggle="tooltip"
                                data-placement="top"
@@ -52,7 +53,7 @@
                                class="btn-upsert">
                                 <i class="fas fa-edit "></i>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('admin_store_profile', $store->id) }}"
                                
                                data-toggle="tooltip"
                                class="btn-upsert"
@@ -78,6 +79,7 @@
 
         </div>
     </div>
+    
 
     @include('commons.modal',['modalId'=> 'modal-upsert'])
 
