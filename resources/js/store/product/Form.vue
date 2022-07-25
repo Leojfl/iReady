@@ -25,6 +25,18 @@
                     8
                     </div>
                 </div>
+                <div class="row mt-4">
+                    <template v-for="(newIngredint , index) of ingredientsInProduct">
+                        <div class="col-8">
+                        <input :name="'ingredinets['+index+'][id]'" :value="getIdIngredient(newIngredint.value)" type="hidden"/>
+                        <input :name="'ingredinets['+index+'][quantity]'" :value="newIngredint.quantity" type="hidden"/>
+                        {{newIngredint.value}}
+                        </div>
+                        <div class="col-3">
+                        {{newIngredint.quantity}}
+                        </div>
+                    </template>
+                </div>
             </div>
 
         </div>
@@ -38,6 +50,41 @@
             errors: { default: null}
         },
         methods: {
+            onFileChange(e) {
+                const file = e.target.files[0];
+                this.url = URL.createObjectURL(file);
+            },
+            addIngredient(){
+                let self = this;
+                if(self.ingredient.value == ""  ||  self.ingredient.quantity == ""){
+                    return
+                }
+                let  id = self.getIdIngredient(self.ingredient.value);
+                var flag = false;
+                let ingredients = this.parseJson(this.ingredients);
+                let itemId = ingredients.find(element => element.id == id );
+                if (itemId != undefined) {
+                    self.ingredientsInProduct.push({...self.ingredient});
+                    self.ingredient =  {
+                        value: "",
+                        quantity: ""
+                    };
+                }
+
+            },
+            getIdIngredient(text){
+
+                let id = text.split(",").pop();
+
+                return id.replace(" ", "");
+
+            },
+            getNameIngredient(ingredient){
+                return ingredient.name +" " + ingredient.unit.value  +", "+ingredient.id;
+            },
+            parseJson(json){
+                return JSON.parse(json);
+            },
             createInput(label,id, name, value) {
                 var textError = "";
                 if (this.errors != null && this.errors[name] != null)  {

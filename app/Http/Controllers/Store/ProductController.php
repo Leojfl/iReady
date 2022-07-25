@@ -39,7 +39,7 @@ class ProductController extends Controller
         $user = Auth::User();
         $store = Store::whereHas('employees', function (Builder $query) use ($user) {
             $query->where('fk_id_user', $user->id);
-        })->first();
+        })->with("materials.unit")->first();
         $product = Product::find($productId);
         if ($product != null && $product->fk_id_store != $store->id){
             return back();
