@@ -62,6 +62,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isNew: {
@@ -72,6 +101,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     errors: {
       "default": null
+    },
+    ingredients: {
+      "default": []
+    },
+    ingredientsInProductUpdate: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
     }
   },
   methods: {
@@ -120,6 +158,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       return '<div class="form-floating">' + '<input type="text" autocomplete="off" placeholder=" "' + ' class="form-control ' + (textError != "" ? 'is-invalid' : '  ') + '"' + ' name="' + name + '"' + ' id="' + id + '"' + ' value="' + value + '">' + ' <label class="" ' + ' for="' + id + '"">' + label + '</label><div class="invalid-feedback">' + textError + '</div>';
     }
+  },
+  data: function data() {
+    return {
+      url: null,
+      newIngredient: "",
+      ingredient: {
+        value: "",
+        quantity: ""
+      },
+      ingredientsInProduct: this.ingredientsInProductUpdate
+    };
   }
 });
 
@@ -214,6 +263,27 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-12 " }, [
+      _c("div", { staticClass: "mb-3" }, [
+        _c("label", { staticClass: "form-label", attrs: { for: "formFile" } }, [
+          _vm._v("Imagen"),
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "file", id: "formFile" },
+          on: { change: _vm.onFileChange },
+        }),
+      ]),
+      _vm._v(" "),
+      _vm.url
+        ? _c("img", {
+            staticStyle: { height: "150px" },
+            attrs: { src: _vm.url },
+          })
+        : _vm._e(),
+    ]),
+    _vm._v(" "),
     _c("div", {
       staticClass: "col-12 col-md-6  py-0 mt-3",
       domProps: {
@@ -233,7 +303,104 @@ var render = function () {
     _vm._m(1),
     _vm._v(" "),
     _c("div", { staticClass: "col-12 py-0 mt-3" }, [
-      _vm._m(2),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-8" }, [
+          _c("div", { staticClass: "form-floating" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.ingredient.value,
+                  expression: "ingredient.value",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: {
+                list: "datalistOptions",
+                id: "exampleDataList",
+                placeholder: "Ingrediente",
+                "v-mode": _vm.ingredient.value,
+              },
+              domProps: { value: _vm.ingredient.value },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.ingredient, "value", $event.target.value)
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "exampleDataList" } }, [
+              _vm._v("Ingredientes "),
+            ]),
+            _vm._v(" "),
+            _c(
+              "datalist",
+              { attrs: { id: "datalistOptions" } },
+              [
+                _vm._l(_vm.parseJson(_vm.ingredients), function (ingredient) {
+                  return [
+                    _c("option", {
+                      domProps: { value: _vm.getNameIngredient(ingredient) },
+                    }),
+                  ]
+                }),
+              ],
+              2
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-3" }, [
+          _c("div", { staticClass: "form-floating" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.ingredient.quantity,
+                  expression: "ingredient.quantity",
+                },
+              ],
+              staticClass: "form-control ",
+              attrs: {
+                type: "text",
+                autocomplete: "off",
+                placeholder: " ",
+                name: "quantity",
+                id: "quatity",
+              },
+              domProps: { value: _vm.ingredient.quantity },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.ingredient, "quantity", $event.target.value)
+                },
+              },
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: " " } }, [_vm._v("Cantidad ")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "invalid-feedback" }, [
+              _vm._v("\n                    textError\n                "),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-1" }, [
+          _c("div", { staticClass: "d-flex h-100" }, [
+            _c("i", {
+              staticClass: "fas fa-plus align-self-center cursor-pointer",
+              on: { click: _vm.addIngredient },
+            }),
+          ]),
+        ]),
+      ]),
       _vm._v(" "),
       _c(
         "div",
@@ -304,24 +471,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 py-0 mt-3" }, [
       _c("span", [_c("b", [_c("i", [_vm._v("Ingredientes")])])]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-8" }, [
-        _vm._v("\n            8\n            "),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-3" }, [
-        _vm._v("\n            8\n            "),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-1" }, [
-        _vm._v("\n            8\n            "),
-      ]),
     ])
   },
 ]

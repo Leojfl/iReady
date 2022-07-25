@@ -15,6 +15,7 @@ use Illuminate\Http\Response;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Combo;
+use App\Models\Material;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -39,12 +40,14 @@ class ProductController extends Controller
         $user = Auth::User();
         $store = Store::whereHas('employees', function (Builder $query) use ($user) {
             $query->where('fk_id_user', $user->id);
-        })->with("materials.unit")->first();
+        })->with('materials.unit')
+        ->first();
         $product = Product::find($productId);
         if ($product != null && $product->fk_id_store != $store->id){
             return back();
         }
-        return view('store.product.upsert', ['product' => $product]);
+        $ingredients = $store->materials;
+        return view('store.product.upsert', ['product' => $product, 'ingredients' => $ingredients]);
 
     }
 
@@ -58,7 +61,7 @@ class ProductController extends Controller
         if ($product != null && $product->fk_id_store != $store->id){
             return back();
         }
-        return view('store.product.upsert', ['product' => $product]);
+        //return view('store.product.upsert', ['product' => $product]);
 
     }
 

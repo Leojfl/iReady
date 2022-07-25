@@ -38,9 +38,29 @@ class RestaurantSeeder extends Seeder
                 'description' =>  'EPOWOIQROEI JFKLDJFSKDJKFHD HDJKFSGH FJKF S DFKUGS',
                 'img_url' =>  'https://media-cdn.tripadvisor.com/media/photo-o/14/0a/9c/02/bar.jpg',
                 ]);
-                $this->stores();
+            $this->unit();
+            $this->stores();
+
         }
 
+    }
+
+    public function unit(){
+        DB::table('unit')->insert([
+            'value' => "Mililitros"
+        ]);
+        DB::table('unit')->insert([
+            'value' => "Litros"
+        ]);
+        DB::table('unit')->insert([
+            'value' => "Gramos"
+        ]);
+        DB::table('unit')->insert([
+            'value' => "Kilogramos"
+        ]);
+        DB::table('unit')->insert([
+            'value' => "Piesa(s)"
+        ]);
     }
 
     public function categories(){
@@ -80,6 +100,36 @@ class RestaurantSeeder extends Seeder
             'description' =>  '¡alksdhf jd sdfds!'.$x,
             'img_url' => '',
             ]);
+
+        DB::table('material')->insertGetId([
+                'name' =>  'Ingrediente 1',
+                'quantity' =>  '4',
+                'min_stok' =>  '20',
+                'max_stok' =>  '50',
+                'fk_id_store' =>  $storeId,
+                'fk_id_unit' =>  1,
+                ]);
+
+
+        DB::table('material')->insertGetId([
+            'name' =>  'Ingrediente 2',
+            'quantity' =>  '4',
+            'min_stok' =>  '20',
+            'max_stok' =>  '50',
+            'fk_id_store' =>  $storeId,
+            'fk_id_unit' =>  2,
+            ]);
+
+
+        DB::table('material')->insertGetId([
+            'name' =>  'Ingrediente 3',
+            'quantity' =>  '4',
+            'min_stok' =>  '20',
+            'max_stok' =>  '50',
+            'fk_id_store' =>  $storeId,
+            'fk_id_unit' =>  3,
+            ]);
+
         DB::table('employee')->insert([
             'active' => true,
             'fk_id_store' => $storeId,
