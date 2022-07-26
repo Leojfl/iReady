@@ -22,10 +22,11 @@ Route::post('/login-post',
     'Auth\LoginController@autenticate')
     ->name('login_post');
 
-
 Route::get('/logout',
     'Auth\LoginController@logout')
     ->name('logout')
     ->middleware('auth');
 
-
+Route::get('/home',
+'Auth\LoginController@home')
+->name('home');

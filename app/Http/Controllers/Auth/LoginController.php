@@ -32,16 +32,6 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
-
     public function autenticate(Request $request)
     {
         $request->validate(
@@ -62,27 +52,7 @@ class LoginController extends Controller
         ];
         if (Auth::attempt($credentials)) {
             $role = User::find(Auth::id())->role;
-
-            if ($role->id == Role::ADMIN) {
-                return redirect(route('admin_index'));
-            }
-
-            if ($role->id == Role::STORE) {
-                return redirect(route('store_index'));
-            }
-
-            if ($role->id == Role::MANAGER) {
-                return redirect(route('store_index'));
-            }
-
-            if ($role->id == Role::WAITER) {
-                return redirect(route('store_index'));
-            }
-
-            if ($role->id == Role::DELIVERY) {
-                return redirect(route('store_index'));
-            }
-
+            return $this->goToHome($role);
         }
         return back()
         ->withErrors([ 'username' => ['Correo o contraseña incorrectos']])
@@ -92,4 +62,32 @@ class LoginController extends Controller
         Auth::logout();
         return redirect(route('login'));
     }
+
+    public function goToHome($role) {
+        if ($role->id == Role::ADMIN) {
+            return redirect(route('admin_index'));
+        }
+        if ($role->id == Role::STORE) {
+            return redirect(route('store_index'));
+        }
+
+        if ($role->id == Role::MANAGER) {
+            return redirect(route('store_index'));
+        }
+
+        if ($role->id == Role::WAITER) {
+            return redirect(route('store_index'));
+        }
+
+        if ($role->id == Role::DELIVERY) {
+            return redirect(route('store_index'));
+        }
+    }
+
+    public function home(){
+        $role = User::find(Auth::id())->role;
+        return $this->goToHome($role);
+    }
+
+
 }
