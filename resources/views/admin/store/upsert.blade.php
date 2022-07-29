@@ -114,11 +114,12 @@
                     'value' => isset($store)?$store->address->ext_num:"",
                 ])
             </div>
-        </form>
-    </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 &nbsp;
             </div>
+        </form>
+    </div>
+            
     </div>
 @endsection

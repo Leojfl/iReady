@@ -20,15 +20,15 @@
         <br>
         <h2>RFC :{{isset($store)?$store->rfc:""}}</h2>
         <br>
-        <h2>Ciudad :{{isset($store)?$store->city:""}}</h2>
+        <h2>Ciudad :{{isset($store)?$store->address->city:""}}</h2>
         <br>
-        <h2>Colonia :{{isset($store)?$store->colony:""}}</h2>
+        <h2>Colonia :{{isset($store)?$store->address->colony:""}}</h2>
         <br>
-        <h2>Codigo Postal :{{isset($store)?$store->zip_code:""}}</h2>
+        <h2>Codigo Postal :{{isset($store)?$store->address->zip_code:""}}</h2>
         <br>
-        <h2>Calle :{{isset($store)?$store->street:""}}</h2>
+        <h2>Calle :{{isset($store)?$store->address->street:""}}</h2>
         <br>
-        <h2>N.exterior :{{isset($store)?$store->ext_num:""}}</h2>
+        <h2>N.exterior :{{isset($store)?$store->address->ext_num:""}}</h2>
         <br>
         </div>
         </div>
