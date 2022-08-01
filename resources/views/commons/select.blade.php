@@ -6,6 +6,10 @@
     $id = $id??$name
 @endphp
 <div class="form-group {{ $divClass??'' }}">
+
+
+    <label class="label-control {{ $labelClass??'' }}"
+           for="{{$id}}">{{$label}}</label>
     <select {{ $disabled?'disabled':'' }}
             id="{{$id}}"
             class="form-control {{ $selectClass??'' }}"
@@ -15,7 +19,4 @@
                     value="{{$key}}"  {{($selected==$key)?'selected':''}}>{{$option}}</option>
         @endforeach
     </select>
-
-    <label class="label-control {{ $labelClass??'' }}"
-           for="{{$id}}">{{$label}}</label>
 </div>

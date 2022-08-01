@@ -91,6 +91,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isNew: {
@@ -263,7 +270,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-12 " }, [
+    _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "mb-3" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "formFile" } }, [
           _vm._v("Imagen"),
@@ -271,7 +278,7 @@ var render = function () {
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
-          attrs: { type: "file", id: "formFile" },
+          attrs: { type: "file", id: "formFile", name: "image_product" },
           on: { change: _vm.onFileChange },
         }),
       ]),
@@ -285,14 +292,14 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", {
-      staticClass: "col-12 col-md-6  py-0 mt-3",
+      staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
         innerHTML: _vm._s(_vm.createInput("Nombre", "name", "name", "")),
       },
     }),
     _vm._v(" "),
     _c("div", {
-      staticClass: "col-12 col-md-6  py-0 mt-3",
+      staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
         innerHTML: _vm._s(_vm.createInput("Precio", "price", "price", "")),
       },
@@ -301,6 +308,8 @@ var render = function () {
     _vm._m(0),
     _vm._v(" "),
     _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "col-12 py-0 mt-3" }, [
       _c("div", { staticClass: "row" }, [
@@ -365,12 +374,11 @@ var render = function () {
                   expression: "ingredient.quantity",
                 },
               ],
-              staticClass: "form-control ",
+              staticClass: "form-control",
               attrs: {
                 type: "text",
                 autocomplete: "off",
                 placeholder: " ",
-                name: "quantity",
                 id: "quatity",
               },
               domProps: { value: _vm.ingredient.quantity },
@@ -411,7 +419,7 @@ var render = function () {
               _c("div", { staticClass: "col-8" }, [
                 _c("input", {
                   attrs: {
-                    name: "ingredinets[" + index + "][id]",
+                    name: "ingredinets[" + index + "][fk_id_material]",
                     type: "hidden",
                   },
                   domProps: { value: _vm.getIdIngredient(newIngredint.value) },
@@ -456,12 +464,43 @@ var staticRenderFns = [
         _c("textarea", {
           staticClass: "form-control",
           staticStyle: { height: "100px" },
-          attrs: { placeholder: "descrpcion", id: "floatingTextarea" },
+          attrs: {
+            name: "description",
+            placeholder: "descrpcion",
+            id: "floatingTextarea",
+          },
         }),
         _vm._v(" "),
         _c("label", { attrs: { for: "floatingTextarea" } }, [
           _vm._v("Descripción"),
         ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3 text-start mt-4" }, [
+      _c("div", { staticClass: "form-check" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "checkbox",
+            id: "flexCheckDefault",
+            name: "show",
+            value: "true",
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "form-check-label",
+            attrs: { for: "flexCheckDefault" },
+          },
+          [_vm._v("\n                Activo\n                ")]
+        ),
       ]),
     ])
   },

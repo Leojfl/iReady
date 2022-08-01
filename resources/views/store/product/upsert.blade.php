@@ -16,12 +16,25 @@
     <div class="col-12">
         <form id="form-upsert"
             action="{{route('store_product_upsert_post',['productId'=>$productId])}}"
-            method="POST">
+            method="POST"
+            enctype="multipart/form-data"
+            >
+            @csrf
+
+            <div class="col-12 col-md-9 mx-auto mb-4">
+                @include('commons.select', [
+                    'label' => 'Categoria',
+                    'name' => 'fk_id_category',
+                    'selected' => isset($product) ? $product->fk_id_category : null,
+                    'options' => $categories
+                ])
+            </div>
+
             <div id="app" class="col-12 col-md-9 mx-auto ">
                 <vue-form is-new="{{($product)?0:1}}" ingredients='@json($ingredients)'>
                 </vue-form>
             </div>
-            <div class="col-12 text-center mt-5">
+            <div class="col-12 text-center mt-5 mb-5">
                 <button class="btn btn-primary">Guardar</button>
             </div>
 

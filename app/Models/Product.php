@@ -12,8 +12,11 @@ class Product extends Model
     protected $table = 'product';
 
     protected $fillable = [
-        'active',
-        'name'
+        'description',
+        'name',
+        'price',
+        'show',
+        'fk_id_category'
     ];
 
     public static function rules()
@@ -40,7 +43,7 @@ class Product extends Model
         );
     }
 
-    public function material()
+    public function materials()
     {
         return $this->belongsToMany(
             Material::class,

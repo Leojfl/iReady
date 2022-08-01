@@ -60,14 +60,14 @@
                             <td>{{$product->id}}</td>
                             <td>
                                 <div class="card">
-                                    <img src="{{$product->img_url}}" style="height: 100px; width: 100px;
+                                    <img src="{{asset($product->image_url)}}" style="height: 100px; width: 100px;
                                     object-fit: scale-down"/>
                                 </div>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
                             <td>
-                                <a href="#"
+                                <a href="{{route("store_product_upsert",['productId'=> $product->id])}}"
 
                                 data-toggle="tooltip"
                                 data-placement="top"

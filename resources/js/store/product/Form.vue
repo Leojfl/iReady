@@ -1,10 +1,10 @@
 <template>
         <div class="row">
         <div class="col-12 ">
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Imagen</label>
-            <input class="form-control" type="file" id="formFile"  @change="onFileChange" >
-        </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Imagen</label>
+                <input class="form-control" type="file" id="formFile" name="image_product"  @change="onFileChange" >
+            </div>
             <img v-if="url" :src="url"  style="height: 150px;"/>
         </div>
             <div class="col-12 col-md-6  py-0 mt-3" v-html='createInput("Nombre","name", "name", "")'>
@@ -13,9 +13,17 @@
             </div>
             <div class="col-12 py-0 mt-3" >
                 <div class="form-floating">
-                    <textarea class="form-control" placeholder="descrpcion" id="floatingTextarea" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="description" placeholder="descrpcion" id="floatingTextarea" style="height: 100px"></textarea>
                     <label for="floatingTextarea">Descripción</label>
                 </div>
+            </div>
+            <div class="col-3 text-start mt-4">
+                    <div class="form-check ">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="show" value="true">
+                        <label class="form-check-label" for="flexCheckDefault">
+                        Activo
+                        </label>
+                    </div>
             </div>
             <div class="col-12 py-0 mt-3">
                 <span><b><i>Ingredientes</i></b></span>
@@ -39,7 +47,6 @@
                         <div class="form-floating">
                         <input type="text" autocomplete="off" placeholder=" "
                         class="form-control "
-                        name="quantity"
                         id="quatity"
                         v-model="ingredient.quantity">
                         <label class=""
@@ -58,7 +65,7 @@
                 <div class="row mt-4">
                     <template v-for="(newIngredint , index) of ingredientsInProduct">
                         <div class="col-8">
-                        <input :name="'ingredinets['+index+'][id]'" :value="getIdIngredient(newIngredint.value)" type="hidden"/>
+                        <input :name="'ingredinets['+index+'][fk_id_material]'" :value="getIdIngredient(newIngredint.value)" type="hidden"/>
                         <input :name="'ingredinets['+index+'][quantity]'" :value="newIngredint.quantity" type="hidden"/>
                         {{newIngredint.value}}
                         </div>
@@ -106,14 +113,10 @@
                         quantity: ""
                     };
                 }
-
             },
             getIdIngredient(text){
-
                 let id = text.split(",").pop();
-
                 return id.replace(" ", "");
-
             },
             getNameIngredient(ingredient){
                 return ingredient.name +" " + ingredient.unit.value  +", "+ingredient.id;

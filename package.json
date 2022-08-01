@@ -20,7 +20,7 @@
     },
     "dependencies": {
         "babel-loader": "^8.2.5",
-        "vue": "^2.6.12",
-        "vue-template-compiler": "^2.6.12"
+        "vue": "^2.7.8",
+        "vue-template-compiler": "^2.7.8"
     }
 }

@@ -136,8 +136,9 @@ class CreateSchemeIready extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('image_url')->default("");
             $table->double('price');
-            $table->double('show');
+            $table->boolean('show');
             $table->timestamps();
             $table->unsignedBigInteger('fk_id_category');
             $table->unsignedBigInteger('fk_id_store');
