@@ -27,6 +27,8 @@ Route::post(
     'ProductController@upsertPost'
 )->name('store_product_upsert_post');
 
+// ======================== Data ====================
+
 Route::get(
     '/store/upsert/{storeId?}',
     'StoreDataController@upsert'
@@ -41,6 +43,32 @@ Route::get(
     '/store/profile/{storeId?}',
     'StoreDataController@show'
 )->name('store_storedata_profiles');
+
+// ======================== Boards ====================
+
+Route::get(
+    '/store',
+    'BoardController@index'
+)->name('store_board_index');
+
+Route::get(
+    '/store/board/upsert/{boardId?}',
+    'BoardController@upsert'
+)->name('store_board_upsert');
+
+Route::post(
+    '/store/board/upsert/{boardId?}',
+    'BoardController@upsertPost'
+)->name('store_board_upsert_post');
+
+Route::get(
+    '/store/board/profile/{boardId?}',
+    'BoardController@show'
+)->name('store_board_profile');
+
+Route::delete('/store/board/{boardId?}',
+ 'BoardController@destroy'
+ )->name('store_board_delete');
 
 ////////////// rutas StoreData//////////////////
 

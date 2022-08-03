@@ -1,5 +1,6 @@
-@extends('admin.template.main')
+@extends('store.template.main')
 @section('content')
+
 <div class="row">
     <div class="col-12">
         <h3>{{isset($store)?"Modificar": "Agregar"}} Restaurantes</h3>
@@ -61,64 +62,78 @@
                     'name' => 'img_url',
                     'label' => 'URL de la imagen del restaurante',
                     'placeholder' => 'URL de la imagen del restaurante',
-                    'type' => 'text',
+                    'type' => 'file',
                     'value' => isset($store)?$store->img_url:"",
                 ])
             </div>
-            <div class="form-group">
-                @include('commons.input',[
-                    'name' => 'city',
-                    'label' => 'Ciudad donde se ubica',
-                    'placeholder' => 'Ciudad donde se ubica',
-                    'type' => 'text',
-                    'value' => isset($store)?$store->address->city:"",
-                ])
-            </div>
-            <div class="form-group">
-              
-                @include('commons.input',[
-                    'name' => 'colony',
-                    'label' => 'Colonia donde se ubica',
-                    'placeholder' => 'Colonia donde se ubica',
-                    'type' => 'text',
-                    'value' => isset($store)?$store->address->colony:"",
-                ])
-            </div>
-            <div class="form-group">
-              
-                @include('commons.input',[
-                    'name' => 'zip_code',
-                    'label' => 'Codigo postal',
-                    'placeholder' => 'Codigo postal',
-                    'type' => 'number',
-                    'value' => isset($store)?$store->address->zip_code:"",
-                ])
-            </div>
-            <div class="form-group">
-              
-                @include('commons.input',[
-                    'name' => 'street',
-                    'label' => 'Calle donde se ubica',
-                    'placeholder' => 'Calle donde se ubica',
-                    'type' => 'text',
-                    'value' => isset($store)?$store->address->street:"",
-                ])
-            </div>
-            <div class="form-group">
-              
-                @include('commons.input',[
-                    'name' => 'ext_num',
-                    'label' => 'Numero exterior',
-                    'placeholder' => 'Numero exterior',
-                    'type' => 'number',
-                    'value' => isset($store)?$store->address->ext_num:"",
-                ])
-            </div>
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                     <h5> Agregar Direccion</h5>
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        
+                        <div class="form-group">
+                        @include('commons.input',[
+                            'name' => 'city',
+                            'label' => 'Ciudad donde se ubica',
+                            'placeholder' => 'Ciudad donde se ubica',
+                            'type' => 'text',
+                            'value' => isset($store)?$store->address->city:"",
+                        ])
+                    </div>
+                    <div class="form-group">
+                      
+                        @include('commons.input',[
+                            'name' => 'colony',
+                            'label' => 'Colonia donde se ubica',
+                            'placeholder' => 'Colonia donde se ubica',
+                            'type' => 'text',
+                            'value' => isset($store)?$store->address->colony:"",
+                        ])
+                    </div>
+                    <div class="form-group">
+                      
+                        @include('commons.input',[
+                            'name' => 'zip_code',
+                            'label' => 'Codigo postal',
+                            'placeholder' => 'Codigo postal',
+                            'type' => 'number',
+                            'value' => isset($store)?$store->address->zip_code:"",
+                        ])
+                    </div>
+                    <div class="form-group">
+                      
+                        @include('commons.input',[
+                            'name' => 'street',
+                            'label' => 'Calle donde se ubica',
+                            'placeholder' => 'Calle donde se ubica',
+                            'type' => 'text',
+                            'value' => isset($store)?$store->address->street:"",
+                        ])
+                    </div>
+                    <div class="form-group">
+                      
+                        @include('commons.input',[
+                            'name' => 'ext_num',
+                            'label' => 'Numero exterior',
+                            'placeholder' => 'Numero exterior',
+                            'type' => 'number',
+                            'value' => isset($store)?$store->address->ext_num:"",
+                        ])
+                    </div>
+            
+            <br>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 &nbsp;
             </div>
         </form>
+    
+</div>
     </div>
             
     </div>

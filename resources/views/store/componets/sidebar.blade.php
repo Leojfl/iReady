@@ -48,7 +48,7 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
+            'name' => 'store_board_index',
             'label' => 'Mesas',
             'icon_class' => 'fas fa-square',
             'roles' => [Role::STORE]
