@@ -56,14 +56,14 @@
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <template v-for="(newingredint , index) of ingredientsInProduct">
+                    <template v-for="(newIngredint , index) of ingredientsInProduct">
                         <div class="col-8">
-                        <input :name="'ingredinets['+index+'][id]'" :value="getIdIngredient(newingredint)" type="hidden"/>
-                        <input :name="'ingredinets['+index+'][quantity]'" :value="newingredint.quantity" type="hidden"/>
-                        {{newingredint.value}}
+                        <input :name="'ingredinets['+index+'][id]'" :value="getIdIngredient(newIngredint.value)" type="hidden"/>
+                        <input :name="'ingredinets['+index+'][quantity]'" :value="newIngredint.quantity" type="hidden"/>
+                        {{newIngredint.value}}
                         </div>
                         <div class="col-3">
-                        {{newingredint.quantity}}
+                        {{newIngredint.quantity}}
                         </div>
                     </template>
                 </div>
@@ -91,17 +91,32 @@
                 this.url = URL.createObjectURL(file);
             },
             addIngredient(){
-                if(this.ingredient.value == "" &&  this.ingredient.quantity == "" ){
+                let self = this;
+                if(self.ingredient.value == ""  ||  self.ingredient.quantity == ""){
                     return
                 }
-                this.ingredientsInProduct.push({...this.ingredient});
-                this.ingredient =  {
-                    value: "",
-                    quantity: ""
-                };
+                let  id = self.getIdIngredient(self.ingredient.value);
+                var flag = false;
+                let ingredients = this.parseJson(this.ingredients);
+                let itemId = ingredients.find(element => element.id == id );
+                if (itemId != undefined) {
+                    self.ingredientsInProduct.push({...self.ingredient});
+                    self.ingredient =  {
+                        value: "",
+                        quantity: ""
+                    };
+                }
+
+            },
+            getIdIngredient(text){
+
+                let id = text.split(",").pop();
+
+                return id.replace(" ", "");
+
             },
             getNameIngredient(ingredient){
-                return ingredient.name +" " + ingredient.unit  +", "+ingredient.id;
+                return ingredient.name +" " + ingredient.unit.value  +", "+ingredient.id;
             },
             parseJson(json){
                 return JSON.parse(json);

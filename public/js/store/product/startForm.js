@@ -118,18 +118,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.url = URL.createObjectURL(file);
     },
     addIngredient: function addIngredient() {
-      if (this.ingredient.value == "" && this.ingredient.quantity == "") {
+      var self = this;
+
+      if (self.ingredient.value == "" || self.ingredient.quantity == "") {
         return;
       }
 
-      this.ingredientsInProduct.push(_objectSpread({}, this.ingredient));
-      this.ingredient = {
-        value: "",
-        quantity: ""
-      };
+      var id = self.getIdIngredient(self.ingredient.value);
+      var flag = false;
+      var ingredients = this.parseJson(this.ingredients);
+      var itemId = ingredients.find(function (element) {
+        return element.id == id;
+      });
+
+      if (itemId != undefined) {
+        self.ingredientsInProduct.push(_objectSpread({}, self.ingredient));
+        self.ingredient = {
+          value: "",
+          quantity: ""
+        };
+      }
+    },
+    getIdIngredient: function getIdIngredient(text) {
+      var id = text.split(",").pop();
+      return id.replace(" ", "");
     },
     getNameIngredient: function getNameIngredient(ingredient) {
-      return ingredient.name + " " + ingredient.unit + ", " + ingredient.id;
+      return ingredient.name + " " + ingredient.unit.value + ", " + ingredient.id;
     },
     parseJson: function parseJson(json) {
       return JSON.parse(json);
@@ -391,7 +406,7 @@ var render = function () {
         "div",
         { staticClass: "row mt-4" },
         [
-          _vm._l(_vm.ingredientsInProduct, function (newingredint, index) {
+          _vm._l(_vm.ingredientsInProduct, function (newIngredint, index) {
             return [
               _c("div", { staticClass: "col-8" }, [
                 _c("input", {
@@ -399,7 +414,7 @@ var render = function () {
                     name: "ingredinets[" + index + "][id]",
                     type: "hidden",
                   },
-                  domProps: { value: _vm.getIdIngredient(newingredint) },
+                  domProps: { value: _vm.getIdIngredient(newIngredint.value) },
                 }),
                 _vm._v(" "),
                 _c("input", {
@@ -407,11 +422,11 @@ var render = function () {
                     name: "ingredinets[" + index + "][quantity]",
                     type: "hidden",
                   },
-                  domProps: { value: newingredint.quantity },
+                  domProps: { value: newIngredint.quantity },
                 }),
                 _vm._v(
                   "\n                " +
-                    _vm._s(newingredint.value) +
+                    _vm._s(newIngredint.value) +
                     "\n                "
                 ),
               ]),
@@ -419,7 +434,7 @@ var render = function () {
               _c("div", { staticClass: "col-3" }, [
                 _vm._v(
                   "\n                " +
-                    _vm._s(newingredint.quantity) +
+                    _vm._s(newIngredint.quantity) +
                     "\n                "
                 ),
               ]),

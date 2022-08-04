@@ -21,10 +21,9 @@
                 <vue-form is-new="{{($product)?0:1}}" ingredients='@json($ingredients)'>
                 </vue-form>
             </div>
-            <div class="col-12 text-center">
+            <div class="col-12 text-center mt-5">
                 <button class="btn btn-primary">Guardar</button>
             </div>
-
 
         </form>
     </div>
