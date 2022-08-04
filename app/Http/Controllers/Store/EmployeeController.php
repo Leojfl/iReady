@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Store;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\RequestEmployee;
@@ -28,11 +32,10 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id = 0)
     {
-        $users = User::all();
-        $stores = Store::all();
-        return view('store.employee.create', compact('users', 'stores'));
+        $employee = Employee::find($id);
+        return view('store.employee.create', ['employee' => $employee]);
     }
 
     /**
@@ -41,15 +44,7 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestEmployee $request)
-    {
-        $employee = Employee::create([
-            'active' => $request->active,
-            'fk_id_user' => $request->fk_id_user,
-            'fk_id_store' => $request->fk_id_store,
-        ]);
-        return redirect()->route('employee_index');
-    }
+
 
     /**
      * Display the specified resource.
@@ -83,11 +78,33 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestEmployee $request, $id)
+    public function update(RequestEmployee $request, $id = 0)
     {
-        $employee = Employee::find($id);
-        $employee->update($request->all());
-        return redirect()->route('employee_index');
+        $user = Auth::User();
+        $store = Store::whereHas('employees', function (Builder $query) use ($user) {
+            $query->where('fk_id_user', $user->id);
+        })->first();
+        // try {
+
+        DB::beginTransaction();
+
+        $employee = Employee::findOrNew($id);
+        $employee->active = true;
+        $user = $id == 0 ? new User() : $employee->user;
+        $user->fill($request->all());
+        $user->fk_id_role = 4;
+        $user->saveOrFail();
+        $employee->fk_id_user = $user->id;
+        $employee->fk_id_store = $store->id;
+        $employee->saveOrFail();
+        DB::commit();
+        return redirect()->route('store_employee_index');
+        //  } catch (Exception $e) {
+        DB::rollBack();
+        return back()
+            ->withErrors(['generic' => ['Algo salio mal, intente más tarde']])
+            ->withInput($request->all());
+        // }
     }
 
     /**

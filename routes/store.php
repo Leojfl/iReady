@@ -39,9 +39,9 @@ Route::delete('/materia/delete/{id}', 'RawMaterialController@destroy')->name('ra
 
 ///////////// Employee /////////////////////////////
 
-Route::get('/employee', 'EmployeeController@index')->name('employee_index');
-Route::get('/employee/create', 'EmployeeController@create')->name('employee_create');
-Route::post('/employee/store', 'EmployeeController@store')->name('employee_store');
-Route::get('/employee/edit/{id}', 'EmployeeController@edit')->name('employee_edit');
-Route::post('/employee/update/{id}', 'EmployeeController@update')->name('employee_update');
-Route::delete('/employee/delete/{id}', 'EmployeeController@destroy')->name('employee_delete');
+Route::get('/employee', 'EmployeeController@index')->name('store_employee_index');
+Route::get('/employee/upsert/{id?}', 'EmployeeController@create')->name('store_employee_upsert');
+
+
+Route::post('/employee/update/{id?}', 'EmployeeController@update')->name('store_employee_update');
+Route::delete('/employee/delete/{id}', 'EmployeeController@destroy')->name('store_employee_delete');

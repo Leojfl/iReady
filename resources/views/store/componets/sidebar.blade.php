@@ -29,7 +29,7 @@ $routes = [
         'roles' => [Role::STORE],
     ],
     [
-        'name' => 'employee_index',
+        'name' => 'store_products_index',
         'label' => 'Empleados',
         'icon_class' => 'fas fa-hamburger',
         'roles' => [Role::STORE],
@@ -42,7 +42,7 @@ $routes = [
         'roles' => [Role::STORE],
     ],
     [
-        'name' => 'admin_users_index',
+        'name' => 'store_employee_index',
         'label' => 'Empleados',
         'icon_class' => 'fas fa-users',
         'roles' => [Role::STORE],

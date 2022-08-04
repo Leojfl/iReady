@@ -5,6 +5,66 @@
             {{ csrf_field() }}
             <div class="form-group">
 
+                @include('commons.input', [
+                    'name' => 'username',
+                    'label' => 'Nombre de Usuario',
+                    'placeholder' => 'Nombre de Usuario',
+                    'type' => 'text',
+                    'value' => $employee->username,
+                ])
+            </div>
+            <br>
+
+            <div class="form-group">
+
+                @include('commons.input', [
+                    'name' => 'name',
+                    'label' => 'Nombre',
+                    'placeholder' => 'Nombre',
+                    'type' => 'text',
+                    'value' => $employee->name,
+                ])
+            </div>
+            <br>
+
+            <div class="form-group">
+
+                @include('commons.input', [
+                    'name' => 'last_name',
+                    'label' => 'Apedillo',
+                    'placeholder' => 'Apedillo',
+                    'type' => 'text',
+                    'value' => $employee->last_name,
+                ])
+            </div>
+            <br>
+
+            <div class="form-group">
+
+                @include('commons.input', [
+                    'name' => 'second_last_name',
+                    'label' => 'Segundo Apedillo',
+                    'placeholder' => 'Segundo Apedillo',
+                    'type' => 'text',
+                    'value' => $employee->second_last_name,
+                ])
+            </div>
+            <br>
+
+            <div class="form-group">
+
+                @include('commons.input', [
+                    'name' => 'password',
+                    'label' => 'Contraseña',
+                    'placeholder' => 'Contraseña',
+                    'type' => 'number', 'text',
+                    'value' => $employee->password,
+                ])
+            </div>
+            <br>
+
+            <div class="form-group">
+
                 @include('commons.select', [
                     'name' => 'active',
                     'placeholder' => 'Activo',
@@ -16,6 +76,8 @@
                     'label' => 'Status',
                 ])
             </div>
+
+
             <div class="form-group">
 
                 @include('commons.input', [

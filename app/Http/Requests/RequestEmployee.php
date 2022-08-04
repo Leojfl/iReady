@@ -24,9 +24,12 @@ class RequestEmployee extends FormRequest
     public function rules()
     {
         return [
+            'username' => 'required',
+            'name' => 'required',
+            'last_name' => 'required',
+            'second_last_name' => 'required',
+            'password' => 'required',
             'active' => 'required',
-            'fk_id_user' => 'required',
-            'fk_id_store' => 'required',
         ];
     }
 
@@ -38,9 +41,12 @@ class RequestEmployee extends FormRequest
     public function messages()
     {
         return [
+            'username.required' => 'Falto por llenar este campo',
+            'name.required' => 'Falto por llenar este campo',
+            'last_name.required' => 'Falto por llenar este campo',
+            'second_last_name.required' => 'Falto por llenar este campo',
+            'password.required' => 'Falto por llenar este campo',
             'active.required' => 'Falto por llenar este campo',
-            'fk_id_user.required' => 'Falto por llenar este campo',
-            'fk_id_store.required' => 'Falto por llenar este campo',
         ];
     }
 }

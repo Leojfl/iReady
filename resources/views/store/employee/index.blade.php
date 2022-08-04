@@ -8,7 +8,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Lista de Empleados</h3>
                     </div>
-                    <a href="{{ route('employee_create') }}" class="btn btn-primary pull-right create">Nuevo
+                    <a href="{{ route('store_employee_upsert') }}" class="btn btn-primary pull-right create">Nuevo
                         Empleado</a>
                     <br>
                     <div class="panel-body">
@@ -18,6 +18,11 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Nombre de Usuario</th>
+                                            <th>Nombre</th>
+                                            <th>Apedillo</th>
+                                            <th>Segundo Apedillo</th>
+                                            <th>Contraseña</th>
                                             <th>Activo</th>
                                             <th>Fk_id_user</th>
                                             <th>Fk_id_stor</th>
@@ -27,6 +32,11 @@
                                     <tbody>
                                         @foreach ($employees as $employee)
                                             <tr>
+                                                <td>{{ $employee->username }}</td>
+                                                <td>{{ $employee->name }}</td>
+                                                <td>{{ $employee->last_name }}</td>
+                                                <td>{{ $employee->second_last_name }}</td>
+                                                <td>{{ $employee->password }}</td>
                                                 <td>{{ $employee->id }}</td>
                                                 @if ($employee->active == 1)
                                                     <td>Activo</td>
@@ -36,17 +46,9 @@
                                                 <td>{{ $employee->fk_id_user }}</td>
                                                 <td>{{ $employee->fk_id_store }}</td>
                                                 <td>
-                                                    <a href="{{ route('employee_edit', $employee->id) }}"
+                                                    <a href="{{ route('store_employee_upsert', $employee->id) }}"
                                                         class="btn btn-warning btn-sm">Editar</a>
-                                                    <form action="{{ route('employee_delete', $employee->id) }}"
-                                                        method="POST">
-                                                        @method('DELETE')
-                                                        @csrf
-                                                        <button type='submit' class="btn btn-sm btn-danger"
-                                                            onClick="return confirm('estas seguro de eliminar el empleado?')">
-                                                            <i class="far fa-trash-alt"></i>
-                                                        </button>
-                                                    </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach
