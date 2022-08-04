@@ -8,8 +8,8 @@
     <div class="col-12 col-md-8 mx-auto">
         <form method="POST" action="{{ route('admin_store_upsert_post', isset($store)?$store->id:"") }}">
             {{ csrf_field() }}
-            <div class="form-group">
-               
+            <div class="input-group mb-3">
+               <pre>        </pre>
                 @include('commons.input',[
                     'name' => 'name',
                     'label' => 'Nombre del restaurante',
@@ -17,9 +17,8 @@
                     'type' => 'text',
                     'value' => isset($store)?$store->name:"",
                 ])
-            </div>
-            <div class="form-group">
-        
+                <pre>                            </pre>
+                
                 @include('commons.input',[
                     'name' => 'owner',
                     'label' => 'Dueño del restaurante',
@@ -27,7 +26,18 @@
                     'type' => 'text',
                     'value' => isset($store)?$store->owner:"",
                 ])
+
             </div>
+            <div class="input-group mb-3">
+                <pre>        </pre>
+                @include('commons.input',[
+                    'name' => 'owner',
+                    'label' => 'Dueño del restaurante',
+                    'placeholder' => 'Dueño del restaurante',
+                    'type' => 'text',
+                    'value' => isset($store)?$store->owner:"",
+                ])
+                <pre>                            </pre>
            
                 @include('commons.input',[
                     'name' => 'phone',
@@ -36,8 +46,8 @@
                     'type' => 'number',
                     'value' => isset($store)?$store->phone:"",
                 ])
-            <div class="form-group">
-              
+            <div class="input-group mb-3">
+                <pre>        </pre>
                 @include('commons.input',[
                     'name' => 'rfc',
                     'label' => 'RFC del restaurante',
@@ -45,9 +55,7 @@
                     'type' => 'text',
                     'value' => isset($store)?$store->rfc:"",
                 ])
-            </div>
-            <div class="form-group">
-              
+              <pre>                            </pre>
                 @include('commons.input',[
                     'name' => 'description',
                     'label' => 'Descripcion del restaurante',
@@ -56,8 +64,8 @@
                     'value' => isset($store)?$store->description:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="input-group mb-3">
+              <pre>                            </pre>
                 @include('commons.input',[
                     'name' => 'img_url',
                     'label' => 'URL de la imagen del restaurante',
@@ -66,6 +74,8 @@
                     'value' => isset($store)?$store->img_url:"",
                 ])
             </div>
+            <div class="input-group mb-3">
+                <pre>                                    </pre>
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingOne">
@@ -73,10 +83,12 @@
                      <h5> Agregar Direccion</h5>
                     </button>
                   </h2>
+                </div>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body">
                         
-                        <div class="form-group">
+                        <div class="input-group mb-3">
+                            <pre>        </pre>
                         @include('commons.input',[
                             'name' => 'city',
                             'label' => 'Ciudad donde se ubica',
@@ -84,9 +96,7 @@
                             'type' => 'text',
                             'value' => isset($store)?$store->address->city:"",
                         ])
-                    </div>
-                    <div class="form-group">
-                      
+                      <pre>                            </pre>
                         @include('commons.input',[
                             'name' => 'colony',
                             'label' => 'Colonia donde se ubica',
@@ -95,8 +105,8 @@
                             'value' => isset($store)?$store->address->colony:"",
                         ])
                     </div>
-                    <div class="form-group">
-                      
+                    <div class="input-group mb-3">
+                        <pre>        </pre>
                         @include('commons.input',[
                             'name' => 'zip_code',
                             'label' => 'Codigo postal',
@@ -104,9 +114,8 @@
                             'type' => 'number',
                             'value' => isset($store)?$store->address->zip_code:"",
                         ])
-                    </div>
-                    <div class="form-group">
-                      
+                    
+                    <pre>                            </pre>
                         @include('commons.input',[
                             'name' => 'street',
                             'label' => 'Calle donde se ubica',
@@ -115,8 +124,8 @@
                             'value' => isset($store)?$store->address->street:"",
                         ])
                     </div>
-                    <div class="form-group">
-                      
+                    <div class="input-group mb-3">
+                        <pre>                                  </pre>
                         @include('commons.input',[
                             'name' => 'ext_num',
                             'label' => 'Numero exterior',
@@ -127,8 +136,9 @@
                     </div>
             
             <br>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+            <div class="input-group mb-3">
+                <pre>                                       </pre>
+                <button type="submit" class="btn btn-primary" style="border-radius: 50px">Guardar</button>
                 &nbsp;
             </div>
         </form>
