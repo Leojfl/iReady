@@ -1,5 +1,6 @@
 @php
     $productId = isset($product)?$product->id:"";
+    $ingredientsInProduct = isset($product)?$product->materials:[];
 @endphp
 @extends('store.template.main')
 @push('scripts')
@@ -29,9 +30,14 @@
                     'options' => $categories
                 ])
             </div>
-
             <div id="app" class="col-12 col-md-9 mx-auto ">
-                <vue-form is-new="{{($product)?0:1}}" ingredients='@json($ingredients)'>
+
+                @json($product)
+
+                <vue-form is-new="{{($product)?0:1}}"
+                :ingredients='@json($ingredients)'
+                :product-update='@json($product)'
+                :ingredients-in-product-update='@json($ingredientsInProduct)' >
                 </vue-form>
             </div>
             <div class="col-12 text-center mt-5 mb-5">

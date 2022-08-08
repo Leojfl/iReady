@@ -7,19 +7,27 @@
             </div>
             <img v-if="url" :src="url"  style="height: 150px;"/>
         </div>
-            <div class="col-12 col-md-6  py-0 mt-3" v-html='createInput("Nombre","name", "name", "")'>
+            <div class="col-12 col-md-6  py-0 mt-3" v-html='createInput("Nombre","name", "name", this.product.name )'>
             </div>
-            <div class="col-12 col-md-6  py-0 mt-3" v-html='createInput("Precio","price", "price", "")'>
+            <div class="col-12 col-md-6  py-0 mt-3" v-html='createInput("Precio","price", "price", this.product.price )'>
             </div>
             <div class="col-12 py-0 mt-3" >
                 <div class="form-floating">
-                    <textarea class="form-control" name="description" placeholder="descrpcion" id="floatingTextarea" style="height: 100px"></textarea>
+                    <textarea class="form-control" name="description" placeholder="descrpcion" id="floatingTextarea" style="height: 100px"
+                    :value="this.product.description"
+                    ></textarea>
                     <label for="floatingTextarea">Descripción</label>
                 </div>
             </div>
             <div class="col-3 text-start mt-4">
                     <div class="form-check ">
-                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="show" value="true">
+                        <input class="form-check-input"
+                        type="checkbox"
+                        id="flexCheckDefault"
+                        name="show"
+                        :value="true"
+                        :model="this.product.active"
+                        >
                         <label class="form-check-label" for="flexCheckDefault">
                         Activo
                         </label>
@@ -37,7 +45,7 @@
                         v-model="ingredient.value">
                         <label for="exampleDataList" >Ingredientes </label>
                         <datalist id="datalistOptions">
-                        <template v-for="ingredient of parseJson(ingredients)">
+                        <template v-for="ingredient of ingredients">
                             <option  :value="getNameIngredient(ingredient)" ></option>
                         </template>
                         </datalist>
@@ -82,14 +90,12 @@
     export default {
         props: {
             isNew: { type: String },
-            product: { requerid: false},
+            productUpdate: { requerid: false},
             errors: { default: null},
             ingredients: {default: []},
+            urlImage: {default: String},
             ingredientsInProductUpdate: {
                 type: Array,
-                default() {
-                  return []
-                }
             },
         },
         methods: {
@@ -103,9 +109,7 @@
                     return
                 }
                 let  id = self.getIdIngredient(self.ingredient.value);
-                var flag = false;
-                let ingredients = this.parseJson(this.ingredients);
-                let itemId = ingredients.find(element => element.id == id );
+                let itemId = this.ingredients.find(element => element.id == id );
                 if (itemId != undefined) {
                     self.ingredientsInProduct.push({...self.ingredient});
                     self.ingredient =  {
@@ -149,9 +153,40 @@
                     value: "",
                     quantity: ""
                 },
-                ingredientsInProduct: this.ingredientsInProductUpdate
+                ingredientsInProduct: [],
+                product: {
+                    name: "",
+                    price: "",
+                    description: "",
+                    active: false
+                }
             }
-        }
+        },
+
+        created() {
+
+            if(this.ingredientsInProductUpdate && this.ingredientsInProductUpdate.length > 0){
+                var self = this
+                this.ingredientsInProductUpdate.forEach((ingredient, index, array) => {
+                    var updateIngredient = {
+                        value: "",
+                        quantity: ""
+                    };
+                    updateIngredient.value = self.getNameIngredient(ingredient);
+                    updateIngredient.quantity = ingredient.pivot.quantity;
+                    self.ingredientsInProduct.push(updateIngredient);
+                })
+            }
+
+            if (this.productUpdate && this.productUpdate != undefined) {
+                this.product = {
+                    name: this.productUpdate.name,
+                    price: this.productUpdate.price,
+                    description: this.productUpdate.description,
+                    active: this.productUpdate.show == 1
+                }
+            }
+        },
     }
 </script>
 

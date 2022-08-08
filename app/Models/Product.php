@@ -50,7 +50,8 @@ class Product extends Model
             'product_material',
             'fk_id_product',
             'fk_id_material'
-        )->withPivot([
+        )->with('unit')
+        ->withPivot([
             'quantity'
         ])->withTimestamps();
     }

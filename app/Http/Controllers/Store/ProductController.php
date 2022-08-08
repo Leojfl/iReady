@@ -69,7 +69,9 @@ class ProductController extends Controller
             $product->show = $request->get('show') == "true";
             $product->saveOrFail();
             $product->materials()->sync($request->get('ingredinets'));
-            $product->image_url = $this->storeImage($request->file("image_product"), "product", $product->id);
+            if ($request->file("image_product") != null) {
+                $product->image_url = $this->storeImage($request->file("image_product"), "product", $product->id);
+            }
             $product->saveOrFail();
             DB::commit();
             return redirect(route('store_products_index'));

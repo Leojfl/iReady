@@ -98,12 +98,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isNew: {
       type: String
     },
-    product: {
+    productUpdate: {
       requerid: false
     },
     errors: {
@@ -112,11 +120,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ingredients: {
       "default": []
     },
+    urlImage: {
+      "default": String
+    },
     ingredientsInProductUpdate: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
+      type: Array
     }
   },
   methods: {
@@ -132,9 +140,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var id = self.getIdIngredient(self.ingredient.value);
-      var flag = false;
-      var ingredients = this.parseJson(this.ingredients);
-      var itemId = ingredients.find(function (element) {
+      var itemId = this.ingredients.find(function (element) {
         return element.id == id;
       });
 
@@ -174,8 +180,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "",
         quantity: ""
       },
-      ingredientsInProduct: this.ingredientsInProductUpdate
+      ingredientsInProduct: [],
+      product: {
+        name: "",
+        price: "",
+        description: "",
+        active: false
+      }
     };
+  },
+  created: function created() {
+    if (this.ingredientsInProductUpdate && this.ingredientsInProductUpdate.length > 0) {
+      var self = this;
+      this.ingredientsInProductUpdate.forEach(function (ingredient, index, array) {
+        var updateIngredient = {
+          value: "",
+          quantity: ""
+        };
+        updateIngredient.value = self.getNameIngredient(ingredient);
+        updateIngredient.quantity = ingredient.pivot.quantity;
+        self.ingredientsInProduct.push(updateIngredient);
+      });
+    }
+
+    if (this.productUpdate && this.productUpdate != undefined) {
+      this.product = {
+        name: this.productUpdate.name,
+        price: this.productUpdate.price,
+        description: this.productUpdate.description,
+        active: this.productUpdate.show == 1
+      };
+    }
   }
 });
 
@@ -294,22 +329,65 @@ var render = function () {
     _c("div", {
       staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
-        innerHTML: _vm._s(_vm.createInput("Nombre", "name", "name", "")),
+        innerHTML: _vm._s(
+          _vm.createInput("Nombre", "name", "name", this.product.name)
+        ),
       },
     }),
     _vm._v(" "),
     _c("div", {
       staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
-        innerHTML: _vm._s(_vm.createInput("Precio", "price", "price", "")),
+        innerHTML: _vm._s(
+          _vm.createInput("Precio", "price", "price", this.product.price)
+        ),
       },
     }),
     _vm._v(" "),
+    _c("div", { staticClass: "col-12 py-0 mt-3" }, [
+      _c("div", { staticClass: "form-floating" }, [
+        _c("textarea", {
+          staticClass: "form-control",
+          staticStyle: { height: "100px" },
+          attrs: {
+            name: "description",
+            placeholder: "descrpcion",
+            id: "floatingTextarea",
+          },
+          domProps: { value: this.product.description },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "floatingTextarea" } }, [
+          _vm._v("Descripción"),
+        ]),
+      ]),
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-3 text-start mt-4" }, [
+      _c("div", { staticClass: "form-check" }, [
+        _c("input", {
+          staticClass: "form-check-input",
+          attrs: {
+            type: "checkbox",
+            id: "flexCheckDefault",
+            name: "show",
+            model: this.product.active,
+          },
+          domProps: { value: true },
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "form-check-label",
+            attrs: { for: "flexCheckDefault" },
+          },
+          [_vm._v("\n                Activo\n                ")]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
     _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _vm._m(2),
     _vm._v(" "),
     _c("div", { staticClass: "col-12 py-0 mt-3" }, [
       _c("div", { staticClass: "row" }, [
@@ -350,7 +428,7 @@ var render = function () {
               "datalist",
               { attrs: { id: "datalistOptions" } },
               [
-                _vm._l(_vm.parseJson(_vm.ingredients), function (ingredient) {
+                _vm._l(_vm.ingredients, function (ingredient) {
                   return [
                     _c("option", {
                       domProps: { value: _vm.getNameIngredient(ingredient) },
@@ -455,55 +533,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 py-0 mt-3" }, [
-      _c("div", { staticClass: "form-floating" }, [
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "100px" },
-          attrs: {
-            name: "description",
-            placeholder: "descrpcion",
-            id: "floatingTextarea",
-          },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "floatingTextarea" } }, [
-          _vm._v("Descripción"),
-        ]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-3 text-start mt-4" }, [
-      _c("div", { staticClass: "form-check" }, [
-        _c("input", {
-          staticClass: "form-check-input",
-          attrs: {
-            type: "checkbox",
-            id: "flexCheckDefault",
-            name: "show",
-            value: "true",
-          },
-        }),
-        _vm._v(" "),
-        _c(
-          "label",
-          {
-            staticClass: "form-check-label",
-            attrs: { for: "flexCheckDefault" },
-          },
-          [_vm._v("\n                Activo\n                ")]
-        ),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
