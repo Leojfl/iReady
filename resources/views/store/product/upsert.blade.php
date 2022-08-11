@@ -1,6 +1,18 @@
 @php
     $productId = isset($product)?$product->id:"";
     $ingredientsInProduct = isset($product)?$product->materials:[];
+    $productUpdate = $product;
+    $productErrors = [];
+    if ($errors->any()) {
+        $productUpdate =  [
+            "name" => old('name')??"",
+            "price" => old('price')??"",
+            "description" => old('description')??"",
+            "show" => old('show') == "true"? 1 : 0
+        ];
+        $ingredientsInProduct = old('ingredinets');
+        $productErrors = $errors->messages();
+    }
 @endphp
 @extends('store.template.main')
 @push('scripts')
@@ -31,19 +43,16 @@
                 ])
             </div>
             <div id="app" class="col-12 col-md-9 mx-auto ">
-
-                @json($product)
-
                 <vue-form is-new="{{($product)?0:1}}"
                 :ingredients='@json($ingredients)'
-                :product-update='@json($product)'
-                :ingredients-in-product-update='@json($ingredientsInProduct)' >
+                :product-update='@json($productUpdate)'
+                :ingredients-in-product-update='@json($ingredientsInProduct)'
+                :errors='@json($productErrors)'>
                 </vue-form>
             </div>
             <div class="col-12 text-center mt-5 mb-5">
                 <button class="btn btn-primary">Guardar</button>
             </div>
-
         </form>
     </div>
 </div>

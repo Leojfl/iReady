@@ -106,6 +106,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isNew: {
@@ -131,6 +142,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
       this.url = URL.createObjectURL(file);
+    },
+    removeIngredient: function removeIngredient(index) {
+      this.ingredientsInProduct.splice(index, 1);
     },
     addIngredient: function addIngredient() {
       var self = this;
@@ -163,13 +177,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return JSON.parse(json);
     },
     createInput: function createInput(label, id, name, value) {
-      var textError = "";
+      var textError = this.getError(name);
 
       if (this.errors != null && this.errors[name] != null) {
         textError = this.errors[name];
       }
 
       return '<div class="form-floating">' + '<input type="text" autocomplete="off" placeholder=" "' + ' class="form-control ' + (textError != "" ? 'is-invalid' : '  ') + '"' + ' name="' + name + '"' + ' id="' + id + '"' + ' value="' + value + '">' + ' <label class="" ' + ' for="' + id + '"">' + label + '</label><div class="invalid-feedback">' + textError + '</div>';
+    },
+    getError: function getError(name) {
+      var error = "";
+
+      if (this.errors != null && this.errors[name] != undefined && this.errors[name] != null) {
+        error = this.errors[name][0];
+      }
+
+      return error;
     }
   },
   data: function data() {
@@ -186,7 +209,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         price: "",
         description: "",
         active: false
-      }
+      },
+      active: false
     };
   },
   created: function created() {
@@ -197,13 +221,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           value: "",
           quantity: ""
         };
-        updateIngredient.value = self.getNameIngredient(ingredient);
-        updateIngredient.quantity = ingredient.pivot.quantity;
+
+        if (ingredient.value == "" || ingredient.value == undefined) {
+          updateIngredient.value = self.getNameIngredient(ingredient);
+          updateIngredient.quantity = ingredient.pivot.quantity;
+        } else {
+          updateIngredient.value = ingredient.value;
+          updateIngredient.quantity = ingredient.quantity;
+        }
+
         self.ingredientsInProduct.push(updateIngredient);
       });
     }
 
     if (this.productUpdate && this.productUpdate != undefined) {
+      this.url = this.productUpdate.absolute_image_url;
       this.product = {
         name: this.productUpdate.name,
         price: this.productUpdate.price,
@@ -347,18 +379,43 @@ var render = function () {
     _c("div", { staticClass: "col-12 py-0 mt-3" }, [
       _c("div", { staticClass: "form-floating" }, [
         _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.description,
+              expression: "product.description",
+            },
+          ],
           staticClass: "form-control",
+          class: this.getError("description") != "" ? "is-invalid" : "",
           staticStyle: { height: "100px" },
           attrs: {
             name: "description",
             placeholder: "descrpcion",
             id: "floatingTextarea",
           },
-          domProps: { value: this.product.description },
+          domProps: { value: _vm.product.description },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "description", $event.target.value)
+            },
+          },
         }),
         _vm._v(" "),
         _c("label", { attrs: { for: "floatingTextarea" } }, [
           _vm._v("Descripción"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(this.getError("description")) +
+              "\n            "
+          ),
         ]),
       ]),
     ]),
@@ -366,14 +423,49 @@ var render = function () {
     _c("div", { staticClass: "col-3 text-start mt-4" }, [
       _c("div", { staticClass: "form-check" }, [
         _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.active,
+              expression: "product.active",
+            },
+          ],
           staticClass: "form-check-input",
           attrs: {
             type: "checkbox",
             id: "flexCheckDefault",
             name: "show",
-            model: this.product.active,
+            value: "true",
           },
-          domProps: { value: true },
+          domProps: {
+            checked: Array.isArray(_vm.product.active)
+              ? _vm._i(_vm.product.active, "true") > -1
+              : _vm.product.active,
+          },
+          on: {
+            change: function ($event) {
+              var $$a = _vm.product.active,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = "true",
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && _vm.$set(_vm.product, "active", $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    _vm.$set(
+                      _vm.product,
+                      "active",
+                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                    )
+                }
+              } else {
+                _vm.$set(_vm.product, "active", $$c)
+              }
+            },
+          },
         }),
         _vm._v(" "),
         _c(
@@ -497,6 +589,14 @@ var render = function () {
               _c("div", { staticClass: "col-8" }, [
                 _c("input", {
                   attrs: {
+                    name: "ingredinets[" + index + "][value]",
+                    type: "hidden",
+                  },
+                  domProps: { value: newIngredint.value },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
                     name: "ingredinets[" + index + "][fk_id_material]",
                     type: "hidden",
                   },
@@ -517,12 +617,23 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-3" }, [
+              _c("div", { staticClass: "col-2" }, [
                 _vm._v(
                   "\n                " +
                     _vm._s(newIngredint.quantity) +
                     "\n                "
                 ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-1" }, [
+                _c("i", {
+                  staticClass: "cursor-pointer fas fa-trash",
+                  on: {
+                    click: function ($event) {
+                      return _vm.removeIngredient(index)
+                    },
+                  },
+                }),
               ]),
             ]
           }),

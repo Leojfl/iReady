@@ -13,10 +13,18 @@
             </div>
             <div class="col-12 py-0 mt-3" >
                 <div class="form-floating">
-                    <textarea class="form-control" name="description" placeholder="descrpcion" id="floatingTextarea" style="height: 100px"
-                    :value="this.product.description"
+                    <textarea class="form-control"
+                    :class="this.getError('description')!=''?'is-invalid':''"
+                    name="description"
+                    placeholder="descrpcion"
+                    id="floatingTextarea"
+                    style="height: 100px"
+                    v-model="product.description"
                     ></textarea>
                     <label for="floatingTextarea">Descripción</label>
+                    <div class="invalid-feedback">
+                        {{this.getError('description')}}
+                    </div>
                 </div>
             </div>
             <div class="col-3 text-start mt-4">
@@ -25,9 +33,8 @@
                         type="checkbox"
                         id="flexCheckDefault"
                         name="show"
-                        :value="true"
-                        :model="this.product.active"
-                        >
+                        value="true"
+                        v-model="product.active">
                         <label class="form-check-label" for="flexCheckDefault">
                         Activo
                         </label>
@@ -73,12 +80,16 @@
                 <div class="row mt-4">
                     <template v-for="(newIngredint , index) of ingredientsInProduct">
                         <div class="col-8">
+                        <input :name="'ingredinets['+index+'][value]'" :value="newIngredint.value" type="hidden"/>
                         <input :name="'ingredinets['+index+'][fk_id_material]'" :value="getIdIngredient(newIngredint.value)" type="hidden"/>
                         <input :name="'ingredinets['+index+'][quantity]'" :value="newIngredint.quantity" type="hidden"/>
                         {{newIngredint.value}}
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                         {{newIngredint.quantity}}
+                        </div>
+                        <div class="col-1">
+                            <i class="cursor-pointer  fas fa-trash" @click="removeIngredient(index)"></i>
                         </div>
                     </template>
                 </div>
@@ -102,6 +113,9 @@
             onFileChange(e) {
                 const file = e.target.files[0];
                 this.url = URL.createObjectURL(file);
+            },
+            removeIngredient(index){
+                this.ingredientsInProduct.splice(index, 1)
             },
             addIngredient(){
                 let self = this;
@@ -129,7 +143,7 @@
                 return JSON.parse(json);
             },
             createInput(label,id, name, value) {
-                var textError = "";
+                var textError = this.getError(name);
                 if (this.errors != null && this.errors[name] != null)  {
                     textError = this.errors[name]
                 }
@@ -143,6 +157,13 @@
                     ' for="'+id+'"">'+label+'</label><div class="invalid-feedback">' +
                         textError  +
                      '</div>'
+            },
+            getError(name) {
+                var error = "";
+                if( this.errors != null && this.errors[name] != undefined && this.errors[name] != null) {
+                    error = this.errors[name][0];
+                }
+                return error;
             }
         },
         data() {
@@ -159,7 +180,8 @@
                     price: "",
                     description: "",
                     active: false
-                }
+                },
+                active: false
             }
         },
 
@@ -172,13 +194,19 @@
                         value: "",
                         quantity: ""
                     };
-                    updateIngredient.value = self.getNameIngredient(ingredient);
-                    updateIngredient.quantity = ingredient.pivot.quantity;
+                    if (ingredient.value == "" || ingredient.value == undefined) {
+                        updateIngredient.value = self.getNameIngredient(ingredient);
+                        updateIngredient.quantity = ingredient.pivot.quantity;
+                    } else {
+                        updateIngredient.value = ingredient.value;
+                        updateIngredient.quantity = ingredient.quantity;
+                    }
                     self.ingredientsInProduct.push(updateIngredient);
                 })
             }
 
             if (this.productUpdate && this.productUpdate != undefined) {
+                this.url = this.productUpdate.absolute_image_url;
                 this.product = {
                     name: this.productUpdate.name,
                     price: this.productUpdate.price,

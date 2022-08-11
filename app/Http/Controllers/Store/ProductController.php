@@ -20,6 +20,7 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\UpserProductRequest;
 
 class ProductController extends Controller
 {
@@ -42,7 +43,7 @@ class ProductController extends Controller
         $user = Auth::User();
         $store = Store::whereHas('employees', function (Builder $query) use ($user) {
             $query->where('fk_id_user', $user->id);
-        })->with('materials.unit')
+        })->with(['materials.unit'])
         ->first();
         $product = Product::find($productId);
         if ($product != null && $product->fk_id_store != $store->id){
@@ -50,11 +51,12 @@ class ProductController extends Controller
         }
         $ingredients = $store->materials;
         $categories = Category::asMap();
+
         return view('store.product.upsert', ['product' => $product, 'ingredients' => $ingredients, 'categories' => $categories]);
 
     }
 
-    public function upsertPost(Request $request, $productId = 0){
+    public function upsertPost(UpserProductRequest $request, $productId = 0){
 
         $user = Auth::User();
         $store = Store::whereHas('employees', function (Builder $query) use ($user) {
