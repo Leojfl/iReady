@@ -21,7 +21,7 @@
                                             <th>Nombre de Usuario</th>
                                             <th>Nombre</th>
                                             <th>Apedillo</th>
-                                            <th>Segundo Apedillo</th> 
+                                            <th>Segundo Apedillo</th>
                                             <th>Imagen</th>
                                             <th>Area</th>
                                             <th>Puesto</th>
@@ -35,7 +35,7 @@
                                             <th>Numero exterior</th>
                                             <th>CP</th>
                                             <th>Ciudad</th>
-                                            <th>Sueldo</th> 
+                                            <th>Sueldo</th>
                                             <th>Contraseña</th>
                                             <th>Activo</th>
                                             <th>Fk_id_user</th>
@@ -71,6 +71,8 @@
                                                 @endif
                                                 <td>{{ $employee->fk_id_user }}</td>
                                                 <td>{{ $employee->fk_id_store }}</td>
+                                                <td>
+                                                <td>
                                                 <td>
                                                     <a href="{{ route('store_employee_upsert', $employee->id) }}"
                                                         class="btn btn-warning btn-sm">Editar</a>
