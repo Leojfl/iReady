@@ -24,7 +24,7 @@ class RawMaterialRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required',
+            'name'     => 'required', 
             'quantity' => 'required',
             'min_stok' => 'required',
             'max_stok' => 'required',

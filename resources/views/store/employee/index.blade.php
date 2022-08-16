@@ -21,7 +21,21 @@
                                             <th>Nombre de Usuario</th>
                                             <th>Nombre</th>
                                             <th>Apedillo</th>
-                                            <th>Segundo Apedillo</th>
+                                            <th>Segundo Apedillo</th> 
+                                            <th>Imagen</th>
+                                            <th>Area</th>
+                                            <th>Puesto</th>
+                                            <th>RFC</th>
+                                            <th>CURP</th>
+                                            <th>Telefono</th>
+                                            <th>Email</th>
+                                            <th>Celular</th>
+                                            <th>Seguro Social</th>
+                                            <th>Domicilio</th>
+                                            <th>Numero exterior</th>
+                                            <th>CP</th>
+                                            <th>Ciudad</th>
+                                            <th>Sueldo</th> 
                                             <th>Contraseña</th>
                                             <th>Activo</th>
                                             <th>Fk_id_user</th>
@@ -36,6 +50,18 @@
                                                 <td>{{ $employee->name }}</td>
                                                 <td>{{ $employee->last_name }}</td>
                                                 <td>{{ $employee->second_last_name }}</td>
+                                                <td>{{ $employee->url_image }}</td>
+                                                <td>{{ $employee->rfc }}</td>
+                                                <td>{{ $employee->curp }}</td>
+                                                <td>{{ $employee->phone }}</td>
+                                                <td>{{ $employee->email }}</td>
+                                                <td>{{ $employee->cell_phone }}</td>
+                                                <td>{{ $employee->social_security }}</td>
+                                                <td>{{ $employee->recidence }}</td>
+                                                <td>{{ $employee->outdoor_number }}</td>
+                                                <td>{{ $employee->cp }}</td>
+                                                <td>{{ $employee->city }}</td>
+                                                <td>{{ $employee->salary }}</td>
                                                 <td>{{ $employee->password }}</td>
                                                 <td>{{ $employee->id }}</td>
                                                 @if ($employee->active == 1)

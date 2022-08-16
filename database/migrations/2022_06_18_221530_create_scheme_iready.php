@@ -97,9 +97,9 @@ class CreateSchemeIready extends Migration
 
             $table->foreign('fk_id_store')
                 ->references('id')
-                 ->on('store');
+                ->on('store');
 
-             $table->foreign('fk_id_unit')
+            $table->foreign('fk_id_unit')
                 ->references('id')
                 ->on('unit');
 
@@ -236,6 +236,20 @@ class CreateSchemeIready extends Migration
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
             $table->boolean('active')->default(true);
+            $table->string('url_image');
+            $table->string('rfc');
+            $table->string('curp');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('cell_phone');
+            $table->string('social_security');
+            $table->string('recidence');
+            $table->bigInteger('outdoor_number');
+            $table->bigInteger('cp');
+            $table->string('city');
+            $table->bigInteger('salary');
+            $table->boolean('area');
+            $table->boolean('workstation');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
