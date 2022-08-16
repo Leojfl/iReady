@@ -245,11 +245,11 @@ class CreateSchemeIready extends Migration
             $table->string('social_security');
             $table->string('recidence');
             $table->bigInteger('outdoor_number');
-            $table->bigInteger('cp');
+            $table->string('cp');
             $table->string('city');
             $table->bigInteger('salary');
-            $table->boolean('area');
-            $table->boolean('workstation');
+            $table->string('area');
+            $table->string('workstation');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();

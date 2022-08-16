@@ -9,7 +9,7 @@ class RestaurantSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @return void
+     * @return void 
      */
     public function run()
     {
@@ -134,6 +134,20 @@ class RestaurantSeeder extends Seeder
             'active' => true,
             'fk_id_store' => $storeId,
             'fk_id_user' => $id,
+            'url_image' => '',
+            'rfc' => '50860',
+            'curp' => 'CEUFG567HDJS2',
+            'phone' => '1928456723',
+            'email' => 'patito@gmail.com',
+            'cell_phone' => '7225678901',
+            'social_security' => '506789',
+            'recidence' => 'trojes',
+            'outdoor_number' => '4567',
+            'cp' => '57DFG567',
+            'city' => 'México',
+            'salary' => '15000',
+            'area' => 'cocina',
+            'workstation' => 'cocinero',
         ]);
 
         for($i = 0; $i <= 10; $i++) {

@@ -13,7 +13,7 @@ use App\Http\Requests\RequestEmployee;
 use App\Models\Employee;
 use App\Models\User;
 use App\Models\Store;
-
+ 
 class EmployeeController extends Controller
 {
     /**
