@@ -66,16 +66,55 @@ Route::get(
     'BoardController@show'
 )->name('store_board_profile');
 
-Route::delete('/store/board/{boardId?}',
+Route::get('/store/board/{boardId?}',
  'BoardController@destroy'
  )->name('store_board_delete');
 
-////////////// rutas StoreData//////////////////
+ // ======================== Tickets ====================
 
-//Route::get('/storedata', 'StoreDataController@index')->name('store_data_index');
-//Route::get('/storedata/create', 'StoreDataController@create')->name('store_data_create');
-//Route::post('/storedata/store', 'StoreDataController@store')->name('store_data_store');
-//Route::get('/storedata/edit/{id}', 'StoreDataController@edit')->name('store_data_edit');
-//Route::post('/storedata/update/{id}', 'StoreDataController@update')->name('store_data_update');
-//Route::delete('/storedata/delete/{id}', 'StoreDataController@destroy')->name('store_data_delete');
+ Route::get(
+    '/store/ticket',
+    'TicketController@index'
+)->name('store_ticket_index');
 
+Route::get(
+    '/store/ticket/upsert/{ticketId?}',
+    'TicketController@upsert'
+)->name('store_ticket_upsert');
+
+Route::post(
+    '/store/ticket/upsert/{ticketId?}',
+    'TicketController@upsertPost'
+)->name('store_ticket_upsert_post');
+
+
+Route::get('/store/ticket/{ticketId?}',
+ 'TicketController@destroy'
+ )->name('store_ticket_delete');
+
+  // ======================== RawMaterial ====================
+
+  Route::get(
+    '/store/rawmaterial',
+    'RawMaterialController@index'
+)->name('store_rawmaterial_index');
+
+Route::get(
+    '/store/rawmaterial/upsert/{rawmaterialId?}',
+    'RawMaterialController@upsert'
+)->name('store_rawmaterial_upsert');
+
+Route::post(
+    '/store/rawmaterial/upsert/{rawmaterialId?}',
+    'RawMaterialController@upsertPost'
+)->name('store_rawmaterial_upsert_post');
+
+Route::get(
+    '/store/rawmaterial/profile/{rawmaterialId?}',
+    'RawMaterialController@show'
+)->name('store_rawmaterial_profile');
+
+
+Route::get('/store/rawmaterial/{rawmaterialId?}',
+ 'RawMaterialController@destroy'
+ )->name('store_rawmaterial_delete');

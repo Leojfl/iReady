@@ -70,7 +70,7 @@
                     'name' => 'img_url',
                     'label' => 'URL de la imagen del restaurante',
                     'placeholder' => 'URL de la imagen del restaurante',
-                    'type' => 'file',
+                    'type' => 'text',
                     'value' => isset($store)?$store->img_url:"",
                 ])
             </div>

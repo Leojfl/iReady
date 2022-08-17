@@ -37,8 +37,8 @@ class CreateSchemeIready extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->boolean('active')->default(true);
-            $table->boolean('available')->default(true);
+            $table->boolean('active');
+            $table->boolean('available');
 
             $table->timestamps();
             $table->softDeletes();
@@ -88,20 +88,13 @@ class CreateSchemeIready extends Migration
 
         Schema::create('material', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('quantity');
-            $table->double('min_stok');
-            $table->double('max_stok');
-            $table->unsignedBigInteger('fk_id_store');
-            $table->unsignedBigInteger('fk_id_unit');
-
-            $table->foreign('fk_id_store')
-                ->references('id')
-                ->on('store');
-
-            $table->foreign('fk_id_unit')
-            ->references('id')
-            ->on('unit');
+            $table->string('code');
+            $table->string('img_url');
+            $table->string('description');
+            $table->string('group');
+            $table->string('unit');
+            $table->string('provider');
+            $table->string('price');
 
             $table->timestamps();
         });
@@ -237,7 +230,18 @@ class CreateSchemeIready extends Migration
 
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('img_url');
+            $table->string('lastname');
+            $table->string('area');
+            $table->string('booth');
+            $table->string('rfc');
+            $table->string('curp');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('social_security');
             $table->boolean('active')->default(true);
+            $table->string('salary');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
@@ -326,7 +330,18 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('combo');
         });
+        
+        Schema::create('ticket', function (Blueprint $table) {
+            $table->id();
+            $table->string('head');
+            $table->string('footnote1');
+            $table->string('footnote2');
+            
+            $table->timestamps();
+            $table->softDeletes();
 
+           
+        });
 
 
 
@@ -361,5 +376,6 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('payment_store');
         Schema::dropIfExists('board');
         Schema::dropIfExists('store');
+        Schema::dropIfExists('ticket');
     }
 }

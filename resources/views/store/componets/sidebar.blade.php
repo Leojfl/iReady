@@ -23,7 +23,7 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
+            'name' => 'store_rawmaterial_index',
             'label' => 'Materia prima',
             'icon_class' => 'fas fa-boxes',
             'roles' => [Role::STORE]
@@ -57,6 +57,12 @@
             'name' => 'admin_users_index',
             'label' => 'Graficas',
             'icon_class' => 'fas fa-chart-area',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'store_ticket_index',
+            'label' => 'Tickets',
+            'icon_class' => 'fa-solid fa-ticket-simple',
             'roles' => [Role::STORE]
         ]
     ];

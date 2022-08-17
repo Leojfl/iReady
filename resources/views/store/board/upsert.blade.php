@@ -33,7 +33,7 @@
                     'name' => 'active',
                     'label' => 'Mesa activa o inactiva',
                     'placeholder' => 'Mesa activa o inactiva',
-                    'type' => 'checkbox',
+                    'type' => 'number',
                     'value' => isset($board)?$board->active:"",
                 ])
             </div>
@@ -43,7 +43,7 @@
                     'name' => 'available',
                     'label' => 'Disponibilidad de la mesa',
                     'placeholder' => 'Disponibilidad de la mesa',
-                    'type' => 'checkbox',
+                    'type' => 'switch',
                     'value' => isset($board)?$board->available:"",
                 ])
             </div>

@@ -84,6 +84,17 @@ class RestaurantSeeder extends Seeder
             'active' => true,
             'fk_id_store' => $storeId,
             'fk_id_user' => $id,
+            'name'      => 'Hector'.$x,
+            'img_url'    => ' ',
+            'lastname'  => 'Garcia'.$x,
+            'area'      => 'Cocina'.$x,
+            'booth'     => 'Cocinero'.$x,
+            'rfc'       => 'GANH000189GNHA3'.$x,
+            'curp'      => 'GANH000189GNH'.$x,
+            'phone'     => '72819423023'.$x,
+            'email'     => 'hector@gmail.com'.$x,
+            'social_security' => 'imss'.$x,
+            'salary'     =>  '3000'.$x,
         ]);
 
         for($i = 0; $i <= 10; $i++) {
