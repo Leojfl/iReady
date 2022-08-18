@@ -70,7 +70,16 @@ class ProductController extends Controller
             $product->fk_id_store = $store->id;
             $product->show = $request->get('show') == "true";
             $product->saveOrFail();
-            $product->materials()->sync($request->get('ingredinets'));
+            $product->materials()->sync([]);
+            $ingredients = $request->get('ingredinets');
+            foreach($ingredients as $ingredient){
+                $product->materials()->attach([
+                    [
+                    "fk_id_material" =>  $ingredient["fk_id_material"],
+                    "quantity" => $ingredient["quantity"],
+                    ]
+                ]);
+            }
             if ($request->file("image_product") != null) {
                 $product->image_url = $this->storeImage($request->file("image_product"), "product", $product->id);
             }
@@ -82,7 +91,7 @@ class ProductController extends Controller
             return back()
             ->withErrors([ 'generic' => ['Algo salio mal, intente más tarde']])
             ->withInput($request->all());
-        }
+       }
     }
 
 
