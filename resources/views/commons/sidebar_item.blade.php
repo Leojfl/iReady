@@ -6,11 +6,23 @@
 *   label =  it is el text show in el view
 *   icon_class = it is the class for load icon of font awesome
 */
+$isActive = false;
+$routers = $route['actives_routes'] ?? $route['name'];
+if (is_array($routers)){
+    foreach ($routers as $value) {
+        if(!$isActive && $current == $value){
+            $isActive = true;
+            break;
+        }
+    }
+} else {
+    $isActive = $current == $route['name'];
+}
 @endphp
 
 <div class="d-flex-inline sidebar-item
     {{ $route['name'] != null?
-    ($current == $route['name']?'active':'')
+    ($isActive ?'active':'')
     :''}}
     pl-4">
     <a href="{{ $route['name'] != null?

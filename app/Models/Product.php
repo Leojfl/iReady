@@ -31,6 +31,14 @@ class Product extends Model
         );
     }
 
+    public function category()
+    {
+        return $this->belongsTo(
+            Category::class,
+            'fk_id_category'
+        );
+    }
+
     public function materials()
     {
         return $this->belongsToMany(

@@ -85,4 +85,13 @@ class ProductController extends Controller
         $success = $product->save();
         return response()->json(['success' => $success]);
     }
+
+    public function show($productId){
+        $store = $this->storeInSesion();
+        $product = Product::find($productId);
+        if ($product != null && $product->fk_id_store != $store->id){
+            return back()->withErrors([ 'generic' => ['Datos no encontrados']]);
+        }
+        return view('store.product.show', ['product' => $product]);
+    }
 }

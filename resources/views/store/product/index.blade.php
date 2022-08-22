@@ -76,8 +76,7 @@
                                 class="btn-upsert">
                                     <i class="fas fa-edit "></i>
                                 </a>
-                                <a href="#"
-
+                                <a href="{{route('store_product_show', ['productId' => $product->id])}}"
                                 data-toggle="tooltip"
                                 class="btn-upsert"
                                 title="Ver">

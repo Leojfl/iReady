@@ -30,6 +30,7 @@
         ],
         [
             'name' => 'store_products_index',
+            'actives_routes' => ['store_products_index', 'store_product_upsert', 'store_product_show'],
             'label' => 'Productos',
             'icon_class' => 'fas fa-hamburger',
             'roles' => [Role::STORE]

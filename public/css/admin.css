@@ -118,9 +118,9 @@ body {
 a {
   text-decoration: none;
 }
-.far,
-.fas {
-  color: #981616 !important;
+a .far,
+a .fas {
+  color: #981616;
 }
 .nav-tabs {
   border-bottom: 2px solid #981616;
@@ -191,6 +191,10 @@ a {
 .sidebar-item a:hover {
   text-decoration: none;
 }
+.sidebar-item a .far,
+.sidebar-item a .fas {
+  color: #FFFFFF;
+}
 .sidebar-item.active {
   margin: 10px 0 0 0;
   background-color: #ffa8a8;
@@ -199,6 +203,10 @@ a {
 }
 .sidebar-item.active a {
   color: #8c1010;
+}
+.sidebar-item.active a .far,
+.sidebar-item.active a .fas {
+  color: #981616;
 }
 .card-main {
   width: auto;

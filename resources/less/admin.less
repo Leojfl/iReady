@@ -85,9 +85,9 @@ body {
 //============COMMONS===================
 a {
     text-decoration: none;
-}
-.far, .fas{
-    color: @primary!important;;
+    .far, .fas{
+        color: @primary;
+    }
 }
 .nav-tabs {
     border-bottom:2px solid @primary;
@@ -149,6 +149,9 @@ a {
             &:hover {
                 text-decoration: none;
             }
+            .far, .fas{
+                color: @white;
+            }
         }
         &.active {
             margin: 10px 0 0 0;
@@ -157,6 +160,9 @@ a {
             font-weight: 700 !important;
             & a {
                 color: @secondary;
+                .far, .fas{
+                    color: @primary;
+                }
             }
         }
     }
