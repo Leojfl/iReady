@@ -6,6 +6,7 @@
 @endphp
 @extends('store.template.main')
 @push('scripts')
+    <script src="{{asset('js/store/product/index.js')}}"></script>
 @endpush
 @push('css')
 
@@ -82,9 +83,9 @@
                                 title="Ver">
                                     <i class="far fa-eye "></i>
                                 </a>
-                                <a
+                                <a data-url="{{route('store_product_upsert_status', ['productId' => $product->id])}}"
                                 class="btn-update-status">
-                                    <i class="fas {{$product->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
+                                    <i class="fas {{$product->show?'fa-toggle-on':'fa-toggle-off'}}  cursor-pointer"></i>
                                 </a>
                             </td>
                         </tr>

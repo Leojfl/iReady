@@ -94,6 +94,14 @@ class ProductController extends Controller
        }
     }
 
+    public function upsertStatus($productId)
+    {
+        $product  = Product::find($productId);
+        $product->show = !$product->show;
+        $success = $product->save();
+        return response()->json(['success' => $success]);
+    }
+
 
 
 
