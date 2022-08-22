@@ -6,34 +6,35 @@ use App\Models\Role;
 $current = Route::currentRouteName();
 $user = \App\Models\User::find(Auth::id());
 
-// $routes is an array with all sidebar routes
-// The 'name' attribute is as it's named in admin.php
-// The 'label' attribute is as it's shown in view
-$routes = [
-    [
-        'name' => 'admin_users_index',
-        'label' => 'Mis datos',
-        'icon_class' => 'fas fa-address-card',
-        'roles' => [Role::STORE],
-    ],
-    [
-        'name' => 'admin_users_index',
-        'label' => 'Ordenes',
-        'icon_class' => 'fas fa-clipboard-list',
-        'roles' => [Role::STORE],
-    ],
-    [
-        'name' => 'raw_material_index',
-        'label' => 'Materia prima',
-        'icon_class' => 'fas fa-boxes',
-        'roles' => [Role::STORE],
-    ],
-    [
-        'name' => 'store_products_index',
-        'label' => 'Empleados',
-        'icon_class' => 'fas fa-hamburger',
-        'roles' => [Role::STORE],
-    ],
+    // $routes is an array with all sidebar routes
+    // The 'name' attribute is as it's named in admin.php
+    // The 'label' attribute is as it's shown in view
+    $routes = [
+        [
+            'name' => 'admin_users_index',
+            'label' => 'Mis datos',
+            'icon_class' => 'fas fa-address-card',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'admin_users_index',
+            'label' => 'Ordenes',
+            'icon_class' => 'fas fa-clipboard-list',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'admin_users_index',
+            'label' => 'Materia prima',
+            'icon_class' => 'fas fa-boxes',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'store_products_index',
+            'actives_routes' => ['store_products_index', 'store_product_upsert', 'store_product_show'],
+            'label' => 'Productos',
+            'icon_class' => 'fas fa-hamburger',
+            'roles' => [Role::STORE]
+        ],
 
     [
         'name' => 'admin_users_index',

@@ -6,6 +6,7 @@
 @endphp
 @extends('store.template.main')
 @push('scripts')
+    <script src="{{asset('js/store/product/index.js')}}"></script>
 @endpush
 @push('css')
 
@@ -60,14 +61,14 @@
                             <td>{{$product->id}}</td>
                             <td>
                                 <div class="card">
-                                    <img src="{{$product->img_url}}" style="height: 100px; width: 100px;
+                                    <img src="{{asset($product->image_url)}}" style="height: 100px; width: 100px;
                                     object-fit: scale-down"/>
                                 </div>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
                             <td>{{$product->price}}</td>
                             <td>
-                                <a href="#"
+                                <a href="{{route("store_product_upsert",['productId'=> $product->id])}}"
 
                                 data-toggle="tooltip"
                                 data-placement="top"
@@ -75,16 +76,15 @@
                                 class="btn-upsert">
                                     <i class="fas fa-edit "></i>
                                 </a>
-                                <a href="#"
-
+                                <a href="{{route('store_product_show', ['productId' => $product->id])}}"
                                 data-toggle="tooltip"
                                 class="btn-upsert"
                                 title="Ver">
                                     <i class="far fa-eye "></i>
                                 </a>
-                                <a
+                                <a data-url="{{route('store_product_upsert_status', ['productId' => $product->id])}}"
                                 class="btn-update-status">
-                                    <i class="fas {{$product->active?'fa-toggle-on':'fa-toggle-off'}}"></i>
+                                    <i class="fas {{$product->show?'fa-toggle-on':'fa-toggle-off'}}  cursor-pointer"></i>
                                 </a>
                             </td>
                         </tr>

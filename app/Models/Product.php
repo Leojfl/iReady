@@ -12,25 +12,16 @@ class Product extends Model
     protected $table = 'product';
 
     protected $fillable = [
-        'active',
-        'name'
+        'description',
+        'name',
+        'price',
+        'show',
+        'fk_id_category'
     ];
 
-    public static function rules()
-    {
-        return [
-            'name' => 'required'
-        ];
-    }
-
-    public static function messages()
-    {
-        return [
-            'name.required' => 'El nombre de la ruta es requerido'
-        ];
-    }
-
-
+    protected $appends = [
+        'absolute_image_url',
+    ];
 
     public function store()
     {
@@ -40,16 +31,29 @@ class Product extends Model
         );
     }
 
-    public function material()
+    public function category()
+    {
+        return $this->belongsTo(
+            Category::class,
+            'fk_id_category'
+        );
+    }
+
+    public function materials()
     {
         return $this->belongsToMany(
             Material::class,
             'product_material',
             'fk_id_product',
             'fk_id_material'
-        )->withPivot([
+        )->with('unit')
+        ->withPivot([
             'quantity'
         ])->withTimestamps();
+    }
+
+    public function getAbsoluteImageUrlAttribute() {
+        return asset($this->image_url);
     }
 
 }

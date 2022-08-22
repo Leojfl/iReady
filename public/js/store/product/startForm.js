@@ -91,12 +91,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     isNew: {
       type: String
     },
-    product: {
+    productUpdate: {
       requerid: false
     },
     errors: {
@@ -105,17 +131,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     ingredients: {
       "default": []
     },
+    urlImage: {
+      "default": String
+    },
     ingredientsInProductUpdate: {
-      type: Array,
-      "default": function _default() {
-        return [];
-      }
+      type: Array
     }
   },
   methods: {
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
       this.url = URL.createObjectURL(file);
+    },
+    removeIngredient: function removeIngredient(index) {
+      this.ingredientsInProduct.splice(index, 1);
     },
     addIngredient: function addIngredient() {
       var self = this;
@@ -125,9 +154,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       var id = self.getIdIngredient(self.ingredient.value);
-      var flag = false;
-      var ingredients = this.parseJson(this.ingredients);
-      var itemId = ingredients.find(function (element) {
+      var itemId = this.ingredients.find(function (element) {
         return element.id == id;
       });
 
@@ -150,13 +177,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return JSON.parse(json);
     },
     createInput: function createInput(label, id, name, value) {
-      var textError = "";
+      var textError = this.getError(name);
 
       if (this.errors != null && this.errors[name] != null) {
         textError = this.errors[name];
       }
 
       return '<div class="form-floating">' + '<input type="text" autocomplete="off" placeholder=" "' + ' class="form-control ' + (textError != "" ? 'is-invalid' : '  ') + '"' + ' name="' + name + '"' + ' id="' + id + '"' + ' value="' + value + '">' + ' <label class="" ' + ' for="' + id + '"">' + label + '</label><div class="invalid-feedback">' + textError + '</div>';
+    },
+    getError: function getError(name) {
+      var error = "";
+
+      if (this.errors != null && this.errors[name] != undefined && this.errors[name] != null) {
+        error = this.errors[name][0];
+      }
+
+      return error;
     }
   },
   data: function data() {
@@ -167,8 +203,46 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         value: "",
         quantity: ""
       },
-      ingredientsInProduct: this.ingredientsInProductUpdate
+      ingredientsInProduct: [],
+      product: {
+        name: "",
+        price: "",
+        description: "",
+        active: false
+      },
+      active: false
     };
+  },
+  created: function created() {
+    if (this.ingredientsInProductUpdate && this.ingredientsInProductUpdate.length > 0) {
+      var self = this;
+      this.ingredientsInProductUpdate.forEach(function (ingredient, index, array) {
+        var updateIngredient = {
+          value: "",
+          quantity: ""
+        };
+
+        if (ingredient.value == "" || ingredient.value == undefined) {
+          updateIngredient.value = self.getNameIngredient(ingredient);
+          updateIngredient.quantity = ingredient.pivot.quantity;
+        } else {
+          updateIngredient.value = ingredient.value;
+          updateIngredient.quantity = ingredient.quantity;
+        }
+
+        self.ingredientsInProduct.push(updateIngredient);
+      });
+    }
+
+    if (this.productUpdate && this.productUpdate != undefined) {
+      this.url = this.productUpdate.absolute_image_url;
+      this.product = {
+        name: this.productUpdate.name,
+        price: this.productUpdate.price,
+        description: this.productUpdate.description,
+        active: this.productUpdate.show == 1
+      };
+    }
   }
 });
 
@@ -263,7 +337,7 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-12 " }, [
+    _c("div", { staticClass: "col-12" }, [
       _c("div", { staticClass: "mb-3" }, [
         _c("label", { staticClass: "form-label", attrs: { for: "formFile" } }, [
           _vm._v("Imagen"),
@@ -271,7 +345,7 @@ var render = function () {
         _vm._v(" "),
         _c("input", {
           staticClass: "form-control",
-          attrs: { type: "file", id: "formFile" },
+          attrs: { type: "file", id: "formFile", name: "image_product" },
           on: { change: _vm.onFileChange },
         }),
       ]),
@@ -285,22 +359,127 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", {
-      staticClass: "col-12 col-md-6  py-0 mt-3",
+      staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
-        innerHTML: _vm._s(_vm.createInput("Nombre", "name", "name", "")),
+        innerHTML: _vm._s(
+          _vm.createInput("Nombre", "name", "name", this.product.name)
+        ),
       },
     }),
     _vm._v(" "),
     _c("div", {
-      staticClass: "col-12 col-md-6  py-0 mt-3",
+      staticClass: "col-12 col-md-6 py-0 mt-3",
       domProps: {
-        innerHTML: _vm._s(_vm.createInput("Precio", "price", "price", "")),
+        innerHTML: _vm._s(
+          _vm.createInput("Precio", "price", "price", this.product.price)
+        ),
       },
     }),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", { staticClass: "col-12 py-0 mt-3" }, [
+      _c("div", { staticClass: "form-floating" }, [
+        _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.description,
+              expression: "product.description",
+            },
+          ],
+          staticClass: "form-control",
+          class: this.getError("description") != "" ? "is-invalid" : "",
+          staticStyle: { height: "100px" },
+          attrs: {
+            name: "description",
+            placeholder: "descrpcion",
+            id: "floatingTextarea",
+          },
+          domProps: { value: _vm.product.description },
+          on: {
+            input: function ($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.product, "description", $event.target.value)
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c("label", { attrs: { for: "floatingTextarea" } }, [
+          _vm._v("Descripción"),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "invalid-feedback" }, [
+          _vm._v(
+            "\n                " +
+              _vm._s(this.getError("description")) +
+              "\n            "
+          ),
+        ]),
+      ]),
+    ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "col-3 text-start mt-4" }, [
+      _c("div", { staticClass: "form-check" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.product.active,
+              expression: "product.active",
+            },
+          ],
+          staticClass: "form-check-input",
+          attrs: {
+            type: "checkbox",
+            id: "flexCheckDefault",
+            name: "show",
+            value: "true",
+          },
+          domProps: {
+            checked: Array.isArray(_vm.product.active)
+              ? _vm._i(_vm.product.active, "true") > -1
+              : _vm.product.active,
+          },
+          on: {
+            change: function ($event) {
+              var $$a = _vm.product.active,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = "true",
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && _vm.$set(_vm.product, "active", $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    _vm.$set(
+                      _vm.product,
+                      "active",
+                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                    )
+                }
+              } else {
+                _vm.$set(_vm.product, "active", $$c)
+              }
+            },
+          },
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          {
+            staticClass: "form-check-label",
+            attrs: { for: "flexCheckDefault" },
+          },
+          [_vm._v("\n                Activo\n                ")]
+        ),
+      ]),
+    ]),
+    _vm._v(" "),
+    _vm._m(0),
     _vm._v(" "),
     _c("div", { staticClass: "col-12 py-0 mt-3" }, [
       _c("div", { staticClass: "row" }, [
@@ -341,7 +520,7 @@ var render = function () {
               "datalist",
               { attrs: { id: "datalistOptions" } },
               [
-                _vm._l(_vm.parseJson(_vm.ingredients), function (ingredient) {
+                _vm._l(_vm.ingredients, function (ingredient) {
                   return [
                     _c("option", {
                       domProps: { value: _vm.getNameIngredient(ingredient) },
@@ -365,12 +544,11 @@ var render = function () {
                   expression: "ingredient.quantity",
                 },
               ],
-              staticClass: "form-control ",
+              staticClass: "form-control",
               attrs: {
                 type: "text",
                 autocomplete: "off",
                 placeholder: " ",
-                name: "quantity",
                 id: "quatity",
               },
               domProps: { value: _vm.ingredient.quantity },
@@ -411,7 +589,15 @@ var render = function () {
               _c("div", { staticClass: "col-8" }, [
                 _c("input", {
                   attrs: {
-                    name: "ingredinets[" + index + "][id]",
+                    name: "ingredinets[" + index + "][value]",
+                    type: "hidden",
+                  },
+                  domProps: { value: newIngredint.value },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    name: "ingredinets[" + index + "][fk_id_material]",
                     type: "hidden",
                   },
                   domProps: { value: _vm.getIdIngredient(newIngredint.value) },
@@ -431,12 +617,23 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-3" }, [
+              _c("div", { staticClass: "col-2" }, [
                 _vm._v(
                   "\n                " +
                     _vm._s(newIngredint.quantity) +
                     "\n                "
                 ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-1" }, [
+                _c("i", {
+                  staticClass: "cursor-pointer fas fa-trash",
+                  on: {
+                    click: function ($event) {
+                      return _vm.removeIngredient(index)
+                    },
+                  },
+                }),
               ]),
             ]
           }),
@@ -447,24 +644,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 py-0 mt-3" }, [
-      _c("div", { staticClass: "form-floating" }, [
-        _c("textarea", {
-          staticClass: "form-control",
-          staticStyle: { height: "100px" },
-          attrs: { placeholder: "descrpcion", id: "floatingTextarea" },
-        }),
-        _vm._v(" "),
-        _c("label", { attrs: { for: "floatingTextarea" } }, [
-          _vm._v("Descripción"),
-        ]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

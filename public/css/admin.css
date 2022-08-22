@@ -115,6 +115,13 @@ body {
   box-shadow: 0 0 0 0.1rem #6f6f6f !important;
   background-color: #565656 !important;
 }
+a {
+  text-decoration: none;
+}
+a .far,
+a .fas {
+  color: #981616;
+}
 .nav-tabs {
   border-bottom: 2px solid #981616;
 }
@@ -184,6 +191,10 @@ body {
 .sidebar-item a:hover {
   text-decoration: none;
 }
+.sidebar-item a .far,
+.sidebar-item a .fas {
+  color: #FFFFFF;
+}
 .sidebar-item.active {
   margin: 10px 0 0 0;
   background-color: #ffa8a8;
@@ -192,6 +203,10 @@ body {
 }
 .sidebar-item.active a {
   color: #8c1010;
+}
+.sidebar-item.active a .far,
+.sidebar-item.active a .fas {
+  color: #981616;
 }
 .card-main {
   width: auto;

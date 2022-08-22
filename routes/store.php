@@ -28,7 +28,19 @@ Route::post(
     'ProductController@upsertPost'
 )->name('store_product_upsert_post');
 
-///////////// RawMaterial /////////////////////////////
+Route::get(
+    '/product/upsert/status/{productId?}',
+    'ProductController@upsertStatus'
+)->name('store_product_upsert_status');
+
+Route::get(
+    '/product/show/{productId?}',
+    'ProductController@show'
+)->name('store_product_show');
+
+
+
+
 
 Route::get('/materia', 'RawMaterialController@index')->name('raw_material_index');
 Route::get('/materia/create', 'RawMaterialController@create')->name('raw_material_create');
