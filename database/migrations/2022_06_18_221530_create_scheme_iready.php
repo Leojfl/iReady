@@ -86,17 +86,28 @@ class CreateSchemeIready extends Migration
             $table->string('value');
         });
 
-        Schema::create('material', function (Blueprint $table) {
+        Schema::create('raw_material', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('img_url');
-            $table->string('description');
-            $table->string('group');
-            $table->string('unit');
-            $table->string('provider');
-            $table->string('price');
-
+            $table->string('name');
+            $table->integer('quantity');
+            $table->integer('min_stok');
+            $table->integer('max_stok');
+            $table->string('code')->default("");
+            $table->string('img_url')->default("");
+            $table->string('description')->default("");
+            $table->string('group')->default("");
+            $table->string('price')->default("");
+            $table->unsignedBigInteger('fk_id_store')->nullable();
+            $table->unsignedBigInteger('fk_id_unit')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('fk_id_unit')
+                ->references('id')
+                ->on('unit');
+            $table->foreign('fk_id_store')
+                ->references('id')
+                ->on('store');
         });
 
         Schema::create('category', function (Blueprint $table) {
@@ -159,12 +170,10 @@ class CreateSchemeIready extends Migration
 
             $table->foreign('fk_id_material')
             ->references('id')
-            ->on('material');
+            ->on('raw_material');
 
             $table->timestamps();
         });
-
-
 
         Schema::create('combo', function (Blueprint $table) {
             $table->id();
@@ -331,17 +340,17 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('combo');
         });
-        
+
         Schema::create('ticket', function (Blueprint $table) {
             $table->id();
             $table->string('head');
             $table->string('footnote1');
             $table->string('footnote2');
-            
+
             $table->timestamps();
             $table->softDeletes();
 
-           
+
         });
 
 

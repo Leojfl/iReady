@@ -101,7 +101,7 @@ class RestaurantSeeder extends Seeder
             'img_url' => '',
             ]);
 
-        DB::table('material')->insertGetId([
+        DB::table('raw_material')->insertGetId([
                 'name' =>  'Ingrediente 1',
                 'quantity' =>  '4',
                 'min_stok' =>  '20',
@@ -111,7 +111,7 @@ class RestaurantSeeder extends Seeder
                 ]);
 
 
-        DB::table('material')->insertGetId([
+        DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 2',
             'quantity' =>  '4',
             'min_stok' =>  '20',
@@ -121,7 +121,7 @@ class RestaurantSeeder extends Seeder
             ]);
 
 
-        DB::table('material')->insertGetId([
+        DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 3',
             'quantity' =>  '4',
             'min_stok' =>  '20',
