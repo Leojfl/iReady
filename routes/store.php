@@ -27,7 +27,18 @@ Route::post(
     'ProductController@upsertPost'
 )->name('store_product_upsert_post');
 
-// ======================== Data ====================
+Route::get(
+    '/product/upsert/status/{productId?}',
+    'ProductController@upsertStatus'
+)->name('store_product_upsert_status');
+
+Route::get(
+    '/product/show/{productId?}',
+    'ProductController@show'
+)->name('store_product_show');
+
+
+// ======================== Products ====================
 
 Route::get(
     '/store/upsert/{storeId?}',

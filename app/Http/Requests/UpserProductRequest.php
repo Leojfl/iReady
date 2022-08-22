@@ -13,14 +13,24 @@ class UpserProductRequest extends FormRequest
         return true;
     }
 
-    public static function rules()
+    public function rules()
     {
-        return Product::rules();
-    }
+        return  [
+        'description' => 'required',
+        'name' => 'required',
+        'price' => 'required|numeric',
+        'fk_id_category' => 'required',
+        ];
 
+    }
     public function messages()
     {
-        return Product::messages();
+        return [
+            'description.required' => 'Descripción requerida',
+            'name.required' => 'Nombre requerido',
+            'price.required' => 'Precio requerido',
+            'price.numeric' => 'Precio no válido',
+            'fk_id_category.required' => 'Categoria requerida'
+        ];
     }
-
 }
