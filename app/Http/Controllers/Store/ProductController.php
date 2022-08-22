@@ -26,11 +26,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $user = Auth::User();
-        $store = Store::whereHas('employees', function (Builder $query) use ($user) {
-            $query->where('fk_id_user', $user->id);
-        })->first();
-
+        $store = $this->storeInSesion();
         $products = Product::where('fk_id_store', $store->id)->orderBy('id', 'DESC')->get();
         $combos = Combo::whereHas('products', function (Builder $query) use ($store) {
             $query->where('fk_id_store', $store->id)->orderBy('combo.id', 'DESC');
@@ -39,30 +35,18 @@ class ProductController extends Controller
     }
 
     public function upsert($productId = 0){
-
-        $user = Auth::User();
-        $store = Store::whereHas('employees', function (Builder $query) use ($user) {
-            $query->where('fk_id_user', $user->id);
-        })->with(['materials.unit'])
-        ->first();
+        $store = $this->storeInSesion();
         $product = Product::find($productId);
         if ($product != null && $product->fk_id_store != $store->id){
             return back();
         }
         $ingredients = $store->materials;
         $categories = Category::asMap();
-
         return view('store.product.upsert', ['product' => $product, 'ingredients' => $ingredients, 'categories' => $categories]);
-
     }
 
     public function upsertPost(UpserProductRequest $request, $productId = 0){
-
-        $user = Auth::User();
-        $store = Store::whereHas('employees', function (Builder $query) use ($user) {
-            $query->where('fk_id_user', $user->id);
-        })->first();
-
+        $store = $this->storeInSesion();
         try {
             DB::beginTransaction();
             $product = Product::findOrNew($productId);
@@ -101,9 +85,4 @@ class ProductController extends Controller
         $success = $product->save();
         return response()->json(['success' => $success]);
     }
-
-
-
-
-
 }

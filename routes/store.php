@@ -32,4 +32,12 @@ Route::get(
     'ProductController@upsertStatus'
 )->name('store_product_upsert_status');
 
+Route::get(
+    '/product/show/{productId?}',
+    'ProductController@show'
+)->name('store_product_show');
+
+
+
+
 

@@ -42,5 +42,3 @@ window.showErrorAlert = function(title, description) {
         'error'
       )
 }
-
-
