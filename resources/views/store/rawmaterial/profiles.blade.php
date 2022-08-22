@@ -7,9 +7,9 @@
 @section('content')
 
         <div class="modal-body">
-          <div class="p-2 bg-ligth border" style="border-radius: 45px">
+          <div class="p-2 bg-ligth border" style="border-radius: 45px; background-color: darkred">
 
-                        <h1>Codigo :{{isset($rawmaterial)?$rawmaterial->code:""}}</h1>
+                        <h1 style="color: white">Codigo :{{isset($rawmaterial)?$rawmaterial->code:""}}</h1>
                         
                     </div> 
                     <div class="p-2 bg-ligth border" style="border-radius: 100px">

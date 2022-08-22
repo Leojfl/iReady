@@ -31,8 +31,8 @@
                         <br>
                         <div class="p-2 bg-ligth border" style="border-radius: 45px">
                         <h2>{{$rawmaterial->description}}</h2>
-                        
-                        <pre>                                          </pre>
+                        <br>
+                        <pre>                                    </pre>
              
                     
                             <a href="{{ route('store_rawmaterial_upsert', $rawmaterial->id) }}"

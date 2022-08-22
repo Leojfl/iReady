@@ -17,18 +17,18 @@ class UpsertTicketRequest extends FormRequest
     public static function rules()
     {
         return  [
-            'head' => 'required',
+           /* 'head' => 'required',
             'footnote1' => 'required',
-            'footnote2' => 'required',
+            'footnote2' => 'required',*/
             ];
     }
 
     public function messages()
     {
         return [
-            'head.required' => 'Encabezado requerido',
+            /*'head.required' => 'Encabezado requerido',
             'footnote1.required' => 'Pie de nota 1 requerido',
-            'footnote2.required' => 'Pie de nota 2 requerido',
+            'footnote2.required' => 'Pie de nota 2 requerido',*/
         ];
     }
 
