@@ -17,20 +17,20 @@ class UpsertBoardRequest extends FormRequest
     public static function rules()
     {
         return  [
-            'name' => 'required',
+            /*'name' => 'required',
             'description' => 'required',
             'active' => 'required',
-            'available' => 'required',
+            'available' => 'required',*/
             ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Nombre requerido',
+            /*'name.required' => 'Nombre requerido',
             'description.required' => 'Descripcion requerida',
             'active.required' => 'Activo requerido',
-            'available.required' => 'Disponible requerido',
+            'available.required' => 'Disponible requerido',*/
         ];
     }
 
