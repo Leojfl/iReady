@@ -19,7 +19,13 @@ class RawMaterial extends Model
         'unit',
         'provider',
         'price',
-        
+
     ];
-    
+    public function unit()
+    {
+        return $this->belongsTo(
+            Unit::class,
+            'fk_id_unit'
+        );
+    }
 }

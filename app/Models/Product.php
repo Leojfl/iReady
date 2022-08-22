@@ -42,7 +42,7 @@ class Product extends Model
     public function materials()
     {
         return $this->belongsToMany(
-            Material::class,
+            RawMaterial::class,
             'product_material',
             'fk_id_product',
             'fk_id_material'

@@ -15,7 +15,7 @@ use Illuminate\Http\Response;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Combo;
-use App\Models\Material;
+use App\Models\RawMaterial;
 use App\Models\Category;
 use Exception;
 use Illuminate\Support\Facades\Auth;
