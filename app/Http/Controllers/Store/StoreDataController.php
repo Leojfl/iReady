@@ -23,32 +23,34 @@ class StoreDataController extends Controller
         return view('store.storedata.index', ['stores' => $stores]);
     }
 
-    public function upsert($storeId = 0)
+    public function show()
     {
-        $store = Store::find($storeId);
-        return view('store.storedata.upsert', ['store' => $store]);
+        $store = $this->storeInSesion();
+        return view('store.storedata.show', ['store' => $store] );
     }
 
-    public function show(UpsertStoreRequest $request, $storeId = 0)
+    public function update()
     {
-        $store = Store::find($storeId);
-        return view('store.storedata.profiles', ['store' => $store]);
-        
+        $store = $this->storeInSesion();
+        return view('store.storedata.update', ['store' => $store] );
     }
 
-    public function upsertPost(UpsertStoreRequest $request ,$storeId = 0)
+    public function updatePost(UpsertStoreRequest $request)
     {
         try{
             DB::beginTransaction();
-            $store = Store::findOrNew($storeId);
+            $store = $this->storeInSesion();
             $store->fill($request->all());
+            if ($request->file("img_url") != null) {
+                $store->img_url = $this->storeImage($request->file("img_url"), "store", $store->id);
+            }
             $store->saveOrfail();
-            $address = ($storeId == 0)? new StoreAddress():$store->storeAddress;
+            $address = ($store->address == null)? new StoreAddress():$store->address;
             $address->fill($request->all());
             $address->fk_id_store = $store->id;
             $address->saveOrfail();
             DB::commit();
-            return redirect()->route('admin_store_index');
+            return redirect()->route('store_data_show');
         } catch(\Exception $e) {
             DB::rollback();
             return back()

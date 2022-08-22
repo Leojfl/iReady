@@ -11,7 +11,8 @@
     // The 'label' attribute is as it's shown in view
     $routes = [
         [
-            'name' => 'store_storedata_profiles',
+            'name' => 'store_data_show',
+            'actives_routes' => ['store_data_show', 'store_update_data'],
             'label' => 'Mis datos',
             'icon_class' => 'fas fa-address-card',
             'roles' => [Role::STORE]

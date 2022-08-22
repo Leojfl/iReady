@@ -41,19 +41,19 @@ Route::get(
 // ======================== Products ====================
 
 Route::get(
-    '/store/upsert/{storeId?}',
-    'StoreDataController@upsert'
-)->name('store_storedata_upsert');
-
-Route::post(
-    '/store/upsert/{storeId?}',
-    'StoreDataController@upsertPost'
-)->name('store_storedata_upsert_post');
+    '/data',
+    'StoreDataController@show'
+)->name('store_data_show');
 
 Route::get(
-    '/store/profile/{storeId?}',
-    'StoreDataController@show'
-)->name('store_storedata_profiles');
+    '/update/data',
+    'StoreDataController@update'
+)->name('store_update_data');
+
+Route::post(
+    '/update/data',
+    'StoreDataController@updatePost'
+)->name('store_update_data_post');
 
 // ======================== Boards ====================
 

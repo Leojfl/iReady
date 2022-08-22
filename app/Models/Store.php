@@ -17,7 +17,7 @@ class Store extends Model
         'phone',
         'rfc',
         'description',
-        'img_url',
+        //'img_url',
     ];
 
     public function address(){

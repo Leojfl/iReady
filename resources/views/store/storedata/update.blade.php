@@ -5,38 +5,36 @@
         <h3>{{isset($store)?"Modificar": "Agregar"}} Restaurantes</h3>
     </div>
     <div class="col-12 col-md-8 mx-auto">
-        <form method="POST" action="{{ route('store_storedata_upsert_post', isset($store)?$store->id:"") }}">
-            {{ csrf_field() }}
-            <div class="form-group">
-               
+        <form method="POST" action="{{ route('store_update_data_post') }}" class="row mt-4" enctype="multipart/form-data">
+            @csrf
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'name',
-                    'label' => 'Nombre del restaurante',
+                    'label' => 'Nombre',
                     'placeholder' => 'Nombre del restaurante',
                     'type' => 'text',
                     'value' => isset($store)?$store->name:"",
                 ])
             </div>
-            <div class="form-group">
-        
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'owner',
-                    'label' => 'Dueño del restaurante',
+                    'label' => 'Dueño',
                     'placeholder' => 'Dueño del restaurante',
                     'type' => 'text',
                     'value' => isset($store)?$store->owner:"",
                 ])
             </div>
-           
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'phone',
-                    'label' => 'Numero de telefono del restaurante',
+                    'label' => 'Número de teléfono',
                     'placeholder' => 'Numero de telefono del restaurante',
                     'type' => 'number',
                     'value' => isset($store)?$store->phone:"",
                 ])
-            <div class="form-group">
-              
+            </div>
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'rfc',
                     'label' => 'RFC del restaurante',
@@ -45,80 +43,81 @@
                     'value' => isset($store)?$store->rfc:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-12">
                 @include('commons.input',[
                     'name' => 'description',
-                    'label' => 'Descripcion del restaurante',
+                    'label' => 'Descripción',
                     'placeholder' => 'Descripcion del restaurante',
                     'type' => 'text',
                     'value' => isset($store)?$store->description:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-12">
                 @include('commons.input',[
                     'name' => 'img_url',
-                    'label' => 'URL de la imagen del restaurante',
+                    'label' => 'URL de imagen',
                     'placeholder' => 'URL de la imagen del restaurante',
-                    'type' => 'text',
-                    'value' => isset($store)?$store->img_url:"",
+                    'type' => 'file',
+                    'inputClass' => 'show-image-file',
+                    'properties' => ["data-for=img_show_image"]
                 ])
             </div>
-            <div class="form-group">
+            <div class="col-md-7 mx-auto">
+                <img class="w-100" id="img_show_image" src="{{asset($store->img_url)}}">
+            </div>
+            <div class="col-md-12">
+                <h4>Dirección</h4>
+            </div>
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'city',
-                    'label' => 'Ciudad donde se ubica',
+                    'label' => 'Ciudad',
                     'placeholder' => 'Ciudad donde se ubica',
                     'type' => 'text',
-                    'value' => isset($store)?$store->address->city:"",
+                    'value' => isset($store->address)?$store->address->city:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'colony',
-                    'label' => 'Colonia donde se ubica',
+                    'label' => 'Colonia',
                     'placeholder' => 'Colonia donde se ubica',
                     'type' => 'text',
-                    'value' => isset($store)?$store->address->colony:"",
+                    'value' => isset($store->address)?$store->address->colony:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'zip_code',
-                    'label' => 'Codigo postal',
+                    'label' => 'Código postal',
                     'placeholder' => 'Codigo postal',
                     'type' => 'number',
-                    'value' => isset($store)?$store->address->zip_code:"",
+                    'value' => isset($store->address)?$store->address->zip_code:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'street',
-                    'label' => 'Calle donde se ubica',
+                    'label' => 'Calle',
                     'placeholder' => 'Calle donde se ubica',
                     'type' => 'text',
-                    'value' => isset($store)?$store->address->street:"",
+                    'value' => isset($store->address)?$store->address->street:"",
                 ])
             </div>
-            <div class="form-group">
-              
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'ext_num',
-                    'label' => 'Numero exterior',
+                    'label' => 'Número exterior',
                     'placeholder' => 'Numero exterior',
-                    'type' => 'number',
-                    'value' => isset($store)?$store->address->ext_num:"",
+                    'type' => 'text',
+                    'value' => isset($store->address)?$store->address->ext_num:"",
                 ])
             </div>
-        </form>
-    </div>
-            <div class="form-group">
+            <div class="col-md-12 mt-3">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 &nbsp;
             </div>
+        </form>
     </div>
+</div>
 @endsection
