@@ -8,7 +8,7 @@
 
         <div class="modal-body">
           <div class="p-2 bg-ligth border" style="border-radius: 45px">
-
+                
                         <h1>{{isset($board)?$board->name:""}}</h1>
                     </div> 
                     <br>
