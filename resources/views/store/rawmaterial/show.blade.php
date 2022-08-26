@@ -2,33 +2,44 @@
 @push('scripts')
 @endpush
 @push('css')
-    
 @endpush
 @section('content')
-
-        <div class="modal-body">
-          <div class="p-2 bg-ligth border" style="border-radius: 45px; background-color: darkred">
-
-                        <h1 style="color: white">Codigo :{{isset($rawmaterial)?$rawmaterial->code:""}}</h1>
-                        
-                    </div> 
-                    <div class="p-2 bg-ligth border" style="border-radius: 100px">
-                        <div>
-                            <img style="width: 300px" src={{isset($rawmaterial)?$rawmaterial->img_url:""}}>
-                            </div>
-                    <br>
-                    <br>
-                    <div class="p-2 bg-ligth border" style="border-radius: 45px">
-                    <h2>Descripcion :{{isset($rawmaterial)?$rawmaterial->description:""}}</h2>
-                    <br>
-                    <h2>Grupo :{{isset($rawmaterial)?$rawmaterial->group:""}}</h2>
-                    <br>
-                    <h2>Unidad :{{isset($rawmaterial)?$rawmaterial->unit:""}}</h2>
-                    <br>
-                    <h2>Proovedor :{{isset($rawmaterial)?$rawmaterial->provider:""}}</h2>
-                    <br>
-                    <h2>Precio :{{isset($rawmaterial)?$rawmaterial->price:""}}</h2>
-                    <br>
-            </div>
-        </div>
+<div class="row text-left">
+    <div class="col-12 text-center">
+        <h3>Material {{$rawMaterial->name}} </h3>
+    </div>
+    <div class="col-7 col-md-7 mx-auto px-md-5">
+        <img src="{{asset($rawMaterial->img_url)}}" class="w-100">
+    </div>
+    <div class="col-6">
+        <b>Unidad:</b> {{$rawMaterial->unit->value}}
+    </div>
+    <div class="col-6">
+        <b>Precio:</b> ${{$rawMaterial->price}}
+    </div>
+    <div class="col-6">
+        <b>Código:</b> {{$rawMaterial->code}}
+    </div>
+    <div class="col-6">
+        <b>Grupo:</b> {{$rawMaterial->group}}
+    </div>
+    <div class="col-4">
+        <b>Cantidad:</b> {{$rawMaterial->quantity}}
+    </div>
+    <div class="col-4">
+        <b>Min stock:</b> {{$rawMaterial->min_stok}}
+    </div>
+    <div class="col-4">
+        <b>Max stock:</b> {{$rawMaterial->max_stok}}
+    </div>
+    <div class="col-12">
+        <b> Descripción </b> <br>
+        {{$rawMaterial->description}}
+    </div>
+    <div class="col-12">
+        <b> Proveedor </b> <br>
+        {{$rawMaterial->provider}}
+    </div>
+</div>
 @endsection
+

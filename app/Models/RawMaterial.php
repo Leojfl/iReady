@@ -22,7 +22,6 @@ class RawMaterial extends Model
         'group',
         'provider',
         'price',
-
     ];
 
     public function unit()

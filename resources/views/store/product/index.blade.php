@@ -30,7 +30,7 @@
                   type="button" role="tab"
                   aria-controls="nav-product"
                   aria-selected="true">Productos</button>
-
+<!--
                   <button class="nav-link"
                    id="nav-combo-tab"
                    data-bs-toggle="tab"
@@ -39,6 +39,7 @@
                    role="tab"
                    aria-controls="nav-combo"
                    aria-selected="false">Combos</button>
+                !-->
                 </div>
             </nav>
               <div class="tab-content" id="nav-tabContent">
