@@ -111,16 +111,16 @@ Route::get(
 )->name('store_raw_material_index');
 
 Route::get(
-    '/material/upsert/{rawmaterialId?}',
+    '/material/upsert/{rawMaterialId?}',
     'RawMaterialController@upsert'
 )->name('store_raw_material_upsert');
 
 Route::post(
-    '/material/upsert/{rawmaterialId?}',
+    '/material/upsert/{rawMaterialId?}',
     'RawMaterialController@upsertPost'
 )->name('store_raw_material_upsert_post');
 
 Route::get(
-    '/material/show/{rawmaterialId?}',
+    '/material/show/{rawMaterialId?}',
     'RawMaterialController@show'
-)->name('store_raw_material_profile');
+)->name('store_raw_material_show');

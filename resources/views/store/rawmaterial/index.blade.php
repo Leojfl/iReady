@@ -32,18 +32,29 @@
                 <td>{{$rawMaterial->id}}</td>
                 <td>
                     <div class="card">
-                        <img src="{{$rawMaterial->img_url}}" style="height: 100px; width: 100px;
+                        <img src="{{asset($rawMaterial->img_url)}}" style="height: 100px; width: 100px;
                         object-fit: scale-down"/>
                     </div>
                 </td>
                 <td>{{$rawMaterial->name}}</td>
-                @if ($rawMaterial->unit == null)
-                @dd($rawMaterial)
-                @endif
                 <td>{{$rawMaterial->unit->value}}</td>
                 <td>{{$rawMaterial->quantity}}</td>
                 <td>{{$rawMaterial->price}}</td>
                 <td>
+                    <a href="{{route("store_raw_material_upsert",['rawMaterialId'=> $rawMaterial->id])}}"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="Editar"
+                    class="btn-upsert">
+                     <i class="fas fa-edit "></i>
+                 </a>
+                 <a href="{{route("store_raw_material_show",['rawMaterialId'=> $rawMaterial->id])}}"
+
+                    data-toggle="tooltip"
+                    class="btn-upsert"
+                    title="Ver">
+                     <i class="far fa-eye "></i>
+                 </a>
 
                 </td>
             </tr>

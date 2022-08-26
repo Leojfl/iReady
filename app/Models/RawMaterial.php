@@ -18,7 +18,6 @@ class RawMaterial extends Model
         'min_stok',
         'max_stok',
         'code',
-        'img_url',
         'description',
         'group',
         'provider',

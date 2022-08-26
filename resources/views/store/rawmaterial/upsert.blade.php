@@ -32,7 +32,7 @@
                     'label' => 'Nombre',
                     'placeholder' => 'Nombre',
                     'type' => 'text',
-                    'value' => isset($rawMaterial)?$rawMaterial->description:"",
+                    'value' => isset($rawMaterial)?$rawMaterial->name:"",
                 ])
             </div>
             <div class="col-md-6">
@@ -65,7 +65,7 @@
                     'name' => 'min_stok',
                     'label' => 'Minimo en stock',
                     'placeholder' => 'Minimo en stock',
-                    'value' => isset($rawMaterial)?$rawMaterial->price:"",
+                    'value' => isset($rawMaterial)?$rawMaterial->min_stok:"",
                 ])
             </div>
             <div class="col-md-6">
@@ -73,7 +73,23 @@
                     'name' => 'max_stok',
                     'label' => 'Maximo en stock',
                     'placeholder' => 'Maximo en stock',
-                    'value' => isset($rawMaterial)?$rawMaterial->price:"",
+                    'value' => isset($rawMaterial)?$rawMaterial->max_stok:"",
+                ])
+            </div>
+            <div class="col-md-12">
+                @include('commons.input',[
+                    'name' => 'provider',
+                    'label' => 'Proveedor',
+                    'placeholder' => 'Proveedor',
+                    'value' => isset($rawMaterial)?$rawMaterial->provider:"",
+                ])
+            </div>
+            <div class="col-md-12">
+                @include('commons.input',[
+                    'name' => 'description',
+                    'label' => 'Descripción',
+                    'placeholder' => 'Descripción',
+                    'value' => isset($rawMaterial)?$rawMaterial->description:"",
                 ])
             </div>
             <div class="col-md-12">

@@ -26,36 +26,40 @@ class RawMaterialController extends Controller
         return view('store.rawmaterial.index', ['rawMaterials' => $rawMaterials]);
     }
 
-    public function upsert($rawmaterialId = 0)
+    public function upsert($rawMaterialId = 0)
     {
-        $rawmaterial = RawMaterial::find($rawmaterialId);
+        $rawmaterial = RawMaterial::find($rawMaterialId);
         $units = Unit::asMap();
-        return view('store.rawmaterial.upsert', ['rawmaterial' => $rawmaterial, "units" => $units]);
+        return view('store.rawmaterial.upsert', ['rawMaterial' => $rawmaterial, "units" => $units]);
     }
 
     public function show(UpsertRawMaterialRequest $request, $rawmaterialId = 0)
     {
         $rawmaterial = RawMaterial::find($rawmaterialId);
-        return view('store.rawmaterial.profiles', ['rawmaterial' => $rawmaterial]);
+        return view('store.rawmaterial.show', ['rawMaterial' => $rawmaterial]);
 
     }
 
     public function upsertPost(UpsertRawMaterialRequest $request ,$rawmaterialId = 0)
     {
-        //try{
+        try{
             DB::beginTransaction();
             $rawMaterial = RawMaterial::findOrNew($rawmaterialId);
             $rawMaterial->fill($request->all());
             $rawMaterial->fk_id_store = $this->storeInSesion()->id;
             $rawMaterial->saveOrfail();
+            if ($request->file("img_url") != null) {
+                $rawMaterial->img_url = $this->storeImage($request->file("img_url"), "material", $rawMaterial->id);
+                $rawMaterial->saveOrfail();
+            }
             DB::commit();
             return redirect()->route('store_raw_material_index');
-        //} catch(\Exception $e) {
+        } catch(\Exception $e) {
             DB::rollback();
             return back()
             ->withErrors([ 'generic_error' => ['Algo salio mal']])
             ->withInput($request->all());
-        //}
+        }
     }
 
     public function destroy($rawmaterialId)
