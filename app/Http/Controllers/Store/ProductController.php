@@ -55,7 +55,6 @@ class ProductController extends Controller
             $product->show = $request->get('show') == "true";
             $product->saveOrFail();
             $product->materials()->sync([]);
-            $example->errorM;
             $ingredients = $request->get('ingredinets');
             if ($ingredients != null) {
                 foreach($ingredients as $ingredient){
