@@ -24,11 +24,11 @@
                     <div class="col-12 px-0 px-md-2 text-center">
                         <div class="card-main m-4" style="overflow-y: scroll">
                             <div class="card-body" style="height: 90vh; max-height: 90vh">
-                                @if ($errors->has("generic"))
+                                @if ($errors->has("generic_error"))
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="alert alert-danger" role="alert">
-                                                {{$errors->first("generic")}}
+                                                {{$errors->first("generic_error")}}
                                             </div>
                                         </div>
                                     </div>
