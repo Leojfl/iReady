@@ -12,15 +12,20 @@ class RawMaterial extends Model
     protected $table = 'raw_material';
 
     protected $fillable = [
+        'name',
+        'quantity',
+        'fk_id_unit',
+        'min_stok',
+        'max_stok',
         'code',
         'img_url',
         'description',
         'group',
-        'unit',
         'provider',
         'price',
 
     ];
+
     public function unit()
     {
         return $this->belongsTo(

@@ -105,27 +105,22 @@ Route::get('/store/ticket/{ticketId?}',
 
   // ======================== RawMaterial ====================
 
-  Route::get(
-    '/store/rawmaterial',
+Route::get(
+    '/material',
     'RawMaterialController@index'
-)->name('store_rawmaterial_index');
+)->name('store_raw_material_index');
 
 Route::get(
-    '/store/rawmaterial/upsert/{rawmaterialId?}',
+    '/material/upsert/{rawmaterialId?}',
     'RawMaterialController@upsert'
-)->name('store_rawmaterial_upsert');
+)->name('store_raw_material_upsert');
 
 Route::post(
-    '/store/rawmaterial/upsert/{rawmaterialId?}',
+    '/material/upsert/{rawmaterialId?}',
     'RawMaterialController@upsertPost'
-)->name('store_rawmaterial_upsert_post');
+)->name('store_raw_material_upsert_post');
 
 Route::get(
-    '/store/rawmaterial/profile/{rawmaterialId?}',
+    '/material/show/{rawmaterialId?}',
     'RawMaterialController@show'
-)->name('store_rawmaterial_profile');
-
-
-Route::get('/store/rawmaterial/{rawmaterialId?}',
- 'RawMaterialController@destroy'
- )->name('store_rawmaterial_delete');
+)->name('store_raw_material_profile');

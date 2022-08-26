@@ -92,15 +92,15 @@ class CreateSchemeIready extends Migration
             $table->integer('quantity');
             $table->integer('min_stok');
             $table->integer('max_stok');
-            $table->string('code')->default("");
+            $table->string('code');
             $table->string('img_url')->default("");
-            $table->string('description')->default("");
-            $table->string('group')->default("");
-            $table->string('price')->default("");
-            $table->unsignedBigInteger('fk_id_store')->nullable();
-            $table->unsignedBigInteger('fk_id_unit')->nullable();
+            $table->string('description');
+            $table->string('group');
+            $table->string('provider');
+            $table->double('price');
+            $table->unsignedBigInteger('fk_id_store');
+            $table->unsignedBigInteger('fk_id_unit');
             $table->timestamps();
-
 
             $table->foreign('fk_id_unit')
                 ->references('id')

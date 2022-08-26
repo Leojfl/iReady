@@ -11,6 +11,11 @@ class Unit extends Model
 {
     protected $table = 'unit';
 
+    public static function asMap()
+    {
+        return self::all()->pluck( 'value','id');
+    }
+
 
 
 }

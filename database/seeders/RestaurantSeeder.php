@@ -103,11 +103,17 @@ class RestaurantSeeder extends Seeder
 
         DB::table('raw_material')->insertGetId([
                 'name' =>  'Ingrediente 1',
-                'quantity' =>  '4',
+                'quantity' =>  4,
                 'min_stok' =>  '20',
                 'max_stok' =>  '50',
                 'fk_id_store' =>  $storeId,
                 'fk_id_unit' =>  1,
+                'code' => "C0D1G0",
+                'img_url' => "",
+                'description' => "DESCRIPCION",
+                'group' => "Grupo",
+                'provider' => "",
+                'price' => 130.00,
                 ]);
 
 
@@ -118,6 +124,12 @@ class RestaurantSeeder extends Seeder
             'max_stok' =>  '50',
             'fk_id_store' =>  $storeId,
             'fk_id_unit' =>  2,
+            'code' => "C0D1G0",
+            'img_url' => "",
+            'description' => "DESCRIPCION",
+            'group' => "Grupo",
+            'provider' => "",
+            'price' => 130.00,
             ]);
 
 
@@ -128,6 +140,12 @@ class RestaurantSeeder extends Seeder
             'max_stok' =>  '50',
             'fk_id_store' =>  $storeId,
             'fk_id_unit' =>  3,
+            'code' => "C0D1G0",
+            'img_url' => "",
+            'description' => "DESCRIPCION",
+            'group' => "Grupo",
+            'provider' => "",
+            'price' => 130.00,
             ]);
 
         DB::table('employee')->insert([

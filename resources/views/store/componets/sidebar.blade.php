@@ -24,7 +24,7 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'store_rawmaterial_index',
+            'name' => 'store_raw_material_index',
             'label' => 'Materia prima',
             'icon_class' => 'fas fa-boxes',
             'roles' => [Role::STORE]
