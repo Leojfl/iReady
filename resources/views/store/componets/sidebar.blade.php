@@ -26,6 +26,7 @@
         [
             'name' => 'store_raw_material_index',
             'label' => 'Materia prima',
+            'actives_routes' => ['store_raw_material_index', 'store_raw_material_upsert', 'store_raw_material_show'],
             'icon_class' => 'fas fa-boxes',
             'roles' => [Role::STORE]
         ],
