@@ -38,7 +38,7 @@
         ],
 
         [
-            'name' => 'admin_users_index',
+            'name' => 'store_menus_index',
             'label' => 'Menu',
             'icon_class' => 'fas fa-utensils',
             'roles' => [Role::STORE]

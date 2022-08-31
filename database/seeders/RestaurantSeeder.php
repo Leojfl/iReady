@@ -120,6 +120,22 @@ class RestaurantSeeder extends Seeder
             'fk_id_unit' =>  2,
             ]);
 
+        DB::table('menu')->insertGetId([
+            'name' =>  'Carne',
+            'description' =>  'Carne asada',
+            'active' =>  true,
+            'fk_id_store' =>  $storeId,
+            ]);
+
+        DB::table('menu_category')->insertGetId([
+            'alias' =>  'Carne',
+            'fk_id_category' =>  1,
+            'fk_id_menu' =>  1,
+            ]);    
+
+        
+    
+
 
         DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 3',
@@ -156,6 +172,11 @@ class RestaurantSeeder extends Seeder
                 "fk_id_store" => $storeId,
                 "fk_id_category" => 1,
             ]);
+
+            DB::table('product_menu_category')->insertGetId([
+                'fk_id_product' =>  1,
+                'fk_id_menu_category' =>  1,
+                ]);  
         }
 
 

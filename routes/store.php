@@ -129,3 +129,31 @@ Route::get(
 Route::get('/store/rawmaterial/{rawmaterialId?}',
  'RawMaterialController@destroy'
  )->name('store_rawmaterial_delete');
+
+ // ======================== Menu ====================
+
+Route::get(
+    '/menu',
+    'MenuController@index'
+)->name('store_menus_index');
+
+Route::get(
+    '/menu/upsert/{menuId?}',
+    'MenuController@upsert'
+)->name('store_menu_upsert');
+
+
+Route::post(
+    '/menu/upsert/{productId?}',
+    'MenuController@upsertPost'
+)->name('store_menu_upsert_post');
+
+Route::get(
+    '/menu/upsert/status/{menuId?}',
+    'MenuController@upsertStatus'
+)->name('store_menu_upsert_status');
+
+Route::get(
+    '/menu/show/{menuId?}',
+    'MenuController@show'
+)->name('store_menu_show');
