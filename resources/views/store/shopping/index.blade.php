@@ -18,24 +18,26 @@
         <thead>
         <tr>
             <th scope="col">Id</th>
-            <th scope="col" style="width: 100px">Imagen</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Unidad</th>
+            <th scope="col" style="width: 100px">Material</th>
             <th scope="col">Cantidad</th>
-            <th scope="col">Ultimo Precio</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Proveedor</th>
+            <th scope="col">Fecha</th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         @forelse($shoppings as $shopping)
+
             <tr>
                 <td>{{$shopping->id}}</td>
+                <td>{{$shopping->material->name.' ('.$shopping->material->unit->value.')'}}</td>
                 <td>
+                   {{$shopping->quantity.'('.$shopping->material->unit->value.')'}}
                 </td>
-                <td>{{$shopping->name}}</td>
-                <td>{{$shopping->unit->value}}</td>
-                <td>{{$shopping->quantity}}</td>
-                <td>{{$shopping->last_price}}</td>
+                <td>{{$shopping->price}}</td>
+                <td>{{$shopping->provider->full_name}}</td>
+                <td>{{$shopping->date}}</td>
                 <td>
                     <a href="{{route("store_raw_material_upsert",['rawMaterialId'=> $shopping->id])}}"
                     data-toggle="tooltip"

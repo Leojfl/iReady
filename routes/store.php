@@ -36,9 +36,20 @@ Route::get(
     'ShoppingController@index'
 )->name('store_shopping_index');
 
+Route::get(
+    '/shopping/upsert/{providerMaterialId?}',
+    'ShoppingController@upsert'
+)->name('store_shopping_upsert');
 
+Route::post(
+    '/shopping/upsert/{providerMaterialId?}',
+    'ShoppingController@upsertPost'
+)->name('store_shopping_upsert_post');
 
-
+Route::get(
+    '/shopping/show/{providerMaterialId?}',
+    'ShoppingController@show'
+)->name('store_shopping_show');
 
 // ======================== Products ====================
 

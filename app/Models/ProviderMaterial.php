@@ -19,4 +19,19 @@ class ProviderMaterial extends Model
     ];
 
 
+    public function provider()
+    {
+        return $this->belongsTo(
+            Provider::class,
+            'fk_id_provider'
+        );
+    }
+
+    public function material()
+    {
+        return $this->belongsTo(
+            RawMaterial::class,
+            'fk_id_raw_material'
+        );
+    }
 }
