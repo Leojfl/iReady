@@ -18,14 +18,6 @@
                     'value' => isset($rawMaterial)?$rawMaterial->code:"",
                 ])
             </div>
-            <div class="col-md-6 mt-1 text-start">
-                @include('commons.select', [
-                    'label' => 'Unidad',
-                    'name' => 'fk_id_unit',
-                    'selected' => isset($rawMaterial) ? $rawMaterial->fk_id_unit : null,
-                    'options' => $units
-                ])
-            </div>
             <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'name',
@@ -33,31 +25,6 @@
                     'placeholder' => 'Nombre',
                     'type' => 'text',
                     'value' => isset($rawMaterial)?$rawMaterial->name:"",
-                ])
-            </div>
-            <div class="col-md-6">
-                @include('commons.input',[
-                    'name' => 'group',
-                    'label' => 'Grupo',
-                    'placeholder' => 'Grupo',
-                    'type' => 'text',
-                    'value' => isset($rawMaterial)?$rawMaterial->group:"",
-                ])
-            </div>
-            <div class="col-md-6">
-                @include('commons.input',[
-                    'name' => 'quantity',
-                    'label' => 'Cantidad',
-                    'placeholder' => 'Cantidad',
-                    'value' => isset($rawMaterial)?$rawMaterial->quantity:"",
-                ])
-            </div>
-            <div class="col-md-6">
-                @include('commons.input',[
-                    'name' => 'price',
-                    'label' => 'Precio',
-                    'placeholder' => 'Precio',
-                    'value' => isset($rawMaterial)?$rawMaterial->price:"",
                 ])
             </div>
             <div class="col-md-6">
@@ -76,15 +43,15 @@
                     'value' => isset($rawMaterial)?$rawMaterial->max_stok:"",
                 ])
             </div>
-            <div class="col-md-12">
-                @include('commons.input',[
-                    'name' => 'provider',
-                    'label' => 'Proveedor',
-                    'placeholder' => 'Proveedor',
-                    'value' => isset($rawMaterial)?$rawMaterial->provider:"",
+            <div class="col-md-6 mt-1 text-start">
+                @include('commons.select', [
+                    'label' => 'Unidad',
+                    'name' => 'fk_id_unit',
+                    'selected' => isset($rawMaterial) ? $rawMaterial->fk_id_unit : null,
+                    'options' => $units
                 ])
             </div>
-            <div class="col-md-12">
+            <div class="col-md-6">
                 @include('commons.input',[
                     'name' => 'description',
                     'label' => 'Descripción',

@@ -89,19 +89,15 @@ class CreateSchemeIready extends Migration
         Schema::create('raw_material', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('quantity');
+            $table->string('description');
+            $table->double('quantity')->default(0);
             $table->integer('min_stok');
             $table->integer('max_stok');
             $table->string('code');
             $table->string('img_url')->default("");
-            $table->string('description');
-            $table->string('group');
-            $table->string('provider');
-            $table->double('price');
             $table->unsignedBigInteger('fk_id_store');
             $table->unsignedBigInteger('fk_id_unit');
             $table->timestamps();
-
             $table->foreign('fk_id_unit')
                 ->references('id')
                 ->on('unit');
@@ -109,6 +105,42 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('store');
         });
+
+
+        Schema::create('provider', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('last_name');
+            $table->string('second_last_name');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->unsignedBigInteger('fk_id_store');
+            $table->foreign('fk_id_store')
+                ->references('id')
+                ->on('store');
+                $table->timestamps();
+        });
+
+
+        Schema::create('provider_material', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->string('description')->nullable();
+            $table->double('quantity');
+            $table->double('price');
+            $table->unsignedBigInteger('fk_id_provider');
+            $table->unsignedBigInteger('fk_id_raw_material');
+            $table->unsignedBigInteger('fk_id_store');
+
+            $table->foreign('fk_id_provider')
+                ->references('id')
+                ->on('provider');
+            $table->foreign('fk_id_raw_material')
+                    ->references('id')
+                    ->on('raw_material');
+            $table->timestamps();
+        });
+
 
         Schema::create('category', function (Blueprint $table) {
             $table->id();
@@ -380,7 +412,9 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('product');
         Schema::dropIfExists('store_category');
         Schema::dropIfExists('category');
-        Schema::dropIfExists('material');
+        Schema::dropIfExists('provider_material');
+        Schema::dropIfExists('provider');
+        Schema::dropIfExists('raw_material');
         Schema::dropIfExists('unit');
         Schema::dropIfExists('store_address');
         Schema::dropIfExists('payment_store');

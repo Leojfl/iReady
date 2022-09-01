@@ -13,15 +13,16 @@ class RawMaterial extends Model
 
     protected $fillable = [
         'name',
-        'quantity',
         'fk_id_unit',
         'min_stok',
         'max_stok',
         'code',
         'description',
-        'group',
-        'provider',
-        'price',
+    ];
+
+    protected $appends = [
+        'last_price',
+        'last_shopping'
     ];
 
     public function unit()
@@ -30,5 +31,27 @@ class RawMaterial extends Model
             Unit::class,
             'fk_id_unit'
         );
+    }
+
+    public function providerMaterial()
+    {
+        return $this->hasMany(
+            ProviderMaterial::class,
+            'fk_id_raw_material'
+        );
+    }
+
+    public function getLastPriceAttribute() {
+        if ($this->lastShopping == null){
+            return 0;
+        }
+        return $this->lastShopping->price;
+    }
+
+    public function getLastShoppingAttribute() {
+        return ProviderMaterial::where('fk_id_raw_material', $this->id)
+        ->orderBy('date', 'DESC')
+        ->orderBy('price', 'DESC')
+        ->first();
     }
 }

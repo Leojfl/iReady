@@ -7,7 +7,7 @@
 @section('content')
 <div class="row">
     <div class="offset-md-2 col-8 text-center">
-        <h3 class="page-title">Materia prima</h3>
+        <h3 class="page-title">Compras</h3>
     </div>
     <div class="col-2 text-center">
         <a href="{{route("store_raw_material_upsert",['productId'=> 0])}}"
@@ -27,28 +27,24 @@
         </tr>
         </thead>
         <tbody>
-        @forelse($rawMaterials as $rawMaterial)
+        @forelse($shoppings as $shopping)
             <tr>
-                <td>{{$rawMaterial->id}}</td>
+                <td>{{$shopping->id}}</td>
                 <td>
-                    <div class="card">
-                        <img src="{{asset($rawMaterial->img_url)}}" style="height: 100px; width: 100px;
-                        object-fit: scale-down"/>
-                    </div>
                 </td>
-                <td>{{$rawMaterial->name}}</td>
-                <td>{{$rawMaterial->unit->value}}</td>
-                <td>{{$rawMaterial->quantity}}</td>
-                <td>{{$rawMaterial->last_price}}</td>
+                <td>{{$shopping->name}}</td>
+                <td>{{$shopping->unit->value}}</td>
+                <td>{{$shopping->quantity}}</td>
+                <td>{{$shopping->last_price}}</td>
                 <td>
-                    <a href="{{route("store_raw_material_upsert",['rawMaterialId'=> $rawMaterial->id])}}"
+                    <a href="{{route("store_raw_material_upsert",['rawMaterialId'=> $shopping->id])}}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Editar"
                     class="btn-upsert">
                      <i class="fas fa-edit "></i>
                  </a>
-                 <a href="{{route("store_raw_material_show",['rawMaterialId'=> $rawMaterial->id])}}"
+                 <a href="{{route("store_raw_material_show",['rawMaterialId'=> $shopping->id])}}"
 
                     data-toggle="tooltip"
                     class="btn-upsert"
@@ -61,7 +57,7 @@
         @empty
             <tr>
                 <th class="text-center" colspan="6">
-                    <i>Sin materia prima</i>
+                    <i>Sin compras</i>
                 </th>
             </tr>
         @endforelse

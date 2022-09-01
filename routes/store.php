@@ -7,6 +7,37 @@ Route::view(
     '/',
     'store.index'
 )->name('store_index');
+// ======================== Providers ====================
+
+Route::get(
+    '/providers',
+    'ProviderController@index'
+)->name('store_provider_index');
+
+Route::get(
+    '/provider/upsert/{providerId?}',
+    'ProviderController@upsert'
+)->name('store_provider_upsert');
+
+Route::post(
+    '/provider/upsert/{providerId?}',
+    'ProviderController@upsertPost'
+)->name('store_provider_upsert_post');
+
+Route::get(
+    '/shopping/provider/{providerId?}',
+    'ProviderController@upsertPost'
+)->name('store_shopping_provider');
+
+// ================== Shopping index ====================
+
+Route::get(
+    '/shopping',
+    'ShoppingController@index'
+)->name('store_shopping_index');
+
+
+
 
 
 // ======================== Products ====================

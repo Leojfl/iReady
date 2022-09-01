@@ -21,24 +21,21 @@
         <b>Código:</b> {{$rawMaterial->code}}
     </div>
     <div class="col-6">
-        <b>Grupo:</b> {{$rawMaterial->group}}
-    </div>
-    <div class="col-4">
         <b>Cantidad:</b> {{$rawMaterial->quantity}}
     </div>
-    <div class="col-4">
+    <div class="col-6">
         <b>Min stock:</b> {{$rawMaterial->min_stok}}
     </div>
-    <div class="col-4">
+    <div class="col-6">
         <b>Max stock:</b> {{$rawMaterial->max_stok}}
+    </div>
+    <div class="col-6">
+        <b> Ultimo precio: </b>
+        {{$rawMaterial->last_price}}
     </div>
     <div class="col-12">
         <b> Descripción </b> <br>
         {{$rawMaterial->description}}
-    </div>
-    <div class="col-12">
-        <b> Proveedor </b> <br>
-        {{$rawMaterial->provider}}
     </div>
 </div>
 @endsection

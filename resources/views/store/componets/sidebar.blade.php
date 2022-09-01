@@ -18,9 +18,10 @@
             'roles' => [Role::STORE]
         ],
         [
-            'name' => 'admin_users_index',
-            'label' => 'Ordenes',
-            'icon_class' => 'fas fa-clipboard-list',
+            'name' => 'store_provider_index',
+            'label' => 'Proveedores',
+            'actives_routes' => ['store_provider_upsert', 'store_provider_index'],
+            'icon_class' => 'fas fa-truck-loading',
             'roles' => [Role::STORE]
         ],
         [
@@ -28,6 +29,19 @@
             'label' => 'Materia prima',
             'actives_routes' => ['store_raw_material_index', 'store_raw_material_upsert', 'store_raw_material_show'],
             'icon_class' => 'fas fa-boxes',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'store_shopping_index',
+            'label' => 'Compras',
+            'actives_routes' => ['store_shopping_index'],
+            'icon_class' => 'fas fa-clipboard-check',
+            'roles' => [Role::STORE]
+        ],
+        [
+            'name' => 'admin_users_index',
+            'label' => 'Ordenes',
+            'icon_class' => 'fas fa-clipboard-list',
             'roles' => [Role::STORE]
         ],
         [

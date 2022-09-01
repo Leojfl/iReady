@@ -42,4 +42,20 @@ class Store extends Model
             'fk_id_store'
         );
     }
+
+    public function providers()
+    {
+        return $this->hasMany(
+            Provider::class,
+            'fk_id_store'
+        );
+    }
+
+    public function providerMaterials()
+    {
+        return $this->hasMany(
+            ProviderMaterial::class,
+            'fk_id_store'
+        );
+    }
 }

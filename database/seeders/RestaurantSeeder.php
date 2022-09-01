@@ -111,9 +111,6 @@ class RestaurantSeeder extends Seeder
                 'code' => "C0D1G0",
                 'img_url' => "",
                 'description' => "DESCRIPCION",
-                'group' => "Grupo",
-                'provider' => "",
-                'price' => 130.00,
                 ]);
 
 
@@ -127,13 +124,10 @@ class RestaurantSeeder extends Seeder
             'code' => "C0D1G0",
             'img_url' => "",
             'description' => "DESCRIPCION",
-            'group' => "Grupo",
-            'provider' => "",
-            'price' => 130.00,
             ]);
 
 
-        DB::table('raw_material')->insertGetId([
+        $materialId = DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 3',
             'quantity' =>  '4',
             'min_stok' =>  '20',
@@ -143,10 +137,47 @@ class RestaurantSeeder extends Seeder
             'code' => "C0D1G0",
             'img_url' => "",
             'description' => "DESCRIPCION",
-            'group' => "Grupo",
-            'provider' => "",
-            'price' => 130.00,
             ]);
+
+        $providerId = DB::table('provider')->insertGetId([
+            'name' =>  'Proveedor Leche',
+            'last_name' =>  'Diaz',
+            'second_last_name' =>  'Sec',
+            'phone' =>  '7291050713',
+            'email' =>  '',
+            'fk_id_store' =>  $storeId,
+            ]);
+
+        DB::table('provider')->insertGetId([
+            'name' =>  'Proveedor Azucar',
+            'last_name' =>  'Diaz',
+            'second_last_name' =>  'Sec',
+            'phone' =>  '7291050713',
+            'email' =>  'test@test.com',
+            'fk_id_store' =>  $storeId,
+            ]);
+
+
+        DB::table('provider_material')->insertGetId([
+            'date' =>  now(),
+            'description' =>  'Secos',
+            'quantity' =>  4,
+            'price' =>  2000,
+            'fk_id_store' =>  $storeId,
+            'fk_id_raw_material' => $materialId,
+            'fk_id_provider' =>  $providerId,
+        ]);
+
+
+        DB::table('provider_material')->insertGetId([
+            'date' =>  now(),
+            'description' =>  'Secos',
+            'quantity' =>  6,
+            'price' =>  2000,
+            'fk_id_store' =>  $storeId,
+            'fk_id_raw_material' => $materialId,
+            'fk_id_provider' =>  $providerId,
+        ]);
 
         DB::table('employee')->insert([
             'active' => true,
