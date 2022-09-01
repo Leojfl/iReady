@@ -51,6 +51,22 @@ Route::get(
     'ShoppingController@show'
 )->name('store_shopping_show');
 
+// ======================== Orders ====================
+Route::get(
+    '/orders/place',
+    'OrderController@indexPlace'
+)->name('store_order_place_index');
+
+Route::get(
+    '/orders/online',
+    'OrderController@indexOnline'
+)->name('store_order_online_index');
+
+Route::get(
+    '/orders/all',
+    'OrderController@indexAll'
+)->name('store_order_all_index');
+
 // ======================== Products ====================
 
 Route::get(

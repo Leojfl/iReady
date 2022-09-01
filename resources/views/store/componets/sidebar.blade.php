@@ -89,11 +89,15 @@
         <i class=" fas fa-store-alt" style="font-size: 28px"></i>
         <span class="text-bold ml-2">{{ $user->name }}</span>
     </div>
-    <div class="d-inline-flex flex-column bg-white" style="z-index: 0">
+    <div class="d-inline-flex flex-column" style="z-index: 0">
         @for($i = 0; $i < sizeof($routes); $i++)
             @foreach($routes[$i]['roles'] as $rol)
                 @if($rol == $user->role->id)
-                    @include('commons.sidebar_item', ['route' => $routes[$i]])
+                    @if (isset($routes[$i]['submenus']))
+                        @include('commons.sidebar_item_collapse', ['route' => $routes[$i]])
+                    @else
+                        @include('commons.sidebar_item', ['route' => $routes[$i]])
+                    @endif
                 @endif
             @endforeach
         @endfor

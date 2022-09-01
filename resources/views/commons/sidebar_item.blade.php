@@ -7,6 +7,7 @@
 *   icon_class = it is the class for load icon of font awesome
 */
 $isActive = false;
+$isSubmenu = $isSubmenu ?? false;
 $routers = $route['actives_routes'] ?? $route['name'];
 if (is_array($routers)){
     foreach ($routers as $value) {
@@ -24,13 +25,13 @@ if (is_array($routers)){
     {{ $route['name'] != null?
     ($isActive ?'active':'')
     :''}}
-    pl-4">
+    {{$isSubmenu?"py-2 pl-4 ":"pl-4" }}">
     <a href="{{ $route['name'] != null?
         route($route['name']):
         '/#' }}">
         <span class="mr-1">
-            <i class="text-center {{isset($route['icon_class'])?$route['icon_class']:'far fa-square'}}"
-               style="font-size: 20px; width: 30px"> </i>
+            <i class="text-center {{isset($route['icon_class'])?$route['icon_class']:''}}"
+               style="font-size: {{$isSubmenu?"8px":"20px" }} ; width: 30px"> </i>
         </span>
         <span>{{ $route['label'] }}</span>
     </a>
