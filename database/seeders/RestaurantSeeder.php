@@ -126,7 +126,6 @@ class RestaurantSeeder extends Seeder
             'description' => "DESCRIPCION",
             ]);
 
-
         $materialId = DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 3',
             'quantity' =>  '4',
@@ -194,6 +193,20 @@ class RestaurantSeeder extends Seeder
             'email'     => 'hector@gmail.com'.$x,
             'social_security' => 'imss'.$x,
             'salary'     =>  '3000'.$x,
+            'url_image' => '',
+            'rfc' => '50860',
+            'curp' => 'CEUFG567HDJS2',
+            'phone' => '1928456723',
+            'email' => 'patito@gmail.com',
+            'cell_phone' => '7225678901',
+            'social_security' => '506789',
+            'recidence' => 'trojes',
+            'outdoor_number' => '4567',
+            'cp' => '57DFG567',
+            'city' => 'México',
+            'salary' => '15000',
+            'area' => 'cocina',
+            'workstation' => 'cocinero',
         ]);
 
         for($i = 0; $i <= 10; $i++) {

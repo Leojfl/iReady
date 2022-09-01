@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -182,3 +183,22 @@ Route::get(
     '/material/show/{rawMaterialId?}',
     'RawMaterialController@show'
 )->name('store_raw_material_show');
+
+///////////// Employee /////////////////////////////
+
+Route::get(
+    '/employee',
+    'EmployeeController@index'
+)->name('store_employee_index');
+Route::get('/employee/upsert/{id?}',
+'EmployeeController@create'
+)->name('store_employee_upsert');
+Route::get('/employee/show/{id?}',
+    'EmployeeController@show'
+)->name('store_employee_show');
+
+Route::post('/employee/update/{id?}', 'EmployeeController@update'
+)->name('store_employee_update');
+Route::get('/employee/delete/{id}', 'EmployeeController@destroy'
+)->name('store_employee_delete');
+Route::resource('employees', App\Http\Controllers\Store\AuthorController::class);

@@ -1,10 +1,10 @@
 @php
-    use Illuminate\Support\Facades\Route;
-    use Illuminate\Support\Facades\Auth;
-    use App\Models\Role;
-    // Get route name current
-    $current = Route::currentRouteName();
-    $user = \App\Models\User::find(Auth::id());
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Role;
+// Get route name current
+$current = Route::currentRouteName();
+$user = \App\Models\User::find(Auth::id());
 
     // $routes is an array with all sidebar routes
     // The 'name' attribute is as it's named in admin.php
@@ -51,38 +51,31 @@
             'icon_class' => 'fas fa-hamburger',
             'roles' => [Role::STORE]
         ],
-
-        [
-            'name' => 'admin_users_index',
-            'label' => 'Menu',
-            'icon_class' => 'fas fa-utensils',
-            'roles' => [Role::STORE]
-        ],
-        [
-            'name' => 'admin_users_index',
-            'label' => 'Empleados',
-            'icon_class' => 'fas fa-users',
-            'roles' => [Role::STORE]
-        ],
-        [
-            'name' => 'store_board_index',
-            'label' => 'Mesas',
-            'icon_class' => 'fas fa-square',
-            'roles' => [Role::STORE]
-        ],
-        [
-            'name' => 'admin_users_index',
-            'label' => 'Graficas',
-            'icon_class' => 'fas fa-chart-area',
-            'roles' => [Role::STORE]
-        ],
-        [
-            'name' => 'store_ticket_index',
-            'label' => 'Tickets',
-            'icon_class' => 'fa-solid fa-ticket-simple',
-            'roles' => [Role::STORE]
-        ]
-    ];
+    [
+        'name' => 'admin_users_index',
+        'label' => 'Menu',
+        'icon_class' => 'fas fa-utensils',
+        'roles' => [Role::STORE],
+    ],
+    [
+        'name' => 'store_employee_index',
+        'label' => 'Empleados',
+        'icon_class' => 'fas fa-users',
+        'roles' => [Role::STORE],
+    ],
+    [
+        'name' => 'admin_users_index',
+        'label' => 'Mesas',
+        'icon_class' => 'fas fa-square',
+        'roles' => [Role::STORE],
+    ],
+    [
+        'name' => 'admin_users_index',
+        'label' => 'Graficas',
+        'icon_class' => 'fas fa-chart-area',
+        'roles' => [Role::STORE],
+    ],
+];
 @endphp
 <div class="d-flex flex-column align-self-center" style="min-width: 182px">
     <div class="d-inline-flex d-flex-row bg-primary color-white px-4 pb-5" style="z-index: 1; margin-bottom: -3px;">
@@ -103,7 +96,7 @@
         @endfor
     </div>
     <div class="d-inline-flex sidebar-item d-flex-row color-white px-4 pt-5">
-        <a href="{{route('logout')}}">
+        <a href="{{ route('logout') }}">
             <i class="fas fa-door-open" style="font-size: 18px"></i>
             <span class="cursor-pointer">Cerrar sesión</span>
         </a>

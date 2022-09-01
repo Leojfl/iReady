@@ -106,7 +106,6 @@ class CreateSchemeIready extends Migration
                 ->on('store');
         });
 
-
         Schema::create('provider', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -161,11 +160,10 @@ class CreateSchemeIready extends Migration
                 ->on('store');
 
             $table->foreign('fk_id_category')
-            ->references('id')
-            ->on('category');
+                ->references('id')
+                ->on('category');
 
             $table->timestamps();
-
         });
 
         Schema::create('product', function (Blueprint $table) {
@@ -201,9 +199,8 @@ class CreateSchemeIready extends Migration
                 ->on('product');
 
             $table->foreign('fk_id_material')
-            ->references('id')
-            ->on('raw_material');
-
+                ->references('id')
+                ->on('raw_material');
             $table->timestamps();
         });
 
@@ -229,8 +226,8 @@ class CreateSchemeIready extends Migration
                 ->on('product');
 
             $table->foreign('fk_id_combo')
-            ->references('id')
-            ->on('combo');
+                ->references('id')
+                ->on('combo');
         });
 
         Schema::create('client', function (Blueprint $table) {
@@ -246,7 +243,6 @@ class CreateSchemeIready extends Migration
             $table->foreign('fk_id_client')
                 ->references('id')
                 ->on('client');
-
         });
 
         Schema::create('address', function (Blueprint $table) {
@@ -283,7 +279,20 @@ class CreateSchemeIready extends Migration
             $table->string('email');
             $table->string('social_security');
             $table->boolean('active')->default(true);
-            $table->string('salary');
+            $table->string('url_image');
+            $table->string('rfc');
+            $table->string('curp');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('cell_phone');
+            $table->string('social_security');
+            $table->string('recidence');
+            $table->bigInteger('outdoor_number');
+            $table->string('cp');
+            $table->string('city');
+            $table->bigInteger('salary');
+            $table->string('area');
+            $table->string('workstation');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
@@ -293,8 +302,8 @@ class CreateSchemeIready extends Migration
                 ->on('user');
 
             $table->foreign('fk_id_store')
-            ->references('id')
-            ->on('store');
+                ->references('id')
+                ->on('store');
         });
 
         Schema::create('status', function (Blueprint $table) {
@@ -340,12 +349,12 @@ class CreateSchemeIready extends Migration
                 ->on('client');
 
             $table->foreign('fk_id_status')
-            ->references('id')
-            ->on('status');
+                ->references('id')
+                ->on('status');
 
             $table->foreign('fk_id_address')
-            ->references('id')
-            ->on('address');
+                ->references('id')
+                ->on('address');
         });
 
 
@@ -372,24 +381,6 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('combo');
         });
-
-        Schema::create('ticket', function (Blueprint $table) {
-            $table->id();
-            $table->string('head');
-            $table->string('footnote1');
-            $table->string('footnote2');
-
-            $table->timestamps();
-            $table->softDeletes();
-
-
-        });
-
-
-
-
-
-
     }
 
     /**
