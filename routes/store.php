@@ -53,8 +53,11 @@ Route::delete('/materia/delete/{id}', 'RawMaterialController@destroy')->name('ra
 
 Route::get('/employee', 'EmployeeController@index')->name('store_employee_index');
 Route::get('/employee/upsert/{id?}', 'EmployeeController@create')->name('store_employee_upsert');
-
+Route::get(
+    '/employee/show/{id?}',
+    'EmployeeController@show'
+)->name('store_employee_show');
 
 Route::post('/employee/update/{id?}', 'EmployeeController@update')->name('store_employee_update');
-Route::delete('/employee/delete/{id}', 'EmployeeController@destroy')->name('store_employee_delete');
+Route::get('/employee/delete/{id}', 'EmployeeController@destroy')->name('store_employee_delete');
 Route::resource('employees', App\Http\Controllers\Store\AuthorController::class);

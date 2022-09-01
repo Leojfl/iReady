@@ -36,19 +36,25 @@
                                                 <td>{{ $employee->phone }}</td>
                                                 <td>{{ $employee->email }}</td>
                                                 <td>
-                                                    <form action="{{ route('employees.destroy', $employee->id) }}"
-                                                        method="POST">
-                                                        <a class="btn btn-sm btn-primary "
-                                                            href="{{ route('employees.show', $employee->id) }}"><i
-                                                                class="fa fa-fw fa-eye"></i> Show</a>
-                                                        <a class="btn btn-sm btn-success"
-                                                            href="{{ route('employees.edit', $employee->id) }}"><i
-                                                                class="fa fa-fw fa-edit"></i> Edit</a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm"><i
-                                                                class="fa fa-fw fa-trash"></i> Delete</button>
-                                                    </form>
+
+
+                                                    <a href="{{ route('store_employee_upsert', $employee->id) }}"
+                                                        data-toggle="tooltip" data-placement="top" title="Editar"
+                                                        class="btn-upsert">
+                                                        <i class="fas fa-edit "></i>
+                                                    </a>
+                                                    <a href="{{route('store_employee_show', ['id' => $employee->id])}}"
+                                                        data-toggle="tooltip"
+                                                        class="btn-upsert"
+                                                        title="Ver">
+                                                            <i class="far fa-eye "></i>
+                                                        </a>
+                                                    </a>
+                                                    <a href="{{ route('store_employee_delete', $employee->id) }}"
+                                                        data-toggle="tooltip" class="btn-upsert" title="Ver">
+                                                        <i class="far fa-trash-alt "></i>
+                                                    </a>
+
                                                 </td>
                                             </tr>
                                         @endforeach

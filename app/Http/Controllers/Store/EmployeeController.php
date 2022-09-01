@@ -13,7 +13,7 @@ use App\Http\Requests\RequestEmployee;
 use App\Models\Employee;
 use App\Models\User;
 use App\Models\Store;
- 
+
 class EmployeeController extends Controller
 {
     /**
@@ -52,9 +52,10 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id = 0)
     {
-        //
+        $employee = Employee::find($id);
+        return view('store.employee.show', ['employee' => $employee]);
     }
 
     /**
@@ -116,7 +117,7 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         $id = Employee::find($id);
-        $id->delete();
-        return redirect()->route('employee_index');
+        $id->delete($id);
+        return redirect()->route('store_employee_index');
     }
 }
