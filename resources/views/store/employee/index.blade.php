@@ -21,62 +21,34 @@
                                             <th>Nombre de Usuario</th>
                                             <th>Nombre</th>
                                             <th>Apedillo</th>
-                                            <th>Segundo Apedillo</th>
-                                            <th>Imagen</th>
-                                            <th>Area</th>
-                                            <th>Puesto</th>
-                                            <th>RFC</th>
-                                            <th>CURP</th>
                                             <th>Telefono</th>
                                             <th>Email</th>
-                                            <th>Celular</th>
-                                            <th>Seguro Social</th>
-                                            <th>Domicilio</th>
-                                            <th>Numero exterior</th>
-                                            <th>CP</th>
-                                            <th>Ciudad</th>
-                                            <th>Sueldo</th>
-                                            <th>Contraseña</th>
-                                            <th>Activo</th>
-                                            <th>Fk_id_user</th>
-                                            <th>Fk_id_stor</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($employees as $employee)
                                             <tr>
-                                                <td>{{ $employee->username }}</td>
-                                                <td>{{ $employee->name }}</td>
-                                                <td>{{ $employee->last_name }}</td>
-                                                <td>{{ $employee->second_last_name }}</td>
-                                                <td>{{ $employee->url_image }}</td>
-                                                <td>{{ $employee->rfc }}</td>
-                                                <td>{{ $employee->curp }}</td>
+                                                <td>{{ $employee->user->id }}</td>
+                                                <td>{{ $employee->user->username }}</td>
+                                                <td>{{ $employee->user->name }}</td>
+                                                <td>{{ $employee->user->last_name }}</td>
                                                 <td>{{ $employee->phone }}</td>
                                                 <td>{{ $employee->email }}</td>
-                                                <td>{{ $employee->cell_phone }}</td>
-                                                <td>{{ $employee->social_security }}</td>
-                                                <td>{{ $employee->recidence }}</td>
-                                                <td>{{ $employee->outdoor_number }}</td>
-                                                <td>{{ $employee->cp }}</td>
-                                                <td>{{ $employee->city }}</td>
-                                                <td>{{ $employee->salary }}</td>
-                                                <td>{{ $employee->password }}</td>
-                                                <td>{{ $employee->id }}</td>
-                                                @if ($employee->active == 1)
-                                                    <td>Activo</td>
-                                                @else
-                                                    <td>Inactivo</td>
-                                                @endif
-                                                <td>{{ $employee->fk_id_user }}</td>
-                                                <td>{{ $employee->fk_id_store }}</td>
                                                 <td>
-                                                <td>
-                                                <td>
-                                                    <a href="{{ route('store_employee_upsert', $employee->id) }}"
-                                                        class="btn btn-warning btn-sm">Editar</a>
-
+                                                    <form action="{{ route('employees.destroy', $employee->id) }}"
+                                                        method="POST">
+                                                        <a class="btn btn-sm btn-primary "
+                                                            href="{{ route('employees.show', $employee->id) }}"><i
+                                                                class="fa fa-fw fa-eye"></i> Show</a>
+                                                        <a class="btn btn-sm btn-success"
+                                                            href="{{ route('employees.edit', $employee->id) }}"><i
+                                                                class="fa fa-fw fa-edit"></i> Edit</a>
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                                class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

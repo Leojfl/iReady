@@ -57,3 +57,4 @@ Route::get('/employee/upsert/{id?}', 'EmployeeController@create')->name('store_e
 
 Route::post('/employee/update/{id?}', 'EmployeeController@update')->name('store_employee_update');
 Route::delete('/employee/delete/{id}', 'EmployeeController@destroy')->name('store_employee_delete');
+Route::resource('employees', App\Http\Controllers\Store\AuthorController::class);

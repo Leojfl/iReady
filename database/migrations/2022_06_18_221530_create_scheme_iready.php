@@ -40,7 +40,7 @@ class CreateSchemeIready extends Migration
             $table->boolean('active')->default(true);
             $table->boolean('available')->default(true);
 
-            $table->timestamps();
+            $table->timestamps(); 
             $table->softDeletes();
             $table->unsignedBigInteger('fk_id_store');
             $table->foreign('fk_id_store')
