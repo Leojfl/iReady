@@ -126,6 +126,19 @@ class RestaurantSeeder extends Seeder
             'description' => "DESCRIPCION",
             ]);
 
+        DB::table('menu')->insertGetId([
+            'name' =>  'Carne',
+            'description' =>  'Carne asada',
+            'active' =>  true,
+            'fk_id_store' =>  $storeId,
+            ]);
+
+        DB::table('menu_category')->insertGetId([
+            'alias' =>  'Carne',
+            'fk_id_category' =>  1,
+            'fk_id_menu' =>  1,
+            ]);
+
         $materialId = DB::table('raw_material')->insertGetId([
             'name' =>  'Ingrediente 3',
             'quantity' =>  '4',
@@ -185,7 +198,6 @@ class RestaurantSeeder extends Seeder
             'name'      => 'Hector'.$x,
             'img_url'    => ' ',
             'lastname'  => 'Garcia'.$x,
-            'area'      => 'Cocina'.$x,
             'booth'     => 'Cocinero'.$x,
             'rfc'       => 'GANH000189GNHA3'.$x,
             'curp'      => 'GANH000189GNH'.$x,
@@ -205,7 +217,6 @@ class RestaurantSeeder extends Seeder
             'cp' => '57DFG567',
             'city' => 'México',
             'salary' => '15000',
-            'area' => 'cocina',
             'workstation' => 'cocinero',
         ]);
 
@@ -218,6 +229,11 @@ class RestaurantSeeder extends Seeder
                 "fk_id_store" => $storeId,
                 "fk_id_category" => 1,
             ]);
+
+            DB::table('product_menu_category')->insertGetId([
+                'fk_id_product' =>  1,
+                'fk_id_menu_category' =>  1,
+                ]);
         }
 
 

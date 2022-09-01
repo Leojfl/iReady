@@ -271,13 +271,7 @@ class CreateSchemeIready extends Migration
             $table->string('name');
             $table->string('img_url');
             $table->string('lastname');
-            $table->string('area');
             $table->string('booth');
-            $table->string('rfc');
-            $table->string('curp');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('social_security');
             $table->boolean('active')->default(true);
             $table->string('url_image');
             $table->string('rfc');
@@ -291,7 +285,6 @@ class CreateSchemeIready extends Migration
             $table->string('cp');
             $table->string('city');
             $table->bigInteger('salary');
-            $table->string('area');
             $table->string('workstation');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
@@ -381,6 +374,56 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('combo');
         });
+
+        Schema::create('menu', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->boolean('active');
+            $table->unsignedBigInteger('fk_id_store');
+
+            $table->foreign('fk_id_store')
+                ->references('id')
+                ->on('store');
+
+            $table->timestamps();
+
+        });
+
+        Schema::create('menu_category', function (Blueprint $table) {
+            $table->id();
+            $table->string('alias');
+            $table->unsignedBigInteger('fk_id_category');
+            $table->unsignedBigInteger('fk_id_menu');
+
+            $table->foreign('fk_id_category')
+                ->references('id')
+                ->on('category');
+
+            $table->foreign('fk_id_menu')
+                ->references('id')
+                ->on('menu');
+
+            $table->timestamps();
+
+        });
+
+        Schema::create('product_menu_category', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('fk_id_product');
+            $table->unsignedBigInteger('fk_id_menu_category');
+
+            $table->foreign('fk_id_product')
+                ->references('id')
+                ->on('product');
+
+            $table->foreign('fk_id_menu_category')
+                ->references('id')
+                ->on('menu_category');
+
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -412,5 +455,8 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('board');
         Schema::dropIfExists('store');
         Schema::dropIfExists('ticket');
+        Schema::dropIfExists('menu');
+        Schema::dropIfExists('menu_category');
+        Schema::dropIfExists('product_menu_category');
     }
 }
