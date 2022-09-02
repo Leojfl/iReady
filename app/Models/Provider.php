@@ -22,7 +22,9 @@ class Provider extends Model
     protected $appends = [
         'full_name',
     ];
+
     public function getFullNameAttribute() {
         return $this->name.' '.$this->last_name.' '.$this->second_last_name;
     }
+
 }

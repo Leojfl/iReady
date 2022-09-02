@@ -15,7 +15,8 @@ class ProviderMaterial extends Model
         'description',
         'quantity',
         'price',
-        'fk_id_provider'
+        'fk_id_provider',
+        'fk_id_raw_material'
     ];
 
 

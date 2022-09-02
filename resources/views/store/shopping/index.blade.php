@@ -10,7 +10,7 @@
         <h3 class="page-title">Compras</h3>
     </div>
     <div class="col-2 text-center">
-        <a href="{{route("store_raw_material_upsert",['productId'=> 0])}}"
+        <a href="{{route("store_shopping_upsert",['providerMaterialId'=> 0])}}"
            class="btn btn-secondary btn-upsert">Agregar</a>
     </div>
     <div class="col-md-12 mt-3">
@@ -39,14 +39,14 @@
                 <td>{{$shopping->provider->full_name}}</td>
                 <td>{{$shopping->date}}</td>
                 <td>
-                    <a href="{{route("store_raw_material_upsert",['rawMaterialId'=> $shopping->id])}}"
+                    <a href="{{route("store_shopping_upsert",['providerMaterialId'=> $shopping->id])}}"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Editar"
                     class="btn-upsert">
                      <i class="fas fa-edit "></i>
                  </a>
-                 <a href="{{route("store_raw_material_show",['rawMaterialId'=> $shopping->id])}}"
+                 <a href="{{route("store_shopping_show",['providerMaterialId'=> $shopping->id])}}"
 
                     data-toggle="tooltip"
                     class="btn-upsert"

@@ -23,7 +23,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $store = $this->storeInSesion();
+        $employees = $store->employees;
         return view('store.employee.index', compact('employees'));
     }
 

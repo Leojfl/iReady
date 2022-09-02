@@ -22,7 +22,8 @@ class RawMaterial extends Model
 
     protected $appends = [
         'last_price',
-        'last_shopping'
+        'last_shopping',
+        'name_with_unit'
     ];
 
     public function unit()
@@ -53,5 +54,9 @@ class RawMaterial extends Model
         ->orderBy('date', 'DESC')
         ->orderBy('price', 'DESC')
         ->first();
+    }
+
+    public function getNameWithUnitAttribute() {
+        return $this->name.' '.'('.$this->unit->value.')';
     }
 }
