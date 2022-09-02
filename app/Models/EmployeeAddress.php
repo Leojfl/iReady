@@ -1,15 +1,15 @@
 <?php
 
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 use Illuminate\Database\Eloquent\Model;
 
-class StoreAddress extends Model
-{
-    use HasFactory;
 
-    protected $table = 'store_address';
+class EmployeeAddress extends Model
+{
+    protected $table = 'employee_address';
 
     protected $fillable = [
         'country',
@@ -21,5 +21,9 @@ class StoreAddress extends Model
         'int_num',
         'township'
     ];
-
+/*
+    protected $appends = [
+        'full_address',
+    ];
+    */
 }

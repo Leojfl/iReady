@@ -11,34 +11,25 @@ class Employee extends Model
 {
     protected $table = 'employee';
     protected $fillable = [
-            'username',
-            'name',
-            'last_name',
-            'second_last_name',
-            'url_image',
             'rfc',
             'curp',
             'phone',
             'email',
             'cell_phone',
             'social_security',
-            'recidence',
-            'outdoor_number',
-            'cp',
-            'city',
-            'salary',
-            'area',
-            'workstation',
-            'password',
-            'active',
-            'fk_id_user',
-            'fk_id_store'
+            'salary'
     ];
+
     public function user()
     {
         return $this->belongsTo(
             User::class,
             'fk_id_user'
         );
+    }
+
+    public function address()
+    {
+        return $this->hasOne(EmployeeAddress::class, 'fk_id_employee');
     }
 }

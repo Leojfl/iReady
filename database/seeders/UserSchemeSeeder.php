@@ -75,7 +75,6 @@ class UserSchemeSeeder extends Seeder
                 'fk_id_role' => \App\Models\Role::CLIENT
             ]);
 
-
             DB::table('user')->insert([
                 'username' => 'Gerente',
                 'name' => 'Gerente',

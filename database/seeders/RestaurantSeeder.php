@@ -195,10 +195,6 @@ class RestaurantSeeder extends Seeder
             'active' => true,
             'fk_id_store' => $storeId,
             'fk_id_user' => $id,
-            'name'      => 'Hector'.$x,
-            'img_url'    => ' ',
-            'lastname'  => 'Garcia'.$x,
-            'booth'     => 'Cocinero'.$x,
             'rfc'       => 'GANH000189GNHA3'.$x,
             'curp'      => 'GANH000189GNH'.$x,
             'phone'     => '72819423023'.$x,
@@ -212,12 +208,6 @@ class RestaurantSeeder extends Seeder
             'email' => 'patito@gmail.com',
             'cell_phone' => '7225678901',
             'social_security' => '506789',
-            'recidence' => 'trojes',
-            'outdoor_number' => '4567',
-            'cp' => '57DFG567',
-            'city' => 'México',
-            'salary' => '15000',
-            'workstation' => 'cocinero',
         ]);
 
         for($i = 0; $i <= 10; $i++) {

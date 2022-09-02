@@ -24,41 +24,28 @@ class RequestEmployee extends FormRequest
     public function rules()
     {
         return [
+            //USER
             'username' => 'required',
-
-            'name' => 'required',
-
-            'last_name' => 'required',
-
-            'second_last_name' => 'required',
-
-            'area'       => 'required',
-
-            'workstation' => 'required',
-
-            'url_imge' => 'required',
-
-            'rfc' => 'required',
-
-            'curp' => 'required',
-
-            'phone' => 'required',
-
-            'email' => 'required',
-
-            'cell_phone' => 'required',
-
-            'recidence' => 'required',
-
-            'outdoor_number' => 'required',
-
-            'cp' => 'required',
-
-            'salary' => 'required',
-
             'password' => 'required',
-
-            'active' => 'required',
+            //Employee
+            'name' => 'required',
+            'last_name' => 'required',
+            'second_last_name' => 'required',
+            'rfc' => 'required',
+            'curp' => 'required',
+            'social_security' => 'required',
+            'salary' => 'required',
+            //contact data
+            'phone' => 'required',
+            'email' => 'required',
+            'cell_phone' => 'required',
+            //address
+            'street' => 'required',
+            'ext_num' => 'required',
+            //'int_num' => 'required',
+            'colony' => 'required',
+            'city' => 'required',
+            'township' => 'required',
         ];
     }
 
@@ -70,41 +57,29 @@ class RequestEmployee extends FormRequest
     public function messages()
     {
         return [
-            'username.required' => 'Falto por llenar este campo',
+            //USER
+            'username.required' => 'Usuario requerido',
+            'password.required' => 'Contraseña requerida',
+            //Employee
+            'name.required' => 'Nombre requerido',
+            'last_name.required' => 'Apellido paterno requerido',
+            'second_last_name.required' => 'Apellido materno requerido',
+            'rfc.required' => 'RFC requerido',
+            'curp.required' => 'CURP requerido',
+            'social_security.required' => 'Seguro social requerido',
+            'salary.required' => 'Salario requerido',
+            //contact data
+            'phone.required' => 'Télefono requerido',
+            'email.required' => 'Correo electronico requerido',
+            'cell_phone.required' => 'Celular requerido',
+            //address
+            'street.required' => 'Calle requerida',
+            'ext_num' => 'Número exterior requerido',
+            //'int_num.required' => 'Número interior requerido',
+            'colony.required' => 'Colonia requerida',
+            'city.required' => 'Ciudad requerida',
+            'township.required' => 'Municipio requerido',
 
-            'name.required' => 'Falto por llenar este campo',
-
-            'last_name.required' => 'Falto por llenar este campo',
-
-            'second_last_name.required' => 'Falto por llenar este campo',
-
-            'area.required' => 'Falto por llenar este campo',
-
-            'workstation.required' => 'Falto por llenar este campo',
-
-            'url_imge.required' => 'Falto por llenar este campo',
-
-            'rfc.required' => 'Falto por llenar este campo',
-
-            'curp.required' => 'Falto por llenar este campo',
-
-            'phone.required' => 'Falto por llenar este campo',
-
-            'email.required' => 'Falto por llenar este campo',
-
-            'cell_phone.required' => 'Falto por llenar este campo',
-
-            'recidence.required' => 'Falto por llenar este campo',
-
-            'outdoor_number.required' => 'Falto por llenar este campo',
-
-            'cp.required' => 'Falto por llenar este campo',
-
-            'salary.required' => 'Falto por llenar este campo',
-
-            'password.required' => 'Falto por llenar este campo',
-
-            'active.required' => 'Falto por llenar este campo',
         ];
     }
 }

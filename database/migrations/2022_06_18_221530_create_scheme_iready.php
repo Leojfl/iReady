@@ -70,9 +70,7 @@ class CreateSchemeIready extends Migration
             $table->string('street');
             $table->string('ext_num');
             $table->string('int_num')->nullable();
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
-            $table->boolean('active')->default(true);
+            $table->string('township');
             $table->unsignedBigInteger('fk_id_store')->nullable();
             $table->timestamps();
 
@@ -255,9 +253,7 @@ class CreateSchemeIready extends Migration
             $table->string('street');
             $table->string('ext_num');
             $table->string('int_num')->nullable();
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
-            $table->boolean('active')->default(true);
+            $table->string('township');
             $table->unsignedBigInteger('fk_id_client');
             $table->timestamps();
 
@@ -268,10 +264,6 @@ class CreateSchemeIready extends Migration
 
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('img_url');
-            $table->string('lastname');
-            $table->string('booth');
             $table->boolean('active')->default(true);
             $table->string('url_image');
             $table->string('rfc');
@@ -280,12 +272,7 @@ class CreateSchemeIready extends Migration
             $table->string('email');
             $table->string('cell_phone');
             $table->string('social_security');
-            $table->string('recidence');
-            $table->bigInteger('outdoor_number');
-            $table->string('cp');
-            $table->string('city');
             $table->bigInteger('salary');
-            $table->string('workstation');
             $table->unsignedBigInteger('fk_id_user');
             $table->unsignedBigInteger('fk_id_store');
             $table->timestamps();
@@ -297,6 +284,25 @@ class CreateSchemeIready extends Migration
             $table->foreign('fk_id_store')
                 ->references('id')
                 ->on('store');
+        });
+
+        Schema::create('employee_address', function (Blueprint $table) {
+            $table->id();
+            $table->string('country')->default('México');
+            $table->string('state')->default('México');
+            $table->string('city');
+            $table->string('colony');
+            $table->string('zip_code');
+            $table->string('street');
+            $table->string('ext_num');
+            $table->string('int_num')->nullable();
+            $table->string('township');
+            $table->unsignedBigInteger('fk_id_employee');
+            $table->timestamps();
+
+            $table->foreign('fk_id_employee')
+                ->references('id')
+                ->on('employee');
         });
 
         Schema::create('status', function (Blueprint $table) {
@@ -437,6 +443,7 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('order_status');
         Schema::dropIfExists('order');
         Schema::dropIfExists('status');
+        Schema::dropIfExists('employee_address');
         Schema::dropIfExists('employee');
         Schema::dropIfExists('address');
         Schema::dropIfExists('client');
