@@ -104,6 +104,10 @@ class EmployeeController extends Controller
         if (isset($password)) {
             $user->password = Hash::make($password);
         }
+        if ($request->file("img_url") != null) {
+            $employee->img_url = $this->storeImage($request->file("img_url"), "employee", $employee->id);
+            $employee->saveOrfail();
+        }
         $user->saveOrFail();
         $employee->fill($request->all());
         $employee->fk_id_user = $user->id;

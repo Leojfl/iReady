@@ -11,6 +11,7 @@ class Employee extends Model
 {
     protected $table = 'employee';
     protected $fillable = [
+            'img_url',
             'rfc',
             'curp',
             'phone',

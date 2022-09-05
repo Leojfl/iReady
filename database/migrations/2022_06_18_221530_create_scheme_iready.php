@@ -265,7 +265,7 @@ class CreateSchemeIready extends Migration
         Schema::create('employee', function (Blueprint $table) {
             $table->id();
             $table->boolean('active')->default(true);
-            $table->string('url_image');
+            $table->string('img_url')->default("");
             $table->string('rfc');
             $table->string('curp');
             $table->string('phone');

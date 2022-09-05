@@ -201,7 +201,7 @@ class RestaurantSeeder extends Seeder
             'email'     => 'hector@gmail.com'.$x,
             'social_security' => 'imss'.$x,
             'salary'     =>  '3000'.$x,
-            'url_image' => '',
+            'img_url' => "",
             'rfc' => '50860',
             'curp' => 'CEUFG567HDJS2',
             'phone' => '1928456723',

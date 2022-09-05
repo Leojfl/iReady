@@ -205,7 +205,7 @@ Route::post('/employee/update/{id?}', 'EmployeeController@update'
 Route::get('/employee/delete/{id}', 'EmployeeController@destroy'
 )->name('store_employee_delete');
 
-Route::resource('employees', App\Http\Controllers\Store\AuthorController::class);
+
 
  // ======================== Menu ====================
 

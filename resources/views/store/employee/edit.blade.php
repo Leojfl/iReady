@@ -3,6 +3,7 @@
     <div>
         <form method="POST" action="{{ route('employee_update', $employee->id) }}">
             {{ csrf_field() }}
+
             <div class="form-group">
 
                 @include('commons.input', [
@@ -51,13 +52,15 @@
             </div>
             <br>
 
-            <div class="form-group">
-                @include('commons.input', [
-                    'name' => 'url_image',
+            <div class="col-md-12">
+                @include('commons.input',[
+                    'name' => 'img_url',
                     'label' => 'Imagen',
                     'placeholder' => 'Imagen',
-                    'type' => 'img',
-                    'value' => isset($employee) ? $employee->url_image : '',
+                    'type' => 'file',
+                    'inputClass' => 'show-image-file',
+                    'properties' => ["data-for=img_show_image"]
+                    
                 ])
             </div>
             <br>
@@ -230,6 +233,10 @@
             ])
     </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-7 mx-auto">
+            <img class="w-100" id="img_show_image" src="{{asset(isset($employee)?$employee->img_url:"")}}">
+        </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Guardar</button>
         &nbsp;

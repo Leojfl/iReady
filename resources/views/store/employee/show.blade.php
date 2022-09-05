@@ -8,6 +8,11 @@
         <div class="col-12 text-center">
             <h3>{{ $employee->user->username }} </h3>
         </div>
+
+        <div class="col-7 col-md-7 mx-auto px-md-5">
+            <img src="{{asset($employee->img_url)}}" class="w-100">
+        </div>
+
         <div class="col-12">
             <b> Nombre </b> <br>
             {{ $employee->user->name }}
