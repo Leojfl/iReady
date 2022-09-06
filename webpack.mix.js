@@ -20,3 +20,5 @@ const mix = require('laravel-mix');
 mix.js('resources/js/vue-config.js', 'js/vue-config.js');
 
 mix.js('resources/js/store/product/startForm.js', 'js/store/product/startForm.js').vue();
+
+mix.js('resources/js/store/boart/startBoart.js', 'js/store/boart/startBoart.js').vue();

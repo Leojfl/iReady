@@ -33,13 +33,12 @@ class CreateSchemeIready extends Migration
 
 
         Schema::create('board', function (Blueprint $table) {
-
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->boolean('active');
-            $table->boolean('available');
-
+            $table->integer('capacity');
+            $table->boolean('active')->default(true);
+            $table->boolean('available')->default(true);
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('fk_id_store');
@@ -47,6 +46,18 @@ class CreateSchemeIready extends Migration
                 ->references('id')
                 ->on('store');
         });
+
+        Schema::create('board_position', function (Blueprint $table) {
+            $table->string('description')->default("");
+            $table->integer('x');
+            $table->integer('y');
+            $table->timestamps();
+            $table->unsignedBigInteger('fk_id_board')->nullable();
+            $table->foreign('fk_id_board')
+                ->references('id')
+                ->on('board');
+        });
+
 
         Schema::create('payment_store', function (Blueprint $table) {
 
@@ -439,6 +450,10 @@ class CreateSchemeIready extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('product_menu_category');
+        Schema::dropIfExists('menu_category');
+        Schema::dropIfExists('menu');
+        Schema::dropIfExists('payment_store');
         Schema::dropIfExists('order_product');
         Schema::dropIfExists('order_status');
         Schema::dropIfExists('order');
@@ -459,11 +474,10 @@ class CreateSchemeIready extends Migration
         Schema::dropIfExists('unit');
         Schema::dropIfExists('store_address');
         Schema::dropIfExists('payment_store');
+        Schema::dropIfExists('board_position');
         Schema::dropIfExists('board');
         Schema::dropIfExists('store');
         Schema::dropIfExists('ticket');
-        Schema::dropIfExists('menu');
-        Schema::dropIfExists('menu_category');
-        Schema::dropIfExists('product_menu_category');
+
     }
 }

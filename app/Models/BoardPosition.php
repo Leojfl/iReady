@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Board extends Model
+class BoardPosition extends Model
 {
     use HasFactory;
 
-    protected $table = 'board';
+    protected $table = 'board_position';
 
     protected $fillable = [
-        'name',
+        'x',
+        'y',
         'description',
-        'capacity'
+        'fk_id_board'
     ];
 
-    public function position(){
-        return $this->hasOne(
-            BoardPosition::class,
+    public function board()
+    {
+        return $this->belongsTo(
+            Board::class,
             'fk_id_board'
         );
     }
-
-
-
 }

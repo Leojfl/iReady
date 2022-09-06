@@ -1,5 +1,6 @@
 {
     "/js/vue-config.js": "/js/vue-config.js",
     "/js/store/product/startForm.js": "/js/store/product/startForm.js",
+    "/js/store/boart/startBoart.js": "/js/store/boart/startBoart.js",
     "/css/admin.css": "/css/admin.css"
 }

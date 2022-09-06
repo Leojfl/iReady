@@ -24,13 +24,21 @@ class Store extends Model
         return $this->hasOne(
             StoreAddress::class,
             'fk_id_store'
-        );
+        )->with('position');
     }
 
     public function employees()
     {
         return $this->hasMany(
             Employee::class,
+            'fk_id_store'
+        );
+    }
+
+    public function boards()
+    {
+        return $this->hasMany(
+            Board::class,
             'fk_id_store'
         );
     }
