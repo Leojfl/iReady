@@ -54,6 +54,17 @@
                     'value' => isset($provider)?$provider->email:"",
                 ])
             </div>
+
+            <div class="col-md-6">
+                @include('commons.input',[
+                    'name' => 'company',
+                    'label' => 'Empresa',
+                    'placeholder' => 'Nombre del la empresa',
+                    'type' => 'text',
+                    'value' => isset($provider)?$provider->company:"",
+                ])
+            </div>
+
             <div class="col-md-12 mt-3">
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 &nbsp;

@@ -111,6 +111,7 @@ class CreateSchemeIready extends Migration
             $table->string('second_last_name');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('company');
             $table->unsignedBigInteger('fk_id_store');
             $table->foreign('fk_id_store')
                 ->references('id')

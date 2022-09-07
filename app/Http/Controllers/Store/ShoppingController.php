@@ -30,10 +30,13 @@ use Carbon\Carbon;
 class ShoppingController extends Controller
 {
 
-    public function index()
+    public function index($providerId=null)
     {
         $store = $this->storeInSesion();
         $shoppings = $store->providerMaterials;
+        if ($providerId != null){
+            $shoppings = ProviderMaterial::where('fk_id_provider',$providerId)->where('fk_id_store',$store->id)->get();
+        }
         return view('store.shopping.index', ['shoppings' => $shoppings]);
     }
 

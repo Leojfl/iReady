@@ -17,6 +17,7 @@ class Provider extends Model
         'second_last_name',
         'phone',
         'email',
+        'company',
     ];
 
     protected $appends = [

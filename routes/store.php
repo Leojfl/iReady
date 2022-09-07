@@ -27,7 +27,7 @@ Route::post(
 
 Route::get(
     '/shopping/provider/{providerId?}',
-    'ProviderController@upsertPost'
+    'ShoppingController@index'
 )->name('store_shopping_provider');
 
 // ================== Shopping index ====================

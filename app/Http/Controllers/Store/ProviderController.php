@@ -15,7 +15,7 @@ use Illuminate\Http\Response;
 use App\Models\Product;
 use App\Models\Store;
 use App\Models\Combo;
-use App\Models\RawMaterial;
+use App\Http\Requests\UpsertProviderRequest;
 use App\Models\Category;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -37,28 +37,26 @@ class ProviderController extends Controller
     {
         $store = $this->storeInSesion();
         $provider = Provider::find($providerId);
-        if ($provider != null && $provider->fk_id_store != $store->id){
-            return back()->withErrors([ 'generic_error' => ['Datos no encontrados']]);
+        if ($provider != null && $provider->fk_id_store != $store->id) {
+            return back()->withErrors(['generic_error' => ['Datos no encontrados']]);
         }
         return view('store.provider.upsert', ['provider' => $provider]);
     }
 
-    public function upsertPost(UpsertRawMaterialRequest $request, $providerId = 0)
+    public function upsertPost(UpsertProviderRequest $request, $providerId = 0)
     {
         $store = $this->storeInSesion();
-        if ($providerId == 0){
+        if ($providerId == 0) {
             $provider = new Provider();
             $provider->fk_id_store = $store->id;
         } else {
             $provider = Provider::find($providerId);
-            if ($provider != null && $provider->fk_id_store != $store->id){
-                return back()->withErrors([ 'generic_error' => ['Datos no encontrados']]);
+            if ($provider != null && $provider->fk_id_store != $store->id) {
+                return back()->withErrors(['generic_error' => ['Datos no encontrados']]);
             }
         }
         $provider->fill($request->all());
         $provider->saveOrFail();
         return redirect(route('store_provider_index'));
     }
-
-
 }

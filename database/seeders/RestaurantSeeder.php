@@ -157,6 +157,7 @@ class RestaurantSeeder extends Seeder
             'second_last_name' =>  'Sec',
             'phone' =>  '7291050713',
             'email' =>  '',
+            'company' => 'Compañia de leche',
             'fk_id_store' =>  $storeId,
             ]);
 
@@ -166,6 +167,7 @@ class RestaurantSeeder extends Seeder
             'second_last_name' =>  'Sec',
             'phone' =>  '7291050713',
             'email' =>  'test@test.com',
+            'company' => 'Compañia de azucar',
             'fk_id_store' =>  $storeId,
             ]);
 
