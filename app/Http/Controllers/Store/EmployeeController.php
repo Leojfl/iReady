@@ -88,10 +88,10 @@ class EmployeeController extends Controller
 
         $store = $this->storeInSesion();
         $employee = Employee::where('fk_id_user', Auth::user()->id)->first();
-        if($employee->id == $id){
+        if ($employee->id == $id) {
             return back()
-            ->withErrors(['generic' => ['No puedes editar tu información']])
-            ->withInput($request->all());
+                ->withErrors(['generic' => ['No puedes editar tu información']])
+                ->withInput($request->all());
         }
         // try {
         DB::beginTransaction();
@@ -106,17 +106,15 @@ class EmployeeController extends Controller
         }
         if ($request->file("img_url") != null) {
             $employee->img_url = $this->storeImage($request->file("img_url"), "employee", $employee->id);
-            $employee->saveOrfail();
         }
         $user->saveOrFail();
         $employee->fill($request->all());
         $employee->fk_id_user = $user->id;
         $employee->fk_id_store = $store->id;
-        $employee->url_image = " ";
         $employee->saveOrFail();
         $address = $employee->address ?? new EmployeeAddress();
         $address->fill($request->all());
-        $address->fk_id_employee =$employee->id;
+        $address->fk_id_employee = $employee->id;
         $address->saveOrFail();
         DB::commit();
         return redirect()->route('store_employee_index');

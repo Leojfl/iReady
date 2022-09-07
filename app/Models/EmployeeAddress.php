@@ -19,7 +19,8 @@ class EmployeeAddress extends Model
         'street',
         'ext_num',
         'int_num',
-        'township'
+        'township',
+        'zip code'
     ];
 /*
     protected $appends = [

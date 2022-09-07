@@ -20,6 +20,7 @@ class UpsertProviderRequest extends FormRequest
             'name' => 'required',
             'last_name' => 'required',
             'second_last_name' => 'required',
+            'company' => 'required',
             ];
     }
 
@@ -27,8 +28,9 @@ class UpsertProviderRequest extends FormRequest
     {
         return [
             'name.required' => 'Nombre requerido',
-            'last_name.required' => 'Apellido paterno requerido requerida',
+            'last_name.required' => 'Apellido paterno requerido requerido',
             'second_last_name.required' => 'Apellido materno requerido',
+            'company.required' => 'Empresa requerida',
         ];
     }
 

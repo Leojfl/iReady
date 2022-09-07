@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $table = 'employee';
-    protected $fillable = [
-            'img_url',
+    protected $fillable = [ 
             'rfc',
             'curp',
             'phone',

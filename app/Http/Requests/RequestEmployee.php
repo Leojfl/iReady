@@ -42,10 +42,12 @@ class RequestEmployee extends FormRequest
             //address
             'street' => 'required',
             'ext_num' => 'required',
-            //'int_num' => 'required',
+            'int_num' => 'required',
             'colony' => 'required',
             'city' => 'required',
             'township' => 'required',
+            'zip_code' => 'required',
+
         ];
     }
 
@@ -74,11 +76,12 @@ class RequestEmployee extends FormRequest
             'cell_phone.required' => 'Celular requerido',
             //address
             'street.required' => 'Calle requerida',
-            'ext_num' => 'Número exterior requerido',
-            //'int_num.required' => 'Número interior requerido',
+            'ext_num.required' => 'Número exterior requerido',
+            'int_num.required' => 'Número interior requerido',
             'colony.required' => 'Colonia requerida',
             'city.required' => 'Ciudad requerida',
             'township.required' => 'Municipio requerido',
+            'zip_code.required' => 'Codigo postal requerido'
 
         ];
     }
