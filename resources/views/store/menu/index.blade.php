@@ -21,20 +21,9 @@
                class="btn btn-secondary btn-upsert">Agregar</a>
         </div>
         <div class="col-md-12 mt-3">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                  <button class="nav-link active"
-                  id="nav-menu-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#nav-menu"
-                  type="button" role="tab"
-                  aria-controls="nav-menu"
-                  aria-selected="true">Menu</button>
-
-            </nav>
-              <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-menu" role="tabpanel" aria-labelledby="nav-menu-tab" tabindex="0">
-
+            
+              <div class="table">
+                
                     <table class="table">
                     <thead>
                     <tr>
