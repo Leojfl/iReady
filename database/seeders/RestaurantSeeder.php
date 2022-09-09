@@ -210,6 +210,17 @@ class RestaurantSeeder extends Seeder
             'social_security' => '506789',
         ]);
 
+        for($i = 0; $i <= 5; $i++) {
+            DB::table('board')->insertGetId([
+                'fk_id_store' => $storeId,
+                'name' =>  "Mesa ".$i,
+                'description' =>  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut cursus leo. Duis gravida rhoncus lobortis.",
+                'capacity' => 4,
+                'available' => true,
+                'active' => true
+                ]);
+        }
+
         for($i = 0; $i <= 10; $i++) {
             $productId = DB::table('product')->insertGetId([
                 "name" => "Producto ".$i." tienda ".$x,
@@ -225,7 +236,65 @@ class RestaurantSeeder extends Seeder
                 'fk_id_menu_category' =>  1,
                 ]);
         }
+        $dateInt = rand(1262055681,1262055681);
+        $date = date("Y-m-d H:i:s", $dateInt);
+        for($z=0; $z < 15; $z++) {
+            $orderId = DB::table('order')->insertGetId([
+                "total" => 100,
+                "discount" => 0,
+                "description" => $i,
+                "client" => $i%2,
+                "fk_id_status" => \App\Models\Status::COMPLETE,
+                "fk_id_store" => $storeId,
+                "fk_id_board" => null,
+                "fk_id_employee" => null,
+                "fk_id_client" => null,
+                "fk_id_address" => null,
+                "created_at" => $date
+            ]);
+            $numberProducts = rand(1, 8);
+            for($i = 1; $i< $numberProducts; $i++) {
+                $productId = rand(1, 10);
+                $orderProductId = DB::table('order_product')->insertGetId([
+                    "ticket" => 1,
+                    "price" => 20,
+                    "quantity" => 1,
+                    "fk_id_order" => $orderId,
+                    "fk_id_product" => $i,
+                    "fk_id_combo" => null,
+                    "created_at" => $date
+                ]);
+            }
+        }
 
+        for($z=0; $z < 5; $z++) {
+            $orderId = DB::table('order')->insertGetId([
+                "total" => 100,
+                "discount" => 0,
+                "description" => $i,
+                "client" => $i%2,
+                "fk_id_status" => \App\Models\Status::COMPLETE,
+                "fk_id_store" => $storeId,
+                "fk_id_board" => rand(1, 5),
+                "fk_id_employee" => 1,
+                "fk_id_client" => null,
+                "fk_id_address" => null,
+                "created_at" => $date
+            ]);
+            $numberProducts = rand(1, 8);
+            for($i = 1; $i< $numberProducts; $i++) {
+                $productId = rand(1, 10);
+                $orderProductId = DB::table('order_product')->insertGetId([
+                    "ticket" => 1,
+                    "price" => 20,
+                    "quantity" => 1,
+                    "fk_id_order" => $orderId,
+                    "fk_id_product" => $i,
+                    "fk_id_combo" => null,
+                    "created_at" => $date
+                ]);
+            }
+        }
 
         $comboId = DB::table('combo')->insertGetId([
             "name" => "combo  tienda ".$x,
