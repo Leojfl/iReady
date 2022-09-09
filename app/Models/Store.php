@@ -51,6 +51,15 @@ class Store extends Model
         );
     }
 
+    public function products()
+    {
+        return $this->hasMany(
+            Product::class,
+            'fk_id_store'
+        );
+    }
+
+
     public function providers()
     {
         return $this->hasMany(
