@@ -140,6 +140,14 @@ Route::get('/store/board/{boardId?}',
  'BoardController@destroy'
  )->name('store_board_delete');
 
+Route::get('/store/board/show/map',
+'BoardController@map'
+)->name('store_board_map');
+
+Route::post('/store/board/update/map',
+'BoardController@update'
+)->name('store_board_map_update');
+
  // ======================== Tickets ====================
 
  Route::get(

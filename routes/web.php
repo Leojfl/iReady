@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/',
+'Auth\LoginController@home');
+
 Route::view('/login', 'auth.login')
     ->name('login')
 ->middleware('guest');
@@ -30,3 +33,13 @@ Route::get('/logout',
 Route::get('/home',
 'Auth\LoginController@home')
 ->name('home');
+
+Route::get('/menu/{nameStore}',
+'Web\WebController@menu')
+->name('menu');
+
+
+Route::get('/chart',
+'Web\WebController@chart')
+->name('chart_test');
+

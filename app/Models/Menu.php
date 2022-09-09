@@ -25,4 +25,12 @@ class Menu extends Model
         );
     }
 
+    public function menuCategories()
+    {
+        return $this->hasMany(
+            MenuCategory::class,
+            'fk_id_menu'
+        )->with('products');
+    }
+
 }
