@@ -55,7 +55,7 @@ $user = \App\Models\User::find(Auth::id());
             'name' => 'store_menus_index',
             'actives_routes' => ['store_menus_index', 'store_menu_upsert', 'store_menu_show'],
             'label' => 'Menus',
-            'icon_class' => 'fas fa-square-list',
+            'icon_class' => 'far fa-list-alt',
             'roles' => [Role::STORE]
         ],
         [
