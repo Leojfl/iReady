@@ -60,6 +60,25 @@ class UserSchemeSeeder extends Seeder
                 'name' => 'Repartidor'
             ]
         ]);
+
+        DB::table('status')->insert([
+            [
+                'id' => \App\Models\Status::PENDING,
+                'name' => 'Pendiente'
+            ],
+            [
+                'id' => \App\Models\Status::IN_PREPARATION,
+                'name' => 'En preparación'
+            ],
+            [
+                'id' => \App\Models\Status::COMPLETE,
+                'name' => 'Completada'
+            ],
+            [
+                'id' => \App\Models\Status::CANCEL,
+                'name' => 'Cancelada'
+            ],
+        ]);
     }
 
     public function users() {
