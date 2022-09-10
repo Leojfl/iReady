@@ -210,6 +210,32 @@ class RestaurantSeeder extends Seeder
             'social_security' => '506789',
         ]);
 
+        DB::table("status")->insert(
+            array(
+                'name' => 'activo'
+            )
+        );
+
+        DB::table("status")->insert(
+            array(
+                'name' => 'inactivo'
+            )
+        );
+
+        DB::table('order')->insert([
+            array(
+                "total" => 250.5,
+                "discount" => 50.5,
+                "description" => "K DSJFHKJFDHGSKJ FHDJKGHFDKJHG JDFHjdsa khfdsh",
+                "client" => "Sergio Mendoza",
+                'fk_id_status' => 1,
+                'fk_id_store' => 1,
+                'fk_id_employee' => 1,
+                'created_at'=>now(),
+                'updated_at'=>now(),
+            )
+        ]);
+
         for($i = 0; $i <= 10; $i++) {
             $productId = DB::table('product')->insertGetId([
                 "name" => "Producto ".$i." tienda ".$x,
