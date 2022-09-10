@@ -88,6 +88,15 @@
             </div>
             <div class="col-md-6">
                 @include('commons.input',[
+                    'name' => 'township',
+                    'label' => 'Municipio',
+                    'placeholder' => 'Municipio',
+                    'type' => 'text',
+                    'value' => isset($store->address)?$store->address->colony:"",
+                ])
+            </div>
+            <div class="col-md-6">
+                @include('commons.input',[
                     'name' => 'zip_code',
                     'label' => 'Código postal',
                     'placeholder' => 'Codigo postal',

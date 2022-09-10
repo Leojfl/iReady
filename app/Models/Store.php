@@ -24,7 +24,7 @@ class Store extends Model
         return $this->hasOne(
             StoreAddress::class,
             'fk_id_store'
-        )->with('position');
+        );
     }
 
     public function employees()
