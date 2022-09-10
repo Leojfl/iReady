@@ -75,4 +75,11 @@ class Store extends Model
             'fk_id_store'
         );
     }
+
+    public function menu()
+    {
+        return Menu::where('fk_id_store', $this->id)
+                    ->where('active', true)
+                    ->first();
+    }
 }

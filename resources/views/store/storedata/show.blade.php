@@ -1,5 +1,11 @@
 @extends('store.template.main')
 @push('scripts')
+<script>
+    var urlQr = @json(route('menu', ['storeId' => $store->id]))
+</script>
+<script src="{{asset('js/generic/qrcode.min.js')}}"></script>
+<script src="{{asset('js/store/data/show.js')}}"></script>
+
 @endpush
 @push('css')
 @endpush
@@ -52,6 +58,9 @@
             <b>Número:</b> {{$store->address->ext_num}}
         </div>
     @endif
+    <div class="col-12 mx-auto p-4">
+        <div id="qrcode" class="d-flex justify-content-center mt-3"></div>
+    </div>
 </div>
 
 @endsection

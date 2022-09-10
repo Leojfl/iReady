@@ -6,26 +6,56 @@
 @endphp
 @extends('store.template.main')
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-crossorigin="anonymous"
-referrerpolicy="no-referrer"></script>
-<script>
-    var url = @json(route('chart_test'));
-</script>
-<script src="{{asset('js/web/menu.js')}}">
-</script>
-
 @endpush
 @push('css')
 
 @endpush
 @section('content')
-<input id="inp-url" value="{{route('chart_test')}}">
-    <div class="row">
-        <div class="col-12">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-    </div>
+    <div class="row m-0 pb-4">
+        @if(empty($store) ||  empty($menu))
 
+        @else
+        <div class="col-md-11 mx-auto">
+            <h2>{{$store->name}}</h3>
+        </div>
+        <div class="col-md-2 mx-auto">
+            <img src="{{asset($store->img_url)}}" class="rounded-circle w-100"  alt="{{$store->name}}">
+        </div>
+
+            @foreach ($menu->menuCategories as  $menuCategory)
+                <div class="col-md-12 mx-auto mt-3 ">
+                    <h4 class="border-bottom pb-4">
+                        @if ($menuCategory->alias == "")
+                        {{$menuCategory->category->name}}
+                        @else
+                        {{$menuCategory->alias}}
+                        @endif
+                    </h4>
+                    <div class="row m-0">
+                    @foreach ($menuCategory->products as $product)
+                    @if ($product->show)
+                    <div class="col-md-4 mx-auto mt-4">
+                        <div class="card-main shadow rounded-5" style="overflow: hidden;">
+                            <img class="w-100 card-img-top" src="{{$product->absolute_image_url}}">
+                            <div class="row p-4 ">
+                                <div class="col-12">
+                                    <b>{{$product->name}}</b>
+                                </div>
+                                <div class="col-12">
+                                    <b>$@money($product->price)</b>
+                                </div>
+                                <div class="col-12">
+                                    {{$product->description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                    </div>
+                </div>
+            @endforeach
+        @endempty
+
+    </div>
 @endsection

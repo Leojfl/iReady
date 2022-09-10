@@ -34,7 +34,7 @@ Route::get('/home',
 'Auth\LoginController@home')
 ->name('home');
 
-Route::get('/menu/{nameStore}',
+Route::get('/menu/{storeId}/',
 'Web\WebController@menu')
 ->name('menu');
 

@@ -3,11 +3,19 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
+use App\Models\Store;
 
 class WebController extends Controller
 {
-    public function menu($storeName) {
-        return view('web.menu');
+    public function menu($storeId) {
+        $store = Store::find($storeId);
+        if ($store == null){
+            return view('web.menu');
+        }
+
+        $menu = $store->menu();
+        return view('web.menu', ['menu' => $menu, 'store' => $store]);
     }
 
     public function chart()

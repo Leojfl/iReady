@@ -2,8 +2,6 @@
 var myChart = undefined;
 $(document).ready(function () {
     $.get(url, (response) => {
-        console.log("respuesta")
-        console.log(response)
         configChart(response.labels, response.data)
     });
 });

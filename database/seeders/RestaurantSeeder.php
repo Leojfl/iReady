@@ -223,12 +223,13 @@ class RestaurantSeeder extends Seeder
 
         for($i = 0; $i <= 10; $i++) {
             $productId = DB::table('product')->insertGetId([
-                "name" => "Producto ".$i." tienda ".$x,
+                "name" => "Producto ".$i." ".$x,
                 "description" => "K DSJFHKJFDHGSKJ FHDJKGHFDKJHG JDFHjdsa khfdsh",
                 "price" => $i,
                 "show" => $i%2,
                 "fk_id_store" => $storeId,
                 "fk_id_category" => 1,
+                "image_url" => "https://picsum.photos/seed/picsum/500"
             ]);
 
             DB::table('product_menu_category')->insertGetId([

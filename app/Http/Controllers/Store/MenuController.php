@@ -107,6 +107,6 @@ class MenuController extends Controller
         if ($menu != null && $menu->fk_id_store != $store->id){
             return back()->withErrors([ 'generic' => ['Datos no encontrados']]);
         }
-        return view('store.menu.show', ['menu' => $menu]);
+        return view('web.menu', ['menu' => $menu, 'store' => $store]);
     }
 }
